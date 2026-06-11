@@ -20,7 +20,7 @@ mu_ordinal <- c(0.484, 0.121,  # Grupo 1 entre condiciones :efecto de interaccio
 
 # This values are selected as a way to create the estimated principal and itneraction effect sizes.
 
-mu_conservador<-mu_ordinal*0.8
+# mu_conservador<-mu_ordinal*0.8
 
 #Definir diseño anona
 diseno <- ANOVA_design(design = "2b*2w",
@@ -63,13 +63,13 @@ n_valores<-poder_resultados$power_df #aca puedo ver valores de poder para cada n
 
 set.seed(888)
 simulacion_250<- ANOVA_power(diseno, 
-                             nsims = 5000, 
+                             nsims = 1000, 
                              alpha_level = 0.05,
                              verbose = FALSE)
 
 simulacion_250
 
-#Given a 300 sample and assuming the aforementioend effec sizes, what are the MDE?
+#Given a 500 sample and assuming the aforementioend effec sizes, what are the MDE?
 library(ggplot2)
 library(tidyverse)
 
@@ -79,7 +79,7 @@ get_power_curve <- function(scale_multiplier, n_per_group = 250) {  # 250 per be
   mu_scaled <- mu_ordinal * scale_multiplier
   
   diseno_temp <- ANOVA_design(design = "2b*2w",
-                              n = n_per_group * 2,  # Total N
+                              n = n_per_group,  # Total N
                               mu = mu_scaled,
                               sd = 1,
                               r = 0.5,
