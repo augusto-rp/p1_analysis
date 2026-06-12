@@ -122,6 +122,6 @@ ggplot(power_curves, aes(x = scale)) +
 
 #this graph shows how statistical power decreases as the effect size is proportionaly lower than orinally estimated
 #so if the effect size is an 80% of the simulated effect size, this are the statistical powers:
-# between factor =
-# with in factor =
-# interaction =
+# between factor = 70.2
+# with in factor =99.6
+# interaction = 57.7  :( please mrs minister of science give me money
