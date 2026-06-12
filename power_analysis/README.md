@@ -19,13 +19,13 @@ In a Within-Subjects factor, the same people are measured twice.
 Because you set the correlation between these measurements to r = 0.5, the math "cancels out" a lot of the background noise (individual differences) for that factor
 
 - .anova_tema (Within-Subjects): Because it's within-subjects, the error term (the denominator when calculating variance explained) is much smaller. A smaller denominator means the proportion of variance explained ($\eta_p^2$) shoots way up to $0.057$ ($5.7\%$)
-- .anova_claves (Between-Subjects): Since different people are in different groups, you can't cancel out individual differences. The error term is much larger, so the exact same raw mean difference explains less overall variance: $0.021$ ($2.1\%$
+- .anova_claves (Between-Subjects): Since different people are in different groups, you can't cancel out individual differences. The error term is much larger, so the exact same raw mean difference explains less overall variance: $0.021$ ($2.1\%$)
 
 
 ### Summary
 - tema ($5.7\%$) wins because within-subject tracking removes individual noise
--.claves ($2.1\%$) is lower because between-subject variance includes all individual differences
--.interaction ($1.6\%$) is the lowest because interaction metrics measure cell-by-cell deviations, which naturally distribute variance differently than main effects.
+- claves ($2.1\%$) is lower because between-subject variance includes all individual differences
+- interaction ($1.6\%$) is the lowest because interaction metrics measure cell-by-cell deviations, which naturally distribute variance differently than main effects.
 
 
 # Power curves as effect size decreases
