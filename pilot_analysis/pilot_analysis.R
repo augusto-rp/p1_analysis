@@ -1,3 +1,6 @@
+library(usethis)
+usethis::use_github()
+
 
 # Librerias
 library(readxl)
