@@ -1,5 +1,4 @@
-library(usethis)
-usethis::use_github()
+# github 
 
 
 # Librerias
@@ -34,6 +33,10 @@ meta_cols <- c("CASE","SERIAL", "REF","QUESTNNR", "MODE", "AS02","ASO2_CP", "STA
 ck_ <- unlist(lapply(8:47, function(i) {
   paste0("CK", sprintf("%02d", i), "_", c("01", "02", "03", "04", "05"))
 }))
+
+pi_check <-paste0("PI", sprintf("%02d",1:40),"_01") #string with columns that are check of whether stimuli are perceived as political or not
+
+pi_ideology <-paste0("PI", sprintf("%02d",41:80), "_01") #string with columns that are check of whether stimuli are perceived as right wing, left wing or neither
 
 
 # MCAR TEST, as participants are randomly assigned to 1 of 4 conditions (AS02) I have to create subsets to test it
@@ -101,7 +104,13 @@ table(bd$total_p, bd$SD06)
 table(bd$AS02, bd$total_p)
 
 # Maybe overall perceived funniness (and controvery) of stimuli might be related to that
-#See line ____for the analysis
+
+lm_image<-lm(total_p~+avg_03, data=base)
+summary(lm_image)
+
+rm(lm_image)
+
+# Maybe this should be a logistic regression rather than a linearl, grouping people with less than X number os seen images
 
 
 
@@ -163,7 +172,8 @@ freq_f_meme <- bd %>%
   pivot_wider(names_from = response,
               values_from = n,
               values_fill = 0) %>%
-  mutate(total = rowSums(across(`1`:`5`)))  # add total per item
+  mutate(total = rowSums(across(`1`:`5`)))  
+
 
 # Lets create a df of ratings of perceived Polemicality
 
@@ -342,7 +352,7 @@ summary(res_pares)
 
 
 
-# Step 2: Comparision of average Humorous and Serious Stimuli across Means ----------------------
+# Step 2: Comparision of average Humorous and Serious Stimuli across Means
 
 # This is a descriptive step of the data validation
 # A meme can be significantly more humorous that the serious version of the same message and still be perceived as unfunny
@@ -401,7 +411,7 @@ rm(dev_df, fun_check, f_pares, emm_pares, emm_ver, fun_df, res_pares)
 
 # I can also use a quite strict cut off of no deviation greater than 0.3 in the likert scale as a criteria to select memes
 
-# Step 3:  Similarity of Message Content ----------------------
+# Step 3:  Similarity of Message Content
 
 similitud <- aggregate(ck_value ~ ck_, 
                        data = subset(base, question == 5), 
@@ -439,15 +449,35 @@ ranova(m_simil)
 #Image pair accounted for only 0.9% of the variance (SD = 0.08), confirming that pairs did not differ meaningfully in perceived similarity.
 #The grand mean rating was 4.53 (SE = 0.07), well within the agreement range, supporting the conclusion that all pairs were perceived as expressing the same content.
 
-# Step 4: Check of message nature and ideological position ----------------
 
 
-# Step 5: Level of offensiveness ------------------------------------------
+# Step 4: Check of message nature and ideological position
+
+# PI01 to PI40 are checks that the images are perceived as political (2) they should all be 2 to little to no deviation
+#now im going to use pi_check
+describe(bd[pi_check]) #PI33 to PI4O should be closer to 1, the rest seem to work just fine
+
+
+# PI41 to PI80 question whether the image is perceived as right wing (1) left wing (2) or neither (3)
+#now im going to use pi_ideology
+
+#rather than means i want to use raw frequency as here 
 
 
 
+orientacion_stimuli<-do.call(rbind, lapply(bd[pi_ideology], function(x) {
+  t <- table(factor(x, levels = 1:3), useNA = "no")
+  c(t, prop.table(t) * 100)
+}))
 
 
+orientacion_stimuli <- as.data.frame(orientacion_stimuli)
+
+#Interetingly the memes of being broke because of going to a concert are seen as right wing
+# Most stimuli seen to be perceived as intended
+
+
+# Step 5: Level of offensiveness
 
 
 
@@ -457,29 +487,29 @@ ranova(m_simil)
 
 
 
-
 # Analysis of Cynicism Scales ---------------------------------------------
 
-cinis_ad<-bd[,c("VD03_01","VD03_02","VD03_03","VD03_04","VD03_05","VD03_06")]  #AGREE/DISAGREE SCALE
+
+# AGREE/DISAGREE SCALE
+cinis_ad<-bd[,c("VD03_01","VD03_02","VD03_03","VD03_04","VD03_05","VD03_06")]  
 cinis_ad<-cinis_ad[rowSums(is.na(cinis_ad))<ncol(cinis_ad),] #remove cases that wer enot assigned to this condition-->all NA, should be half the total
 
 cor(cinis_ad, use = "everything", method = c("spearman"))
 cronbach.alpha(cinis_ad, CI=T)
-
 
 describe(cinis_ad) # i have to transform -1 into NA
 
 
 
 
-
+# FREQUENCY SCALE
 cinis_fr<-bd[,c("VD05_01","VD06_01","VD07_01","VD08_01","VD09_01","VD10_01")] #frequency VD09 is inverted
 cinis_fr<-cinis_fr[rowSums(is.na(cinis_fr))<ncol(cinis_fr),]
 
-describe(cinis_fr)
+
+describe(cinis_fr) # check descriptives before inverting to check everything is alright
 
 
-#BEFORE INVERTING SEE VALUES OF A ROW AND COMAPRE TO VALUE AFTERWARDS
 cinis_fr<-cinis_fr%>%
   mutate(VD09_01=6-VD09_01)
 
@@ -487,8 +517,7 @@ cinis_fr<-cinis_fr%>%
 cor(cinis_fr, use = "everything", method = c("spearman")) #WHAT
 
 
-cronbach.alpha(cinis_fr, CI=T) #before this i ahve to invert item
-
+cronbach.alpha(cinis_fr, CI=T) 
 
 
 
@@ -500,7 +529,5 @@ cronbach.alpha(cinis_fr, CI=T) #before this i ahve to invert item
 
 # Check if overall perception of funniness/controverys is related to greater degree of survey completion
 
-  ## Regarding analyses #####
+## Regarding analyses #####
 # check for halo effects
-
-  
