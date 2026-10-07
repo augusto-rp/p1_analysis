@@ -1,4 +1,4 @@
-# github 
+#github
 
 
 # Librerias
@@ -34,10 +34,9 @@ ck_ <- unlist(lapply(8:47, function(i) {
   paste0("CK", sprintf("%02d", i), "_", c("01", "02", "03", "04", "05"))
 }))
 
+
 pi_check <-paste0("PI", sprintf("%02d",1:40),"_01") #string with columns that are check of whether stimuli are perceived as political or not
-
 pi_ideology <-paste0("PI", sprintf("%02d",41:80), "_01") #string with columns that are check of whether stimuli are perceived as right wing, left wing or neither
-
 
 # MCAR TEST, as participants are randomly assigned to 1 of 4 conditions (AS02) I have to create subsets to test it
 
@@ -110,8 +109,6 @@ summary(lm_image)
 
 rm(lm_image)
 
-# Maybe this should be a logistic regression rather than a linearl, grouping people with less than X number os seen images
-
 
 
 # DESCRIPTIVE:SAMPLE CHARACTERISTICS --------------------------------------
@@ -172,8 +169,7 @@ freq_f_meme <- bd %>%
   pivot_wider(names_from = response,
               values_from = n,
               values_fill = 0) %>%
-  mutate(total = rowSums(across(`1`:`5`)))  
-
+  mutate(total = rowSums(across(`1`:`5`)))  # add total per item
 
 # Lets create a df of ratings of perceived Polemicality
 
@@ -207,6 +203,8 @@ describe(bd[, cols_p_serio])
 cols_similitud <- paste0("CK", sprintf("%02d", 8:47), "_05") #creation of a separate df of the ratings of funniness
 describe(bd[, cols_similitud])
 
+
+## Joint Descriptives #####
 # All of this is a non parsimonious way of doing this analysis. But for my mind it works as a way to focus on just one descriptive variable
 # But I should probably consolidate all of this in a single df
 # Now lets create a df to see all the descriptives of ck##_01, 02,03, 04 and 0,5 in a single
@@ -239,6 +237,7 @@ desc_ck <- bd %>%
 # However it would be a good idea to transform this into an excel with the names of the topic and question rather than CK08_03
 
 rm(cols_ck, cols_f_meme, cols_f_serio, cols_p_meme, cols_p_serio, cols_similitud, freq_f_meme, freq_f_serio) #lets save RAM
+
 
 
 
@@ -352,7 +351,7 @@ summary(res_pares)
 
 
 
-# Step 2: Comparision of average Humorous and Serious Stimuli across Means
+# Step 2: Comparision of average Humorous and Serious Stimuli across Means ----------------------
 
 # This is a descriptive step of the data validation
 # A meme can be significantly more humorous that the serious version of the same message and still be perceived as unfunny
@@ -411,7 +410,7 @@ rm(dev_df, fun_check, f_pares, emm_pares, emm_ver, fun_df, res_pares)
 
 # I can also use a quite strict cut off of no deviation greater than 0.3 in the likert scale as a criteria to select memes
 
-# Step 3:  Similarity of Message Content
+# Step 3:  Similarity of Message Content ----------------------
 
 similitud <- aggregate(ck_value ~ ck_, 
                        data = subset(base, question == 5), 
@@ -449,9 +448,7 @@ ranova(m_simil)
 #Image pair accounted for only 0.9% of the variance (SD = 0.08), confirming that pairs did not differ meaningfully in perceived similarity.
 #The grand mean rating was 4.53 (SE = 0.07), well within the agreement range, supporting the conclusion that all pairs were perceived as expressing the same content.
 
-
-
-# Step 4: Check of message nature and ideological position
+# Step 4: Check of message nature and ideological position ----------------
 
 # PI01 to PI40 are checks that the images are perceived as political (2) they should all be 2 to little to no deviation
 #now im going to use pi_check
@@ -477,11 +474,113 @@ orientacion_stimuli <- as.data.frame(orientacion_stimuli)
 # Most stimuli seen to be perceived as intended
 
 
-# Step 5: Level of offensiveness
+# Step 5: Level of offensiveness ------------------------------------------
 
+
+#Similar to step 1 lets first create a df with ratings of controversy
+
+
+polemic_df <- base %>%
+  filter(question %in% c(1, 2)) %>% #values of 1(controversy of meme version) and 2 (controversy of serious version) in column question
+  mutate(
+    version   = factor(if_else(question == 1, "H", "S"), levels = c("S", "H")), #this establishes serious as the baseline factor 
+    id        = factor(id),
+    ck_id     = factor(ck_),
+    controversial = as.numeric(ck_value)
+  ) %>%
+  select(id, ck_, version, controversial)
+
+polemic_df$ck_  <- factor(polemic_df$ck_)
+
+c_pares <- lmer(controversial ~ ck_ * version + (1 | id), data = polemic_df) #controversy/polemicality is modeled using the interaction between overall controversy of pair of images * meme version and adding intercept by individual
+
+
+emm_c_pares <- emmeans(c_pares, ~ version | ck_)
+con_c_pares <- contrast(emm_c_pares, method = "revpairwise")
+res_c_pares <- summary(con_c_pares, by = NULL, infer = TRUE, adjust = "fdr") #also worth checking when using holm
+summary(res_c_pares) #not a single statistical difference in controversy
+
+
+
+
+
+#This suggest that I can select the pairs of images I'm gooing to use base just in their ranking of polemicality. Given Im guaranteed no matter which one I select there are similarly rated on this dimension
+
+
+
+# Some Graphs -------------------------------------------------------------
+
+# Funniness: Comparasion of memes and serious version
+
+base %>%
+  filter(question %in% c(3, 4)) %>%
+  group_by(question) %>%
+  summarise(
+    mean     = mean(ck_value, na.rm = TRUE),
+    median   = median(ck_value, na.rm = TRUE),
+    sd       = sd(ck_value, na.rm = TRUE),
+    skew     = psych::skew(ck_value, na.rm = TRUE),
+    kurtosis = psych::kurtosi(ck_value, na.rm = TRUE),
+    n        = n() # sample size for each question
+  )
+
+
+base_fun <- base %>%
+  filter(question %in% c(3, 4)) %>%
+  mutate(question = factor(question, levels = c(3, 4), labels = c("V. Meme", "V. Seria")))
+
+# 2. Density Plot Superimpossed
+ggplot(base_fun, aes(x = ck_value, fill = question, color = question)) +
+  geom_density(alpha = 0.4, linewidth = 1) + # alpha = 0.4 creates the transparent overlap
+  labs(
+    title = "Comparison of Distributions for Funniness",
+    x = "CK Value (Rating)",
+    y = "Density",
+    fill = "Question",
+    color = "Question"
+  ) +
+  theme_minimal()
+
+
+
+
+# Polemicality: Comparision of memes and serious version
+
+base %>%
+  filter(question %in% c(1, 2)) %>%
+  group_by(question) %>%
+  summarise(
+    mean     = mean(ck_value, na.rm = TRUE),
+    median   = median(ck_value, na.rm = TRUE),
+    sd       = sd(ck_value, na.rm = TRUE),
+    skew     = psych::skew(ck_value, na.rm = TRUE),
+    kurtosis = psych::kurtosi(ck_value, na.rm = TRUE),
+    n        = n() # sample size for each question
+  )
+
+
+base_polemic <- base %>%
+  filter(question %in% c(1, 2)) %>%
+  mutate(question = factor(question, levels = c(1, 2), labels = c("V. Meme", "V. Seria")))
+
+# 2. Density Plot Superimpossed
+ggplot(base_polemic, aes(x = ck_value, fill = question, color = question)) +
+  geom_density(alpha = 0.4, linewidth = 1) + # alpha = 0.4 creates the transparent overlap
+  labs(
+    title = "Comparison of Distributions for Polemicality",
+    x = "CK Value (Rating)",
+    y = "Density",
+    fill = "Question",
+    color = "Question"
+  ) +
+  theme_minimal()
+
+
+rm(base_fun, base_polemic)
 
 
 # ...and the winners are... -----------------------------------------------
+
 
 
 
@@ -529,5 +628,7 @@ cronbach.alpha(cinis_fr, CI=T)
 
 # Check if overall perception of funniness/controverys is related to greater degree of survey completion
 
-## Regarding analyses #####
+  ## Regarding analyses #####
 # check for halo effects
+
+  
