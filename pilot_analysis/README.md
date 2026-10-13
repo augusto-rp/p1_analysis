@@ -18,121 +18,75 @@ I'll probably make a more human like version once I have the definited results
 The analysis is contained in a single R script  organized into the following major sections:
 
 ### 1. Data Preparation
+Loads libraries (see dependencies). Imports Excel data, converts -9 to `NA`, filters participants over 36, defines metadata columns, and creates stimulus rating variable vectors (`ck_`, `pi_check`, `pi_ideology`). Adds `total_p` (pages viewed), `total_p_d` (dichotomous: ≤9 pages vs. more), and `avg_01`–`avg_05` (individual-level average ratings per dimension).
 
-- **Data Import**: Reads an Excel file containing survey responses.
-- **Cleaning**: 
-  - Filters out participants above the accepted age threshold (SD04_01 > 36).
-  - Converts missing value codes (-9) to `NA`.
-- **Metadata Definition**: Identifies columns containing survey metadata (timestamps, page times, status variables) to be excluded from substantive analyses.
-- **Variable Definitions**: Creates string vectors for:
-  - `ck_`: Stimuli rating columns (CK08–CK47, with suffixes _01 through _05 representing different rating dimensions).
-  - `pi_check`: Columns checking whether stimuli are perceived as political.
-  - `pi_ideology`: Columns checking perceived ideological orientation of stimuli (right-wing, left-wing, or neither).
+### 2. Data Restructuring
+Selects gender, political ID, condition, page counts, and CK ratings into `base`. Pivots to long format with `id`, `ck_`, `question` (1–5), and `ck_value`. Converts gender and `total_p_d` to factors.
 
-### 2. Missing Data Analysis
+### 3. Missing Data Analysis
+Runs Little's MCAR test per experimental condition (AS02), removing all-NA, metadata, and zero-variance columns. Cross-tabulates attrition by political affiliation and condition. Fits linear and logistic regressions testing whether perceived funniness predicts survey completion.
+**this section is probably going to be deleted as the order of exposition of stimuli is random
 
-- **MCAR Testing**: Because participants were randomly assigned to one of four conditions (AS02), the data is subset by condition. Each subset undergoes:
-  - Removal of all-NA columns, metadata columns, and zero-variance columns.
-  - Selection of only stimuli rating variables (CK columns).
-  - Little's MCAR test (`na.test` from the `misty` package).
-- **Attrition Analysis**:
-  - Creates a `total_p` variable counting how many questionnaire pages each participant viewed.
-  - Cross-tabulations of page completion by political affiliation and experimental condition.
-  - Linear model examining whether average funniness ratings predict survey completion.
+### 4. Descriptive Statistics
+Reports sample characteristics (political affiliation, gender, education, completion time). Compares average ratings across assignment groups. Generates density plots comparing memes vs. serious versions for funniness and polemicality. Produces consolidated descriptives table (`desc_ck`) with n, mean, SD, skew, kurtosis, and SE for all stimuli ratings.
 
-### 3. Descriptive Statistics
+### 5. Stimuli Selection Criteria
+Defines a 5-step procedure: 
+- (1) significant funniness differences between versions, 
+- (2) funniness above/below version means, 
+- (3) message similarity >4, 
+- (4) correct political/ideological perception, 
+- (5) comparable polemicality within pairs near the mean.
 
-- **Sample Characteristics**: 
-  - Political affiliation distribution (SD06).
-  - Gender (SD01) and education (SD07) frequencies.
-  - Bar chart of political identity.
-- **Individual-Level Averages**: Creates `avg_01` through `avg_05` columns representing each participant's average rating across all stimuli for each rating dimension. This aids in identifying suspicious responding patterns (e.g., straight-lining).
+### 5. Step 0 – Fixed and Random Effects on Funniness
+Fits nested `lmer` models (`m0`–`m3`) predicting funniness from version. Compares via `anova(refit=F)` and `ranova`. Selects `m2` (random slopes for version by participant, random intercepts for stimulus pair). Interprets BLUPs and variance components.
 
-### 4. Stimuli Descriptives
 
-- **Funniness Ratings**: Descriptive statistics and raw frequency distributions for humorous memes (CK*_03) and serious vignettes (CK*_04).
-- **Polemicality Ratings**: Descriptive statistics for perceived controversy of memes (CK*_01) and serious vignettes (CK*_02).
-- **Similarity Ratings**: Descriptive statistics for perceived message similarity between meme and serious versions (CK*_05).
-- **Consolidated Table**: A single descriptive table (`desc_ck`) containing n, mean, SD, skewness, kurtosis, and standard error for all stimuli rating variables.
+## Test to Select Images
+### Step 1 – Pairwise Funniness Differences
+Sets sum contrasts on `ck_`. Fits `f_pares2` (interaction `ck_ * version`, random slopes by participant). Uses `emmeans` with `revpairwise` contrast and FDR adjustment to test meme vs. serious differences per pair. Reports significance and effect sizes.
 
-### 5. Data Restructuring for Mixed Models
+### Step 2 – Comparison Against Version Means
+Uses `emmeans` with `eff` contrast to compute each stimulus's deviation from its version's grand mean. Classifies stimuli as PASS, CHECK-H, CHECK-S, or FAIL based on point estimates and 95% CIs of deviations.
 
-- **Variable Selection**: Selects gender, political identification, experimental condition, total pages viewed, and all CK rating columns.
-- **Long Format Transformation**: Converts data from wide to long format, with columns:
-  - `id`: Participant identifier.
-  - `ck_`: Stimulus identifier.
-  - `question`: Rating dimension (1–5).
-  - `ck_value`: The rating value.
+### Step 3 – Similarity of Message Content
+Aggregates mean similarity per pair. Fits nested `lmer` models (`simil1`–`simil3`) partitioning variance between participants and pairs. Compares via `anova(refit=F)` and `ranova`. Concludes similarity is uniformly high; pair identity contributes negligible variance.
 
-### 6. Stimuli Selection Criteria
+### Step 4 – Political Nature and Ideological Position
+Describes `pi_check` (political perception) and `pi_ideology` (right/left/neither). Builds `orientacion_stimuli` with counts and percentages. Maps stimuli to intended categories, computes Wilson CIs for intended proportion, one-sided z-tests, and misclassification criteria (≤15% cross-categorization for left/right, ≤30% for neither).
 
-The script implements a multi-step procedure for selecting which stimuli pairs to retain for analysis:
+### Step 5 – Level of Offensiveness
+Fits `lmer` models (`c_pares1`, `c_pares2`) predicting polemicality from `ck_ * version`. Selects `c_pares1` (random intercepts by participant) via `anova(refit=F)`. Uses `emmeans` for pairwise H vs. S contrasts (none significant) and `joint_tests` for omnibus effects. Computes each pair's deviation from the grand mean polemicality.
 
-#### Step 0: Fixed and Random Effects on Funniness
-- Fits a linear mixed model (`lmer`) predicting funniness from image version (Serious vs. Humorous), with:
-  - Random intercepts for participant.
-  - Random intercepts and slopes for version by stimulus pair.
-- Examines variance components and BLUPs to understand between-pair and within-participant variability.
+## 12. Cynicism Scales
+**Agree/Disagree (`cinis_ad`)**: Selects VD03_01–VD03_06, converts -1 to NA, removes incomplete cases, computes Spearman correlations, Cronbach's alpha, descriptives, and a CFA via `lavaan` (noting insufficient data). **Frequency (`cinis_fr`)**: Selects VD05_01–VD10_01, inverts VD09_01, computes correlations and alpha.
 
-#### Step 1: Pairwise Differences in Funniness
-- Fits a model with the interaction between stimulus pair and version.
-- Uses estimated marginal means (`emmeans`) to test whether each humorous meme is rated significantly funnier than its serious counterpart.
-- Applies Benjamini-Hochberg (FDR) correction for multiple comparisons.
+### 13. Pending Tasks
+Consolidate descriptive outputs with human-readable stimulus labels. Export stimuli selection summary (included/excluded pairs). Add summary of eliminated pairs once sufficient data is available.
+Create a statistical test for first part of Step 4
 
-#### Step 2: Comparison Against Average Funniness
-- Computes each stimulus's deviation from the grand mean funniness for its version (H or S).
-- Applies selection criteria:
-  - Humorous memes should be at or above the mean funniness of all humorous memes.
-  - Serious vignettes should be at or below the mean funniness of all serious vignettes.
-- Classifies each stimulus as PASS, CHECK, or FAIL based on point estimates and confidence intervals.
-
-#### Step 3: Similarity of Message Content
-- Computes mean similarity ratings per stimulus pair.
-- Fits a linear mixed model to partition variance in similarity ratings between participants and stimulus pairs.
-- Concludes that similarity is uniformly high and does not meaningfully differ across pairs.
-
-#### Step 4: Political Nature and Ideological Position
-- Uses `pi_check` columns to verify that stimuli are perceived as political.
-- Uses `pi_ideology` columns to tabulate the proportion of participants categorizing each stimulus as right-wing, left-wing, or neither.
-
-#### Step 5: Level of Offensiveness
-- Placeholder for selecting stimuli with medium levels of offensiveness (not yet implemented).
-
-### 7. Cynicism Scale Analysis
-
-- **Agree/Disagree Scale** (`cinis_ad`): 
-  - Selects six items (VD03_01 through VD03_06).
-  - Removes participants not assigned to this condition.
-  - Computes Spearman correlations and Cronbach's alpha.
-  - Notes need to transform -1 values to NA.
-- **Frequency Scale** (`cinis_fr`): 
-  - Selects six items (VD05_01 through VD10_01).
-  - Removes participants not assigned to this condition.
-  - Inverts item VD09_01 (6 - x).
-  - Computes Spearman correlations and Cronbach's alpha.
-
-### 8. Pending Tasks
-
-- Investigate whether overall perceived funniness/controversy predicts survey completion.
-- Check for halo effects in ratings.
-- Consolidate descriptive outputs into a single exportable table with human-readable stimulus labels.
-- Implement Step 5 of stimuli selection (offensiveness criteria).
 
 ## Dependencies
 
 The script requires the following R packages:
 
-- `readxl` — reading Excel files
-- `psych` — descriptive statistics, skewness, kurtosis
-- `tidyverse` — data manipulation and visualization
-- `ggplot2` — plotting
-- `dplyr` — data manipulation
-- `lme4` — linear mixed-effects models
-- `lmerTest` — p-values for mixed models
-- `emmeans` — estimated marginal means and contrasts
-- `merTools` — tools for mixed model diagnostics
-- `ltm` — latent trait models (Cronbach's alpha)
-- `misty` — missing data analysis (Little's MCAR test)
+
+| Library | What it does |
+|---|---|
+| `readxl` | Reads Excel files into R (`read_excel`). |
+| `psych` | Descriptive stats and psychometrics (`describe`, `skew`, `kurtosi`, `cor.plot`). |
+| `tidyverse` | Meta-package for data manipulation and plotting (`pivot_longer`, `mutate`, `filter`, pipes). |
+| `ggplot2` | Grammar-of-graphics plotting (`ggplot`, `geom_density`, `geom_bar`). |
+| `dplyr` | Data manipulation verbs (`filter`, `select`, `mutate`, `summarise`, `group_by`). |
+| `lme4` | Fits linear and generalized linear mixed-effects models (`lmer`, `glmer`). |
+| `lmerTest` | Adds Satterthwaite/Kenward-Roger df and p-values to `lme4` models. |
+| `emmeans` | Estimated marginal means and contrasts from fitted models. |
+| `merTools` | Diagnostics and tools for mixed-effects models (e.g., BLUPs, simulation). |
+| `ltm` | Latent trait and classical test theory models (`cronbach.alpha`). Attaches `MASS`. |
+| `misty` | Miscellaneous stats utilities, including Little's MCAR test (`na.test`). |
+| `stargazer` | Formats and exports regression/model tables (LaTeX, HTML, text). |
+| `purrr` | Functional programming tools (`map`, `map_dfr`, `walk`). |
+| `tibble` | Modern data frames (`tibble`, `as_tibble`, `rownames_to_column`). |
 
 ## Usage
 
@@ -146,3 +100,4 @@ The script requires the following R packages:
 - Missing values are coded as -9 in the raw data and converted to `NA`.
 - The analysis accounts for the nested structure of the data (ratings within participants and within stimulus pairs) using mixed-effects models.
 - The stimuli selection procedure is designed to be conservative, prioritizing stimuli that clearly meet criteria for funniness differentiation, message similarity, and political content.
+- LTM attaches MASS after dplyr so i use dplyr::select when needed
