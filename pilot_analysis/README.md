@@ -5,6 +5,8 @@
 
 <details>
 <summary>Code Summary</summary>
+
+
 ## Overview
 
 This repository contains R code for processing, validating, and analyzing data from a survey study that is piloting different stimuli for a future study on political humor. The study involves participants rating pairs of stimuli (memes and serious vignettes) on dimensions including funniness, polemicality (controversy), and similarity of message content.
@@ -145,8 +147,8 @@ CK## is the code for the pair of images
 - _01: perceived polemicality (I checked, this word exists in english) of the humorous version
 - _02: perceived polemicality (I checked, this word exists in english) of the serious version 
 - _03: perceived funniness (I checked, this word exists in english) of the humorous version 
-- _04: perceived funniness (I checked, this word exists in english) of the humorous version 
-- _05: perceived similarity (I checked, this word exists in english) of the humorous version 
+- _04: perceived funniness (I checked, this word exists in english) of the serious version 
+- _05: perceived similarity (I checked, this word exists in english) between version of the same pair 
 
 **The corresponding topics and political view of each pair of images is as follows**
 
