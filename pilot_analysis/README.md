@@ -2,6 +2,9 @@
 
 # README.md
 
+
+<details>
+<summary>Code Summary</summary>
 ## Overview
 
 This repository contains R code for processing, validating, and analyzing data from a survey study that is piloting different stimuli for a future study on political humor. The study involves participants rating pairs of stimuli (memes and serious vignettes) on dimensions including funniness, polemicality (controversy), and similarity of message content.
@@ -101,3 +104,94 @@ The script requires the following R packages:
 - The analysis accounts for the nested structure of the data (ratings within participants and within stimulus pairs) using mixed-effects models.
 - The stimuli selection procedure is designed to be conservative, prioritizing stimuli that clearly meet criteria for funniness differentiation, message similarity, and political content.
 - LTM attaches MASS after dplyr so i use dplyr::select when needed
+
+</details>
+
+
+<details>
+<summary>Results and Description of Stimuli Selection</summary>
+
+*The goal of this pilot study is to select the experimental stimuli for an experiment whose preregistation can be seen [here](https://osf.io/m5vh3/overview?view_only=9df22fee2aa94b5ea9bbceda845da342)
+
+# Structure of Stimuli
+
+Stimuli have a particular structure, as explained in this graph
+
+```mermaid
+graph TB
+1[TOPIC]-->2[Rw view: CK08] & 3[lw view: CK09]
+
+2-->H[HUMOR VERSION] & S[SERIOUS VERSION]
+3-->m[HUMOR VERSION] & n[SERIOUS VERSION]
+
+
+subgraph image pair
+2 & 3
+end
+
+subgraph version
+H & S & m & n
+end
+
+```
+
+- There are a total of 20 total **topics** being tested. 16 are political, and 4 non political
+  - Each topic is composed of two **pairs of images** that represent opposing views regarding the topic
+  - Each pair of images is composed of a humorous version (a meme) and a non humorous version (text). They can be seen in the folder "tested_stimuli""
+
+## Codes of the stimuli
+In the df there are seveal variables called CKnn_01/02/03/04/05
+CK## is the code for the pair of images
+- _01: perceived polemicality (I checked, this word exists in english) of the humorous version
+- _02: perceived polemicality (I checked, this word exists in english) of the serious version 
+- _03: perceived funniness (I checked, this word exists in english) of the humorous version 
+- _04: perceived funniness (I checked, this word exists in english) of the humorous version 
+- _05: perceived similarity (I checked, this word exists in english) of the humorous version 
+
+**The corresponding topics and political view of each pair of images is as follows**
+
+| Código [Code] | Tema [Topic] | Posición Política [Political View] |
+| --- | --- | --- |
+| CK08 | cae [higher education loan] | derecha [right] |
+| CK09 | cae [higher education loan] | izquierda [left] |
+| CK10 | control_identidad [identity check] | derecha [right] |
+| CK11 | control_identidad [identity check] | izquierda [left] |
+| CK12 | economia [economy] | derecha [right] |
+| CK13 | economia [economy] | izquierda [left] |
+| CK14 | internacional_1 [international_1] | derecha [right] |
+| CK15 | internacional_1 [international_1] | izquierda [left] |
+| CK16 | internacional_2 [international_2] | derecha [right] |
+| CK17 | interncional_2 [international_2] | izquierda [left] |
+| CK18 | jornada | derecha [right] |
+| CK19 | jornada | izquierda [left] |
+| CK20 | ministros [ministers] | derecha [right] |
+| CK21 | ministros [ministers] | izquierda [left] |
+| CK22 | prioridades [priorities] | derecha [right] |
+| CK23 | prioridades [priorities] | izquierda [left] |
+| CK24 | protesta [protest] | derecha [right] |
+| CK25 | protesta [protest] | izquierda [left] |
+| CK26 | recortes [cuts / budget cuts] | derecha [right] |
+| CK27 | recortes [cuts / budget cuts] | izquierda [left] |
+| CK28 | registro [registry / record] | derecha [right] |
+| CK29 | registro [registry / record] | izquierda [left] |
+| CK30 | seguridad [security] | derecha [right] |
+| CK31 | seguridad [security] | izquierda [left] |
+| CK32 | ambiente [environment] | derecha [right] |
+| CK33 | ambiente [environment] | izquierda [left] |
+| CK34 | empleo [employment / jobs] | derecha [right] |
+| CK35 | empleo [employment / jobs] | izquierda [left] |
+| CK36 | ia [ai / artificial intelligence] | derecha [right] |
+| CK37 | ia [ai / artificial intelligence] | izquierda [left] |
+| CK38 | valores [values] | derecha [right] |
+| CK39 | valores [values] | izquierda [left] |
+| CK40 | audio [audio] | contra [against / con] |
+| CK41 | audio [audio] | pro [pro / in favor] |
+| CK42 | concierto [concert] | contra [against / con] |
+| CK43 | concierto [concert] | pro [pro / in favor] |
+| CK44 | invierno [winter] | contra [against / con] |
+| CK45 | invierno [winter] | pro [pro / in favor] |
+| CK46 | gatos [cats] | contra [against / con] |
+| CK47 | gatos [cats] | pro [pro / in favor] |
+
+
+</details>
