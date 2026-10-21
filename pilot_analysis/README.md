@@ -113,7 +113,7 @@ The script requires the following R packages:
 <details>
 <summary>Results and Description of Stimuli Selection</summary>
 
-**The goal of this pilot study is to select the experimental stimuli for an experiment whose preregistation can be seen [here](https://osf.io/m5vh3/overview?view_only=9df22fee2aa94b5ea9bbceda845da342)
+**The goal of this pilot study is to select the experimental stimuli for an experiment whose preregistation can be seen [here](https://osf.io/m5vh3/overview?view_only=9df22fee2aa94b5ea9bbceda845da342)**
 
 # Structure of Stimuli
 
@@ -213,7 +213,7 @@ For example CK34 (rw) and CK35(lw) are the pair of images that form the topic "W
 **Groups were assigned to 4 different groups**
 Each groups viewed a different set of 10 pais of images(each topic includes two pais of images) as follow:
 
-**Grupo 1**
+- **Grupo 1**
 Tema 8 (internacional_2)  CK16-CK17
 Tema 11 (jornada)  CK18-CK19
 Tema 12 (recortes)  CK26-CK27
@@ -221,21 +221,21 @@ Tema 14 (empleo)  CK34-CK35
 Tema audio  CK40-CK41
 
 
-**Grupo 2**
+- **Grupo 2**
 Tema 2 (seguridad) CK30-CK31
 Tema 9 (economia)  CK12-CK13
 Tema 13 (ambiente)  CK32-CK33
 Tema 16 (valores) CK38-CK39
 Tema concierto  CK42-CK43
 
-**Grupo 3**
+- **Grupo 3**
 Tema 4 (protesta) CK24-CK25
 Tema 5 (prioridades)  CK22-CK23
 Tema 6 (ministra)  CK20-CK21
 Tema 7 (internacional_1)  CK14-CK15
 Tema frio  CK44-CK45
 
-**Grupo 4**
+- **Grupo 4**
 Tema 1 (control)  CK10-CK11
 Tema 3 (registro)  CK28-CK29
 Tema 10 (cae) CK08-CK09
