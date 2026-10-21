@@ -71,6 +71,7 @@ Exploratory visualizations built from the long dataset:
 - **5.2** Polemicality of meme vs. serious versions: % of responses by value.
 - **5.3** Perceived funniness of left-wing, right-wing and non-political memes by participants' political orientation (means with 95% CI).
 - **5.4** Density plots of funniness of left-wing, right-wing and non-political memes by political orientation.
+- **5.5** Perceived polemicality of left-wing, right-wing and non-political memes by participants' political orientation (means with 95% CI).
 
 ## 6. Criteria for Selection of Stimuli
 

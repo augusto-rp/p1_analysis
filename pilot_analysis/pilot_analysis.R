@@ -495,6 +495,79 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
   rm(base_fun, base_polemic,base_means,base_long, summary_df)
   
   
+  # 5.5 Perceived polemicality of lw, rw and non political memes by political orientation
+  
+  
+  p_rw_meme <- c("CK08_01", "CK10_01", "CK12_01", "CK14_01", "CK16_01", "CK18_01", "CK20_01", "CK22_01", "CK24_01", "CK26_01", "CK28_01", "CK30_01", "CK32_01", "CK34_01", "CK36_01", "CK38_01")
+  
+  p_lw_meme  <- c("CK09_01", "CK11_01", "CK13_01", "CK15_01", "CK17_01", "CK19_01", "CK21_01", "CK23_01", "CK25_01", "CK27_01", "CK29_01", "CK31_01", "CK33_01", "CK35_01", "CK37_01", "CK39_01")
+  
+  p_np_meme    <- c("CK40_01","CK41_01","CK42_01","CK43_01","CK44_01","CK45_01","CK46_01","CK47_01")
+  
+  
+  bd <- bd %>%
+    rowwise() %>%
+    mutate(
+      p_right   = mean(c_across(all_of(p_rw_meme)), na.rm = TRUE),
+      p_left    = mean(c_across(all_of(p_lw_meme)), na.rm = TRUE),
+      p_neither = mean(c_across(all_of(p_np_meme)), na.rm = TRUE)
+    ) %>%
+    ungroup()
+  
+  
+  base_polemic <- bd %>%
+    distinct(CASE, id_pol_3, p_left, p_right, p_neither)
+  #deduplicate long df
+  
+  # transform into long format:  one row per id × orientation
+  base_long <- base_polemic %>%
+    pivot_longer(
+      cols = c(p_right, p_left, p_neither),
+      names_to = "orientation",
+      values_to = "mean_value"
+    ) %>%
+    mutate(
+      orientation = factor(orientation,
+                           levels = c("p_right", "p_left", "p_neither"),
+                           labels = c("Derecha", "Izquierda", "No Politico")),
+      id_pol_3 = factor(id_pol_3, levels = c("1", "2", "3"))
+      
+    )
+  
+  
+  #compute mean and 95% CI per id_pol
+  summary_df <- base_long %>%
+    group_by(id_pol_3, orientation) %>%
+    summarise(
+      mean_val = mean(mean_value, na.rm = TRUE),
+      sd_val   = sd(mean_value,   na.rm = TRUE),
+      n        = sum(!is.na(mean_value)),
+      se       = sd_val / sqrt(n),
+      ci_low   = mean_val - qt(0.975, df = n - 1) * se,
+      ci_high  = mean_val + qt(0.975, df = n - 1) * se,
+      .groups  = "drop"
+    )
+  
+  # create graph
+  
+  ggplot(summary_df, aes(x = id_pol_3, y = mean_val, fill = orientation)) +
+    geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+    geom_errorbar(aes(ymin = ci_low, ymax = ci_high),
+                  position = position_dodge(width = 0.8),
+                  width = 0.2) +
+    scale_fill_manual(values = c(
+      "Derecha"     = "gold", 
+      "Izquierda"   = "#E41A1C",
+      "No Politico" = "lightblue"  
+    )) +
+    labs(
+      x = "Orientacion politica",
+      y = "Polemicidad (1-5)",
+      fill = "Orientación",
+      title = "Promedio Polemicidad (95% CI) según Orientación"
+    ) +
+    theme_minimal()
+  
 # 6. Criteria for Selection of Stimuli ------------------------------------
 # These Criteria are ordered from more important to less important. More important means less flexibility on what might pass a valid stimuli
 
@@ -1140,4 +1213,86 @@ cor(cinis_fr, use = "everything", method = c("spearman")) #WHAT
 
 
 cronbach.alpha(cinis_fr, CI=T) 
+
+
+
+
+
+# z. Codes and Ideas Testing ----------------------------------------------
+
+
+
+# 5.3 Perceived polemicality of lw, rw and non political memes by political orientation
+
+
+p_rw_meme <- c("CK08_01", "CK10_01", "CK12_01", "CK14_01", "CK16_01", "CK18_01", "CK20_01", "CK22_01", "CK24_01", "CK26_01", "CK28_01", "CK30_01", "CK32_01", "CK34_01", "CK36_01", "CK38_01")
+
+p_lw_meme  <- c("CK09_01", "CK11_01", "CK13_01", "CK15_01", "CK17_01", "CK19_01", "CK21_01", "CK23_01", "CK25_01", "CK27_01", "CK29_01", "CK31_01", "CK33_01", "CK35_01", "CK37_01", "CK39_01")
+
+p_np_meme    <- c("CK40_01","CK41_01","CK42_01","CK43_01","CK44_01","CK45_01","CK46_01","CK47_01")
+
+
+bd <- bd %>%
+  rowwise() %>%
+  mutate(
+    p_right   = mean(c_across(all_of(p_rw_meme)), na.rm = TRUE),
+    p_left    = mean(c_across(all_of(p_lw_meme)), na.rm = TRUE),
+    p_neither = mean(c_across(all_of(p_np_meme)), na.rm = TRUE)
+  ) %>%
+  ungroup()
+
+
+base_polemic <- bd %>%
+  distinct(CASE, id_pol_3, p_left, p_right, p_neither)
+#deduplicate long df
+
+# transform into long format:  one row per id × orientation
+base_long <- base_polemic %>%
+  pivot_longer(
+    cols = c(p_right, p_left, p_neither),
+    names_to = "orientation",
+    values_to = "mean_value"
+  ) %>%
+  mutate(
+    orientation = factor(orientation,
+                         levels = c("p_right", "p_left", "p_neither"),
+                         labels = c("Derecha", "Izquierda", "No Politico")),
+    id_pol_3 = factor(id_pol_3, levels = c("1", "2", "3"))
+    
+  )
+
+
+#compute mean and 95% CI per id_pol
+summary_df <- base_long %>%
+  group_by(id_pol_3, orientation) %>%
+  summarise(
+    mean_val = mean(mean_value, na.rm = TRUE),
+    sd_val   = sd(mean_value,   na.rm = TRUE),
+    n        = sum(!is.na(mean_value)),
+    se       = sd_val / sqrt(n),
+    ci_low   = mean_val - qt(0.975, df = n - 1) * se,
+    ci_high  = mean_val + qt(0.975, df = n - 1) * se,
+    .groups  = "drop"
+  )
+
+# create graph
+
+ggplot(summary_df, aes(x = id_pol_3, y = mean_val, fill = orientation)) +
+  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
+  geom_errorbar(aes(ymin = ci_low, ymax = ci_high),
+                position = position_dodge(width = 0.8),
+                width = 0.2) +
+  scale_fill_manual(values = c(
+    "Derecha"     = "gold", 
+    "Izquierda"   = "#E41A1C",
+    "No Politico" = "lightblue"  
+  )) +
+  labs(
+    x = "Orientacion politica",
+    y = "Polemicidad (1-5)",
+    fill = "Orientación",
+    title = "Promedio Polemicidad (95% CI) según Orientación"
+  ) +
+  theme_minimal()
+
 
