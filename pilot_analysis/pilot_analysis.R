@@ -441,7 +441,8 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
       x = "Orientacion politica",
       y = "Comicidad (1-5)",
       fill = "Orientación",
-      title = "Promedio Comicidad (95% CI) según Orientación"
+      title = "Promedio Comicidad (95% CI) según Orientación",
+      caption = "Nota: 1-Izquierda, 2-Derecha 3-Centro/Independientes"
     ) +
     theme_minimal()
   
@@ -564,7 +565,8 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
       x = "Orientacion politica",
       y = "Polemicidad (1-5)",
       fill = "Orientación",
-      title = "Promedio Polemicidad (95% CI) según Orientación"
+      title = "Promedio Polemicidad (95% CI) según Orientación",
+      caption = "Nota: 1-Izquierda, 2-Derecha 3-Centro/Independientes"
     ) +
     theme_minimal()
   
