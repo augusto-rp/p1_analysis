@@ -8,13 +8,16 @@ library(lme4)
 library(lmerTest)
 library(emmeans)
 library(merTools)
-library(ltm) # attaches MASS after dplyr so i use dplyr::select when needed
+library(ltm)
 library(misty)
 library(stargazer)
 library(purrr)
 library(tibble)
 library(lavaan)
 library(semTools)
+
+
+# ltm attaches MASS after dplyr so i use dplyr::select when needed
 
 options(scipen = 999)
 emm_options(lmerTest.limit = 15000, pbkrtest.limit = 15000) # to calculate df and have t-based CI for the different analyses, even if exceed N
@@ -24,8 +27,8 @@ set.seed(2010) # in case there is any randomization to be doned
 
 # 1. Data Preparation -----------------------------------------------------
 
-
-bd <- read_excel("pilot_analysis/pilot_data.xlsx")
+bd <- read_excel(file.choose())
+#bd <- read_excel("pilot_analysis/pilot_data.xlsx")  
 bd[bd == -9]<-NA # transform -9 into NA
 bd <- bd %>% filter(SD04_01 <= 36) # erase people above accepted age
 
@@ -53,7 +56,7 @@ meta_cols <- c("CASE","SERIAL", "REF","QUESTNNR", "MODE", "AS02","AS02_CP", "STA
                "TIME023", "TIME024", "TIME025", "TIME026", "TIME027", "TIME028", "TIME029", "TIME030", "TIME031", "TIME032", "TIME033", "TIME034", "TIME035",
                "TIME036", "TIME037", "TIME038", "TIME039", "TIME040", "TIME041", "TIME042", "TIME043", "TIME044", "TIME045") 
 
-  # Definition of variables related to Stimuli Ratings (Funniness, Poelemicality and Similarity )
+  # Definition of variables related to Stimuli Ratings (Funniness, Polemicality and Similarity )
 ck_ <- unlist(lapply(8:47, function(i) {
   paste0("CK", sprintf("%02d", i), "_", c("01", "02", "03", "04", "05"))
 }))
@@ -85,6 +88,8 @@ f_rw_meme <- c("CK08_03", "CK10_03", "CK12_03", "CK14_03", "CK16_03", "CK18_03",
 f_lw_meme  <- c("CK09_03", "CK11_03", "CK13_03", "CK15_03", "CK17_03", "CK19_03", "CK21_03", "CK23_03", "CK25_03", "CK27_03", "CK29_03", "CK31_03", "CK33_03", "CK35_03", "CK37_03", "CK39_03")
 
 f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","CK46_03","CK47_03")
+
+
 
 # 1.2 Creation of New Variables
   # A person that sees the complete questionnaire is expected to see a total of 14 pages. The following code create a variable "total_p" that indicates how  pagesmuch each person sees
@@ -575,7 +580,7 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
 
   # 1  Check significant differences between the meme version and serious version on perceived funniness
   #if non significant, the pair of images on which said image belongs is not considered for further analysis. Also the topic cluster is discarded
-  #for example: image 8 and 9 talk about the same topic but from ideologically different positions. Both need to have significant differences between version 
+  #for example: image 8 and 9 talk about the same topic but from ideologically different positions. Both need to have significant differences between version. If 9 fails, so do 8 
   
   
   # 2 Check that perceived funniness of the humorous version is equal to or greater than the average of all the humorous version: Check Descriptive
@@ -585,21 +590,21 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
   #if a expected funny image average is clearly below the average is should be discarded
   #if a expected unfunny image is clearly above the average is should be discarded
   
-  # 3 Check that the funny and serious version of the same message are viewed as having a similar message
-  # A rating >=4 is required to pass
+  # 3 Check that the pairs of images are oerceived as having similar message (C##_05)
+    # A rating >=4 is required to pass
   
   # 4 Check that the images that belong to the same topic are viewed as :expressing political opinions (mean=2 for PI1 TO PI42, and mean=1 FROM PI33 TO PI40) 
   # In order to validate that images are perceived as intended (Strict Criteria)
-    # : lower bound of 95% CI has a majority of people rating it as intended
+    # : lower bound of 95% CI has a majority (>50%) of people rating it as intended
     # : no more than a 15% of  people cross categorizes it (so for a right wing meme no more than 15% of people view it as leftwing)
   # Relaxed Criteria
     # More than 60% people classify it as intended
   
   # For a pair to pass both conditions should pass: For example image 8 should be viewed as expressing a right wing opinion and image 9 a left wing opinion. Both should be viewed as expressing a political opinion
   
-  # 5 First check if there are significant differences within pairs in the level of polemicality -> there shouldnt be any! 
-  # Also select pairs of images near the mean on the level of polemicality. Similar to step 2
-  
+  # 5 Check if
+    # there a clear H-S difference in polemicality?
+    # the pair's mean polemicality is clearly above or belowthe mean of the other pairs?
 
 # 6.x Step 0 - Modelling of Fixed and Random Effects ----------------------
 
@@ -624,7 +629,7 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
   
   # Pair differences in baseline funniness and pair differences in pair + Plus slope for humor effects 
   # I'm deleting factor with lower variance (ck_) - Signmann & Kellen, 2020 recommendation
-  m2 <- lmer(funniness ~ version + (version | id) + (1 | ck_), data = fun_df, REML = T) 
+  m2 <- lmer(funniness ~ version + (version | id) + (1 | ck_), data = fun_df, REML = T)  #Check if REML IS APPROPIATRE GIVEN ORDINAL DATA, kind of as funninness is composed of several measures
   
   #just intercepts by individual and intercept by image pair
   m1 <- lmer(funniness ~ version + (1 | id) + (1 | ck_), data = fun_df, REML = T)
@@ -707,12 +712,37 @@ rm(f_pares1, f_pares2, con_pares, res_pares)
 
 # 6.2 Step 2 - H/S Comparison across Mean ---------------------------------
   # This is a descriptive step of the data validation
-  # A meme can be significantly more humorous that the serious version of the same message and still be perceived as unfunnycompared with the mean
+  # A meme can be significantly more humorous that the serious version of the same message and still be perceived as unfunny compared with the mean
   # Therefore any meme that is clearly below the mean perception of funniness will be discarded
   # Similarly serious messages that are clearly above the funniness average will also be discarded 
 
 #grouping by version instead than pairs of images 
 emm_ver <- update(emm_pares, by = "version")
+
+# The comparison has to be made within political or non political memes. If all is together the mean of comparison for political memes will include values from non -political ones (which is higher)
+# see last section of code
+# I should have the same consideration in step 5
+
+lv    <- levels(fun_df$ck_)
+stopifnot(identical(lv, as.character(emm_ver@levels$ck_)))  # weights must follow the grid order
+dim_vec <- ifelse(parse_number(lv) <= 39, "political", "non-political") #over 39 are not political
+
+eff_within <- lapply(seq_along(lv), function(i) {
+  same <- dim_vec == dim_vec[i]
+  w <- rep(0, length(lv))
+  w[same] <- -1 / sum(same)
+  w[i] <- w[i] + 1
+  w
+})
+names(eff_within) <- lv
+
+dev_df <- contrast(emm_ver, method = eff_within) |>   # computed separately for H and S
+  summary(infer = TRUE, adjust = "none") |>           # no adjustment: descriptive, not a formal test
+  as.data.frame() |>
+  mutate(ck_id     = as.character(contrast),
+         dimension = ifelse(parse_number(ck_id) <= 39, "political", "non-political")) |>
+  dplyr::select(ck_id, dimension, version, dev = estimate, SE, lower.CL, upper.CL)
+
 
 dev_df <- contrast(emm_ver, method = "eff") |>
   summary(infer = TRUE, adjust = "none") |>   # no adjustment: descriptive, not a formal test
@@ -722,38 +752,33 @@ dev_df <- contrast(emm_ver, method = "eff") |>
 # in order to run this code make sure to run pbkrtest.limit = 15000
 # if not, it not going to calculate t distribution intervarls and get no lower and upper.cl
 
-fun_check <- dev_df |>
-  pivot_wider(names_from = version,
-              values_from = c(dev, SE, lower.CL, upper.CL)) |>
+dev_df <- dev_df |>
   mutate(
-    # Point-estimate criteria
-    H_pass = dev_H >= 0,    # iH at or above the mean of all iH
-    S_pass = dev_S <= 0,    # iS at or below the mean of all iS
-    both_pass = H_pass & S_pass,
+    # 95% CI (make explicit; assumes emmeans default level = 0.95)
+    ci_level = 0.95,
     
-    # How sure are we about each criterion?
-    H_status = case_when(lower.CL_H >= 0 ~ "clearly above",
-                         upper.CL_H <  0 ~ "clearly below",
-                         TRUE            ~ "ambiguous"),
-    S_status = case_when(upper.CL_S <= 0 ~ "clearly below",
-                         lower.CL_S >  0 ~ "clearly above",
-                         TRUE            ~ "ambiguous"),
+    # distance of the CI bound from zero, in SE units
+    # (how many SEs is the bound away from 0?)
+    z_upper = upper.CL / SE,
+    z_lower = lower.CL / SE,
     
-    # Selection decision
-    selection = case_when(
-      H_status == "clearly above" & S_status != "clearly above" ~ "PASS",
-      H_status == "ambiguous"     & S_status != "clearly above" ~ "CHECK-H",
-      H_status == "clearly above" & S_status == "clearly above" ~ "CHECK-S",
-      H_status == "clearly below"                               ~ "FAIL",
-      H_status == "ambiguous"     & S_status == "clearly above" ~ "FAIL",
-      TRUE                                                       ~ NA_character_
-    )
+    status = case_when(
+      version == "H" & upper.CL < 0 ~ "fail",
+      version == "H" & lower.CL > 0 ~ "above_H_fun",
+      version == "S" & upper.CL < 0 ~ "below_S_fun",
+      version == "S" & lower.CL > 0 ~ "above_S_fun",
+      TRUE ~ "inconclusive"
+    ),
+    
+    # flag borderline cases where the CI barely excludes 0
+    # e.g. bound within 0.5 SE of zero, or |bound| < some margin
+    borderline = (version == "H" & upper.CL < 0 & (abs(upper.CL) / SE) < 0.5) |
+      (version == "S" & upper.CL < 0 & (abs(upper.CL) / SE) < 0.5)
   )
 
-# ck44, ck45, ck45 serious versions are clearly above means, but so are the h version. So they don't fail this criteria
-# Also given the bias in the sample one should not immediately discard certain cases: That's the role of the "ambiguous" tag
 
-rm(dev_df, emm_ver, emm_pares)
+
+rm(dim_vec , emm_ver, emm_pares, eff_within, lv)
 
 # 6.3 Step 3 - Similarity of Message Content ------------------------------
 
@@ -816,10 +841,11 @@ rm(simil2, simil_id, simil_id_all, similitud, d_sim)
 
 # 6.4 Step 4 - Image classification ---------------------------------------
 
-  # 6.4.1 Are political memes perceived as political? Are non-political memes eprceived as non-political?
+  # 6.4.1 Are political memes perceived as political? Are non-political memes perceived as non-political?
   # PI01 to PI40 are checks that the images are perceived as political --> That is what pi_check is for
    # 1= Non Political 2= Political
 psych::describe(bd[pi_check])
+
 
 # Two non political memes are perceived as political, lets see the % of rating: Memes about spending money in concerts
 round(100 * prop.table(table(bd$PI35_01)), 2) # Majority selected 2!
@@ -1084,77 +1110,104 @@ rm(c_pares1, c_pares2, polemic_df,c_pares_comp, emm_c, emm_c_half, c_pares)
 
 # 7. Analysis of Political Cynicism Scales ------------------------------------------
 
-# Originally I wanted to test two differente phrasing of the same cynicism scale based on Patty et al. (2012): https://journals.sagepub.com/doi/10.1002/per.858
+# Originally I wanted to test two differents phrasing of the same political cynicism scale based on Patty et al. (2012): https://journals.sagepub.com/doi/10.1002/per.858
   # Lothamer (2025) build the same scale but worded in terms of frequency rather than agreement/disagreement: https://uh-ir.tdl.org/items/53028c50-16f3-41e0-8f06-0273b728a718
 
-# So I wanted to test whether both worked, and which one created more normal distributions
-  # The first 80 answers of the pilot are equally distributed between both scales (AS01=1 view frequency AS01=2 view a/d)
-  # However it was pretty soon clear that the Lothamer scale was not working
+# So I wanted to test whether both worked, and which one created more normal distributions. But I didnt, why?
+  # The first 80 answers of the pilot were equally distributed between both scales (AS01=1 view frequency AS01=2 view a/d)
+  # However it was pretty soon clear that the Lothamer scale was not working, really low correlations among items
   # Based on that I decided that the remaining responses were just on the a/d scale, so I have enough data to conduct a CFA
 
 
-# 7.1 AGREE/DISAGREE SCALE - Cronbach
-cinis_ad<-bd[(cinismo)] 
-cinis_ad<-cinis_ad[rowSums(is.na(cinis_ad))<ncol(cinis_ad),] #remove cases that were not assigned to this condition
+cinis_ad <- bd[, c(cinismo, "id_pol_3")]
+#cinis_ad<-cinis_ad[rowSums(is.na(cinis_ad))<ncol(cinis_ad),] #remove cases that were not assigned to this condition
 cinis_ad[cinis_ad == -1]<-NA # -1 is actually "I prefer not to answer", but let's treat it as NA
 
 cinis_ad <- cinis_ad %>%
-  filter(!if_all(1:6, is.na)) #delete cases were all the columns are NA
+  filter(!if_all(1:6, is.na)) #delete cases were all the columns are NA (cases not assigned to this condition)
 
-cor(cinis_ad, use = "pairwise.complete.obs", method = c("spearman"))
+# Contingency table: Invariance testing using ordinal data requires data in all levels of each cynicism question
+lapply(cinis_ad 
+       %>% dplyr::select(starts_with("VD03")), function(x) table(cinis_ad$id_pol_3, x))
+# This shows this is not the case, which means I wont be able to do invariance testing across groups
+  # Unless I merge 1-2 categories of response
+  # Also group sizes are quite small which creates unstable 
+  
+table(cinis_ad$VD03_01)# Las personas muy frecuentemente son manipuladas por los políticos
+table(cinis_ad$VD03_02) # Los políticos solo están interesados en obtener y mantener poder.
+table(cinis_ad$VD03_03) # Los políticos fingen preocuparse más de la gente de lo que realmente lo hacen.
+table(cinis_ad$VD03_04) #  Nuestros líderes políticos están preparados para mentirnos cuando les sea útil a sus propósitos.
+table(cinis_ad$VD03_05) # Ninguna persona puede esperar mantenerse honesta al entrar a política.
+table(cinis_ad$VD03_06) #  Casi todos los políticos venderían sus ideales o romperían sus promesas para aumentar su poder.
+describe(cinis_ad) 
 
-#sometimes ltm doesnt properly charges, so charge it before running this 
-cronbach.alpha(cinis_ad,na.rm = TRUE, CI=T,B = 10000) #0,79 cronbach
+# Factorizing variables to use WLSMV estimator
+cinis_ad$VD03_01<-as.factor(cinis_ad$VD03_01) 
+cinis_ad$VD03_02<-as.factor(cinis_ad$VD03_02)
+cinis_ad$VD03_03<-as.factor(cinis_ad$VD03_03)
+cinis_ad$VD03_04<-as.factor(cinis_ad$VD03_04)
+cinis_ad$VD03_05<-as.factor(cinis_ad$VD03_05)
+cinis_ad$VD03_06<-as.factor(cinis_ad$VD03_06)
+str(cinis_ad)
 
-# 7.2 CFA
-mod1<- 'cinismo=~VD03_01+VD03_02+VD03_03+VD03_04+VD03_05+VD03_06'
-fit<-cfa(mod1,std.lv=T, estimator ="MLR", data=cinis_ad)
+# 7.1 CFA
+
+# When using MLR the loading mean the change in item when latenT factor increases 1SD, and WLSMB: he loading represents the expected change in the latent continuous response variable y* (in standard deviation units) for a 1 standard deviation increase in the latent factor "cinismo
+# Thresholds: They define the cutpoints on the latent continuous variable y* that separate the ordinal categories
+  #Non significance mean that the data cannot precisely locate the cutpoint between categories
+
+mod1<- 'cinismo=~VD03_01+VD03_02+VD03_03+VD03_04+VD03_05+VD03_06'  
+fit<-cfa(mod1,std.lv=T, estimator ="WLSMV", data=cinis_ad, ordered = c("VD03_01", "VD03_02", "VD03_03", "VD03_04", "VD03_05", "VD03_06") )
 summary(fit, fit.measures=T, standardize=TRUE)
-#kind of a big RMSEA, other indicators are good
+fitMeasures(fit, c("cfi.robust", "tli.robust", "rmsea.robust", "srmr"))
+# About the warning I get: this can be due to an item with really few responses, given ceiling effects
+
+# Negative threshold values (like $-2.192$ and $-1.722$) indicate that very low levels of the latent trait are needed for respondents to transition from category 1 to category 2
 
 modindices(fit, sort.=T) #huge dependencies between VD03_01 and 04
 
+#version with _01: cf.robus=0.913 tli.robus=0.856 rmsea.robust=0.153 srmr=0.067
+# version without _01:  cf.robus=0.972 tli.robus=0.943 rmsea.robust=0.106 srmr=0.037
 
-# Residual dependencies between items 1 and 4 (manipulation by politicians) and _05 and _06 (immorality) make sense
+# Residual dependencies between items 1 and 4 (manipulation by politicians)  make sense
   # item 1: People are very frequently manipulated by politicians <-> item 4:Our political leaders are prepared to lie to us whenever it suits their purposes
-  # item 5: No man can hope to stay honest once he enters politics <-> item 6: Almost all politicians will sell out their ideals or break their promises if it will increase their power
   # There is evidence that political cynicism can also be divided into several first order dimensions (this was actually a theoretical headache when reading literature on the topic), so I will create a new model
 
 # Model with dependencies
 mod1_adjust <- '
   cinismo =~ VD03_01 + VD03_02 + VD03_03 + VD03_04 + VD03_05 + VD03_06
-  VD03_01 ~~ VD03_04
-  VD03_05 ~~ VD03_06'
-fit_adjust<-cfa(mod1_adjust,std.lv=T, estimator ="MLR", data=cinis_ad)
+  VD03_01 ~~ VD03_04'
+fit_adjust<-cfa(mod1_adjust,std.lv=T,estimator ="WLSMV", data=cinis_ad, ordered = c("VD03_01", "VD03_02", "VD03_03", "VD03_04", "VD03_05", "VD03_06") )
 summary(fit_adjust, fit.measures=T, standardize=TRUE)
+fitMeasures(fit_adjust, c("cfi.robust", "tli.robust", "rmsea.robust", "srmr"))
+lavPredict(fit_adjust, method="EBM") #shows position of each person relative to latent factor based on SD from mean
 
-  # Lets check configural invariance by ideological group (Number of factors and item loadings)
-config_adjust <- cfa(mod1_adjust, data=bd, std.lv= T, estimator = "MLR",missing="FIML", group="id_pol_3")
-config_adjust
-summary(config_adjust)
-fitMeasures(config_adjust, c("cfi.robust", "tli.robust", "rmsea.robust", "srmr"))
 
-  #  Weak Invariance Metric --> FACTOR LOADINGS EQUAL ACROOS GROUPS?
-weak <- cfa(mod1_adjust,data=bd,std.lv= T, estimator = "MLR", group="id_pol_3", group.equal="loadings")
-weak
-summary(weak)
-fitMeasures(weak, c("cfi.robust", "tli.robust", "rmsea.robust", "srmr"))
+# Weighted mean 0,039·VD03_01 + 0,384·VD03_02 + 0,176·VD03_03 + 0,093·VD03_04 + 0,112·VD03_05 + 0,195·VD03_06
+# (0.039*4 + 0.384*5 + 0.176*5 + 0.093*5 + 0.112*3 + 0.195*4) weighted 4.537 unweighted 4.3
+# (0.039*3 + 0.384*4 + 0.176*4 + 0.093*4 + 0.112*2 + 0.195*2) weighted 3.43 unweighted 3.16
 
-  # # Strong invariance (intercepts) - Scalar Invariance NOPE
-strong <- cfa(mod1_adjust,data = bd, std.lv = TRUE, estimator = "MLR", missing = "FIML", group = "id_pol_3", group.equal = c("loadings", "intercepts"))
-fitMeasures(strong, c("cfi.robust", "tli.robust", "rmsea.robust", "srmr"))
-# NO SCALAR INVARIANCE This means there even when cinismo levels are similar, some items are rated more high by some groups than other
 
-# lets compare weak and configural
 
-compare_cfa<-compareFit(config_adjust, weak)
-summary(compare_cfa)
+
+# Invariance testing across ideological groups was not conducted because the pilot sample (N = 143; n = 47, 39, 57 per group) provides insufficient power for multi-group ordinal CFA, 
+# particularly given the ceiling effects in the items. Group-specific threshold estimates would be unstable and ΔCFI/ΔRMSEA comparisons unreliable. 
+# Invariance will be tested in the full study (N ≈ 500).
+
+
 
 # Lets see how cinismo differs across groups
-bd <- bd %>%
-  mutate(cinismo_mean = rowMeans(bd[, cinismo], na.rm = TRUE))
+cinis_ad <- cinis_ad %>%
+  mutate(
+    cinismo_mean = rowMeans(
+      sapply(pick(all_of(cinismo)), function(x) as.numeric(as.character(x))),
+      na.rm = TRUE
+    )
+  ) #im using cinis_ad and not bd as it already transformed -1 into NA JUST for these particular items. Given thatn in bd -1 means something else in other items
 
-group_summary <- bd %>%
+
+
+group_summary <- cinis_ad %>%
   filter(!is.na(id_pol_3), !is.na(cinismo_mean)) %>%
   group_by(id_pol_3) %>%
   summarise(
@@ -1182,7 +1235,7 @@ ggplot(group_summary, aes(x = factor(id_pol_3), y = mean_cinismo, fill = factor(
     subtitle = "IC 95% ",
     x = "Orientación Política",
     y = "Promedio Cinismo",
-    caption = "Nota: Intercepto de Items no muestra invarianza entre grupos"
+    caption = "Izquierda=1 Derecha=2 Centro/Independientes/Apoliticos=3"
   ) +
   theme_minimal(base_size = 13) +
   theme(
@@ -1190,11 +1243,48 @@ ggplot(group_summary, aes(x = factor(id_pol_3), y = mean_cinismo, fill = factor(
     panel.grid.major.x = element_blank()
   )
 
-# However this values are biased due to non-strong invariance across groups
-# therefore means should not be calculated as unweighted 
+table(cinis_ad$cinismo_mean, cinis_ad$id_pol_3)
+
+# Density Plot Cisnismo Scores
+
+ggplot(cinis_ad, aes(x = cinismo_mean)) +
+  geom_density(fill = "steelblue", alpha = 0.5, color = "darkblue", linewidth = 1) +
+  labs(
+    title = "Grafido de Densidad Cinismo",
+    x = "Promedio Cinismo (Promedio Simple)",
+    y = "Densidad"
+  ) +
+  theme_minimal()
+
+# 7.2 AGREE/DISAGREE SCALE - Cronbach
 
 
-rm(fit, compare_cfa, group_summary,fit, fit_adjust, strong, weak)
+  # Given there is some correlation between measurement errors and no Tau equivalence Cronbach's Alpha is not be the best indicator
+  # Run a McDonald's Omega
+
+omega_cinismo <- omega(sapply(cinis_ad[, cinismo], as.numeric),nfactors = 1,poly = FALSE)  # i have to revert the transformation of the values to numeric
+print(omega_cinismo) # 0.82 very nice
+# g explains load into single factor / h2 is g^2 which is proportion of items variance explained by latent factor / u2 is residual variance
+
+cor(sapply(cinis_ad[, cinismo], as.numeric), use = "pairwise.complete.obs", method = c("spearman"))
+
+# i can also run the Omega's with the same correlation of errors identified in modnindices
+
+omega_cinismo_cor <- cfa(model = mod1_adjust,data = cinis_ad,estimator = "WLSMV",ordered = cinismo)
+
+# Compute composite reliability (Omega)
+compRelSEM(omega_cinismo_cor)
+
+# Due to the violation of tau-equivalence ($p < .05$) and the presence of significant residual covariances between item pairs (VD03_01 with VD03_04, and VD03_05 with VD03_06), 
+# standard Cronbach’s alpha ($\alpha = .82$) overstated scale reliability. 
+# To account for these measurement error dependencies, model-based McDonald’s omega total was calculated using CFA in lavaan and semTools. 
+# The adjusted reliability estimate was $\omega = 792$, indicating acceptable internal consistency for the cynicism scale after controlling for method variance."
+
+# The pilot provides preliminary support for the six-item scale as a unidimensional measure of political cynicism, with acceptable internal consistency and good fit in the pooled sample. 
+# These results justify proceeding to the full study, where invariance across ideological groups and the ceiling effects observed here will be addressed
+
+
+rm(group_summary)
 
 ######################### FREQUENCY SCALE 
 # 7.3 This scale was discarded after the first 45 measurements as it had EXTREMELY POOR CRONBACH
@@ -1212,11 +1302,7 @@ cinis_fr<-cinis_fr%>%
 
 
 cor(cinis_fr, use = "everything", method = c("spearman")) #WHAT
-
-
-cronbach.alpha(cinis_fr, CI=T) 
-
-
+# really really really low correlations
 
 
 
@@ -1224,77 +1310,261 @@ cronbach.alpha(cinis_fr, CI=T)
 
 
 
-# 5.3 Perceived polemicality of lw, rw and non political memes by political orientation
+######################## Changes to comparision of ¿iamges to means ( differentiating between political means and non political means)
+# The comparision has to be made within political or non political memes. If all is together the mean of comparison for political memes will include values from non -political ones (which is higher)
+# see last section of code
+# I should have the same consideration in step 5
+
+lv      <- levels(fun_df$ck_)
+stopifnot(identical(lv, as.character(emm_ver@levels$ck_)))  # weights must follow the grid order
+dim_vec <- ifelse(parse_number(lv) <= 39, "political", "non-political") #over 39 are not political
+
+eff_within <- lapply(seq_along(lv), function(i) {
+  same <- dim_vec == dim_vec[i]
+  w <- rep(0, length(lv))
+  w[same] <- -1 / sum(same)
+  w[i] <- w[i] + 1
+  w
+})
+names(eff_within) <- lv
+
+dev_df <- contrast(emm_ver, method = eff_within) |>   # computed separately for H and S
+  summary(infer = TRUE, adjust = "none") |>           # no adjustment: descriptive, not a formal test
+  as.data.frame() |>
+  mutate(ck_id     = as.character(contrast),
+         dimension = ifelse(parse_number(ck_id) <= 39, "political", "non-political")) |>
+  dplyr::select(ck_id, dimension, version, dev = estimate, SE, lower.CL, upper.CL)
 
 
-p_rw_meme <- c("CK08_01", "CK10_01", "CK12_01", "CK14_01", "CK16_01", "CK18_01", "CK20_01", "CK22_01", "CK24_01", "CK26_01", "CK28_01", "CK30_01", "CK32_01", "CK34_01", "CK36_01", "CK38_01")
 
-p_lw_meme  <- c("CK09_01", "CK11_01", "CK13_01", "CK15_01", "CK17_01", "CK19_01", "CK21_01", "CK23_01", "CK25_01", "CK27_01", "CK29_01", "CK31_01", "CK33_01", "CK35_01", "CK37_01", "CK39_01")
+dev_pooled <- contrast(emm_ver, method = "eff") |>
+  summary(infer = TRUE, adjust = "none") |>
+  as.data.frame() |>
+  mutate(ck_id = sub(" effect$", "", contrast)) |>
+  dplyr::select(ck_id, version, dev_pooled = estimate, SE_pooled = SE)
 
-p_np_meme    <- c("CK40_01","CK41_01","CK42_01","CK43_01","CK44_01","CK45_01","CK46_01","CK47_01")
-
-
-bd <- bd %>%
-  rowwise() %>%
-  mutate(
-    p_right   = mean(c_across(all_of(p_rw_meme)), na.rm = TRUE),
-    p_left    = mean(c_across(all_of(p_lw_meme)), na.rm = TRUE),
-    p_neither = mean(c_across(all_of(p_np_meme)), na.rm = TRUE)
-  ) %>%
-  ungroup()
+dev_df |>
+  left_join(dev_pooled, by = c("ck_id", "version")) |>
+  group_by(dimension, version) |>
+  summarise(shift    = mean(dev - dev_pooled),  # dimension mean minus overall mean, sign reversed
+            sd_shift = sd(dev - dev_pooled),    # should be about 0 (a constant shift)
+            .groups = "drop")
 
 
-base_polemic <- bd %>%
-  distinct(CASE, id_pol_3, p_left, p_right, p_neither)
-#deduplicate long df
-
-# transform into long format:  one row per id × orientation
-base_long <- base_polemic %>%
-  pivot_longer(
-    cols = c(p_right, p_left, p_neither),
-    names_to = "orientation",
-    values_to = "mean_value"
-  ) %>%
-  mutate(
-    orientation = factor(orientation,
-                         levels = c("p_right", "p_left", "p_neither"),
-                         labels = c("Derecha", "Izquierda", "No Politico")),
-    id_pol_3 = factor(id_pol_3, levels = c("1", "2", "3"))
-    
-  )
 
 
-#compute mean and 95% CI per id_pol
-summary_df <- base_long %>%
-  group_by(id_pol_3, orientation) %>%
-  summarise(
-    mean_val = mean(mean_value, na.rm = TRUE),
-    sd_val   = sd(mean_value,   na.rm = TRUE),
-    n        = sum(!is.na(mean_value)),
-    se       = sd_val / sqrt(n),
-    ci_low   = mean_val - qt(0.975, df = n - 1) * se,
-    ci_high  = mean_val + qt(0.975, df = n - 1) * se,
-    .groups  = "drop"
-  )
 
-# create graph
 
-ggplot(summary_df, aes(x = id_pol_3, y = mean_val, fill = orientation)) +
-  geom_col(position = position_dodge(width = 0.8), width = 0.7) +
-  geom_errorbar(aes(ymin = ci_low, ymax = ci_high),
-                position = position_dodge(width = 0.8),
-                width = 0.2) +
-  scale_fill_manual(values = c(
-    "Derecha"     = "gold", 
-    "Izquierda"   = "#E41A1C",
-    "No Politico" = "lightblue"  
-  )) +
-  labs(
-    x = "Orientacion politica",
-    y = "Polemicidad (1-5)",
-    fill = "Orientación",
-    title = "Promedio Polemicidad (95% CI) según Orientación"
-  ) +
+######################## Using ordinal estimators for the LMM
+library(ordinal)
+fun_df$funniness <- factor(fun_df$funniness, ordered = TRUE)
+m2_ordinal <- clmm(funniness ~ version + (version | id) + (1 | ck_), data = fun_df)
+summary(m2_ordinal)
+
+#e^[value in estimate] gives the odd ratio (odds to chose higher rating)
+# i cant get p values for clmm but can make comparisons of LRT to get significance of improvement
+
+# Not truly necessary as 5-point ordinal items with multiple repeated measurements per condition yield create kind of continuos aggregated response distributions
+
+
+
+
+
+
+
+
+
+
+
+
+######################## Invariance testing (cant be done due to few numbers per group, and some cynicism items without values)
+
+# to do just subset of id_pol_3 add data = subset(cinis_ad, id_pol_3 == 2),
+
+#### In order to calculate this i would have to aggregate  values of 1-2
+
+# Lets check configural invariance by ideological group (Number of factors and item loadings)
+config_adjust <- cfa(mod1_adjust, std.lv= T, ,estimator ="WLSMV", data=cinis_ad, ordered = c("VD03_01", "VD03_02", "VD03_03", "VD03_04", "VD03_05", "VD03_06"), group="id_pol_3" ) 
+config_adjust
+summary(config_adjust)
+fitMeasures(config_adjust, c("cfi.robust", "tli.robust", "rmsea.robust", "srmr"))
+
+#  Weak Invariance Metric --> FACTOR LOADINGS EQUAL ACROOS GROUPS?
+weak <- cfa(mod1_adjust,data=cinis_ad,std.lv= T, estimator = "WLSMV", ordered = c("VD03_01", "VD03_02", "VD03_03", "VD03_04", "VD03_05", "VD03_06"), group.equal="thresholds")
+weak
+summary(weak)
+fitMeasures(weak, c("cfi.robust", "tli.robust", "rmsea.robust", "srmr"))
+
+# # Strong invariance (intercepts) - Scalar Invariance NOPE
+strong <- cfa(mod1_adjust,data=cinis_ad,std.lv= T, estimator = "WLSMV", ordered = c("VD03_01", "VD03_02", "VD03_03", "VD03_04", "VD03_05", "VD03_06"), group.equal = c("loadings", "thresholds"))
+fitMeasures(strong, c("cfi.robust", "tli.robust", "rmsea.robust", "srmr"))
+# NO SCALAR INVARIANCE This means there even when cinismo levels are similar, some items are rated more high by some groups than other
+
+# lets compare weak and configural
+
+compare_cfa<-compareFit(config_adjust, weak)
+summary(compare_cfa)
+
+#### COMPARISIONS WITH PANEL 
+
+
+
+
+# Info for the panel regarding data
+
+panel <- bd %>%
+  filter(QUESTNNR %in% c("piloto2")) #108
+
+
+panel <- panel %>% filter(total_p >= 6) #-3
+
+
+
+# Delete people with TIME_RSI >2 Relative Speed Index above 2
+
+panel <- panel %>% filter(TIME_RSI < 2) #-5
+
+
+
+
+
+# revisar distribucion de caracteristicas
+
+# Political Affiliation
+
+panel %>%
+  filter(SD06 >= 1, SD06 <= 9) %>%
+  ggplot(aes(x = factor(SD06))) +
+  geom_bar(fill = "steelblue") +
+  labs(x = "Identidad Politica", y = "Numero") +
   theme_minimal()
 
 
+table(panel$SD06)
+table(panel$id_pol_3)
+round(100 * prop.table(table(panel$id_pol_3)), 2) #as percentages
+
+# Gender
+table(panel$SD01) # 1 men, 2 female 3 non binary
+
+#Education
+table(panel$SD07) 
+
+#1	Educación Básica Incompleta
+#2	Educación Básica Completa
+#3	Educación Media Incompleta
+#4	Educación Media Completa
+#5	Instituto Técnico Profesional/Centro de Educación Técnica Incompleta
+#7	Educación Superior Universitaria Incompleta
+#6	Instituto Técnico Profesional/Centro de Educación Técnica Completa
+#8	Educación Superior Universitaria Completa
+#-1	No contesta
+#-9	Not answered
+
+
+
+
+#average time of completion
+describe(panel$TIME_SUM) 
+
+
+#### JSON testing other wording
+
+library(jsonlite)
+library(stringr)
+
+opciones_cinismo<- c(
+  "Totalmente en desacuerdo"    = 1,
+  "Moderadamente en desacuerdo" = 2,
+  "Ligeramente en desacuerdo"   = 3,
+  "Ni de acuerdo ni en desacuerdo" = 4,
+  "Ligeramente de acuerdo"      = 5,
+  "Moderadamente de acuerdo"    = 6,
+  "Totalmente de acuerdo"       = 7
+)
+
+preguntas <- c(
+  "01a173d8-f00a-7336-9777-63f87fc8db53" = "ck01", # Desconfío
+  "01a173d8-f02f-719e-a401-ce23ad772fe8" = "ck02", # Poco honestos
+  "01a173d8-f02f-719e-a401-d25af7a9eb11" = "ck03", # Incompetentes
+  "01a173d8-f02f-719e-a401-d6db1724839f" = "ck04", # Inmorales
+  "01a173d8-f02f-719e-a401-db6e8820fcef" = "ck05", # Egoístas
+  "01a173d8-f030-727d-b5ec-dd0a4943df8e" = "ck06", # Fuera de contacto
+  "01a17de3-510d-72cb-98f1-5dc39e8122d2" = "id_pol" # Identificación política
+)
+
+
+
+ruta<-file.choose()
+lineas <- readLines(ruta, warn = FALSE, encoding = "UTF-8")
+lineas <- lineas[nzchar(trimws(lineas))]
+subs   <- lapply(lineas, fromJSON, simplifyVector = FALSE)
+
+fila <- function(s) {
+  vals <- map_chr(names(preguntas), function(id) {
+    v <- s$responses[[id]]$values
+    if (is.null(v) || length(v) == 0) NA_character_
+    else paste(unlist(v), collapse = "; ")
+  })
+  names(vals) <- unname(preguntas)
+  
+  as_tibble_row(c(
+    submission_id  = s$submission_id,
+    participant_id = s$participant_id,
+    created_at     = s$created_at,
+    vals
+  ))
+}
+
+df <- map_dfr(subs, fila)
+
+df <- df |>
+  mutate(
+    created_at = as.POSIXct(created_at, format = "%Y-%m-%dT%H:%M:%OSZ", tz = "UTC"),
+    across(starts_with("ck"), ~ {
+      n <- suppressWarnings(as.numeric(.x))
+      ifelse(is.na(n), unname(opciones_cinismo[.x]), n)
+    })
+  )
+
+df <- df |>
+  mutate(
+    id_pol_txt = id_pol,   # keep the original text
+    id_pol = case_when(
+      str_detect(id_pol_txt, regex("^\\s*Centro",  ignore_case = TRUE)) ~ 5,
+      str_detect(id_pol_txt, regex("^\\s*Ninguno", ignore_case = TRUE)) ~ 10,
+      str_detect(id_pol_txt, regex("^\\s*No s[eé]", ignore_case = TRUE)) ~ 11,
+      TRUE ~ as.numeric(str_extract(id_pol_txt, "^\\s*\\d+"))
+    )
+  )
+
+
+
+table(df$id_pol)
+describe(df)
+
+(5.5+4.8+4+4.25+4.3+4.75)/6
+
+cor_ri<-df[,c("ck01","ck02","ck03","ck04","ck05","ck06")]  
+
+corr.test(cor_ri, method="spearman")
+
+
+var_ri<-c("ck01", "ck02", "ck03", "ck04", "ck05", "ck06")
+plots <- map(var_ri, function(v) {
+  df |>
+    count(.data[[v]]) |>
+    ggplot(aes(x = factor(.data[[v]]), y = n)) +
+    geom_col(fill = "steelblue") +
+    geom_text(aes(label = n), vjust = -0.3, size = 3) +
+    labs(
+      title = paste("Frequency of", v),
+      x = v,
+      y = "Count"
+    ) +
+    theme_minimal()
+})
+
+
+library(patchwork)
+wrap_plots(plots, ncol = 3)
