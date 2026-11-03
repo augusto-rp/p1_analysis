@@ -348,7 +348,7 @@ The non political topic was assigned sequentially
 - Political Orientation
 The original scale ranges from 1 (Very left wing) to 9 (Right Wing), with 5 labelled as (Center). There is also the option Neither (-1) and Don't know (-2). **The mean of the sample -without considering "neither and "dont'know" is 4,45 (sd=2.26)**
 
-**Raw Frecuency of People aligned with political orientation**
+**Raw Frecuency of participants aligned with political orientation**
 
 ![Grafico de frencuenca absoluta de personas alineadas de izquierda a derecha](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/distribution_political_lw-rw.jpeg)
 
@@ -356,6 +356,8 @@ I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non 
 - Left wing aligned: 76 (40.21%)
 - Right wing aligned: 47 (24.87%)
 - Non aligned: 66 (34.92%)
+
+# Descriptive Analysis
 
 ## Comparision of stimuli perception across assignment groups
 | Group |average polemicality humor version  (sd) |  average polemicality serious version  | average funniness humor version |average funniness serious version | average similarity among version of image |
@@ -365,7 +367,71 @@ I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non 
 |3|2.5(0.94)|2.24(0.90)|3.49(0.86)|2.57(0.78)|4.33(0.65)|
 |4|2.25(0.86)|2.2(0.9)|3.59(0.92)|2.37(1.09)|4.29(0.71)|
 
+A MANOVA was conducted in order to asses wheter assignment groups significantly differ on theu percepcion of the imagenes perceptions of the images' polemicality, funniness, or similarity. Results support the hypothesis they did not $(F(15, 540) = 1.58, p = 0.073)$.
+
+## Correlation between measurements of polemicality, funniness and similarity
+
+| Variable | avg_01 | avg_02 | avg_03 | avg_04 | avg_05 |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **avg_01** | - | | | | |
+| **avg_02** | 0.85*** | - | | | |
+| **avg_03** | -0.13 | -0.14 | - | | |
+| **avg_04** | 0.27** | 0.34*** | 0.28** | - | |
+| **avg_05** | -0.19 | -0.22* | 0.18 | -0.15 | - |
+
+*Note. n = 186, Pairwise deletion. Bonferroni adjustment applied. *p < .05, **p < .01, ***p < .001.*
+
+**The significant correlations seems to be spurius and the effect of lower variance in the range of responses, particularly in the case of avg_04**
 
 
+## Distribution of responses on the perception of funniness among serious and humorous versions: % by point in scale
+
+![Grafico que muestra distribucion porcentual de las respuestas en la percepcoion de comicididad de las distintas version](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/porcentaje_percepcion_comicidad.jpeg)
+
+- Regarding **humorous versions**
+  - More than half of respondents show some level of agreement with the statement that the image is funny
+  - Around 30% have some degree of disagreement with the statement that the image is funny. As will be seen in later analysis this is mainly because of the evaluation of lw participants of the funniness of rw images.
+-  Regarding **seriouss versions**
+  - Almost 2/3 of participants have some degree of disagreement with the statement that the image is funny.
+
+## Distribution of responses on the perception of polemicality among serious and humorous versions: % by point in scale
+![Grafico que muestra distribucion procentual de las respuestas en la percepcion de polemicidad de las distitnas versiones](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/porcentaje_percepcion_polemica.jpeg)
+
+- Overall both versions have a similar distribution. Around 40% of participants completely disagree with the statement that the images is polemic.
+- Around a quarter of participants have some degree of disagreement with the statement that the image is polemic.
+
+## Comparision of stimuli perception across political groups
+
+### How does the perception of funniness varies across political orientation × political orientation of humorous version?
+
+![Grafico que muestra como varia el grado en que se percibe que meme es chistoso variando el tipo de contenido de este y el grupo que evalua](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/promedio_comicidad_agregado.jpeg)
+
+- As expected participants tend to view humorous images supporting their own views as significantly more funny that those supporting views contrary to their own.
+- Politically aligned participants view non political humorous images as equally funny as political humorous images aligned with their on political positions.
+- Non politically aligned participants view all types of images equally funny. Although there appears to be a marginally differences between their perception of funninnes between rw nd non political images.
+
+### How does the perception of polemicality varies across political orientation × political orientation of humorous version?
+
+![Grafico que muestra como varia el grado en que se percibe que meme es polemico variando el tipo de contenido de este y el grupo que lo evalua](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/promedio_polemicidad_agregado.jpeg)
+
+- Only lw participants show a significant difference in the perception of polemicality between imagens expressing views expressing views contrarian to their own political sector and those supporting them.
+- Non political aligned participants and rw participants show no difference in their perception of polemicality among imanges supporting lw and rw views.
+- Non political images consistentyl show lower levels of perceived polemicality across the 3 groups.
+
+### Density of responses on perceived funniness across political orientation × political orientation of humoros version
+
+**Left wing humorous images**
+
+![Grafico de densidad que muestra densidad en apreciacion de humor en memes de izquierda de acuerdo a grupo ideologico](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/comicidad_izquierda_dplot.jpeg)
+
+
+**Right wing humorous images**
+
+![Grafico de densidad que muestra densidad en apreciacion de humor en memes de derecha de acuerdo a grupo ideologico](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/comicidad_derecha_dplot.jpeg)
+
+
+**Non political humorous images**
+
+![Grafico de densidad que muestra densidad en apreciacion de humor en memes de izquierda de acuerdo a grupo ideologico](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/comicidad_nopoliticos_dplot.jpeg)
 
 </details>
