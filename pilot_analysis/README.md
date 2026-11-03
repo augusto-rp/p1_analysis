@@ -196,7 +196,7 @@ Stimuli have a particular structure, as explained in this graph
 
 ```mermaid
 graph TB
-1[TOPIC]-->2[Rw view: CK08] & 3[lw view: CK09]
+1[TOPIC]-->2[rw view: CK08] & 3[lw view: CK09]
 
 2-->H[HUMOR VERSION] & S[SERIOUS VERSION]
 3-->m[HUMOR VERSION] & n[SERIOUS VERSION]
@@ -213,17 +213,17 @@ end
 ```
 
 - There are a total of 20 total **topics** being tested. 16 are political, and 4 non political
-  - Each topic is composed of two **pairs of images** that represent opposing views regarding the topic
-  - Each pair of images is composed of a humorous version (a meme) and a non humorous version (text). They can be seen in the folder "tested_stimuli""
+  - Each topic is composed of two **pairs of images** that represent opposing views regarding the topic (Political: right wing (rw) vs left wing (lw) // Non-Politica.: pro vs con)
+  - Each pair of images has a humorous version (a meme) and a non humorous version (text). They can be seen [here](https://github.com/augusto-rp/p1_analysis/tree/master/pilot_analysis/tested_stimuli)
 
 ## Codes of the stimuli
-In the df there are seveal variables called CKnn_01/02/03/04/05
+In the df there are several variables called CK##_01/02/03/04/05
 CK## is the code for the pair of images
 - _01: perceived polemicality (I checked, this word exists in english) of the humorous version
-- _02: perceived polemicality (I checked, this word exists in english) of the serious version 
-- _03: perceived funniness (I checked, this word exists in english) of the humorous version 
-- _04: perceived funniness (I checked, this word exists in english) of the serious version 
-- _05: perceived similarity (I checked, this word exists in english) between version of the same pair 
+- _02: perceived polemicality  of the serious version 
+- _03: perceived funniness  of the humorous version 
+- _04: perceived funniness of the serious version 
+- _05: perceived similarity  between version of the same pair 
 
 **The corresponding topics and political view of each pair of images is as follows**
 
@@ -273,9 +273,7 @@ CK## is the code for the pair of images
 ## Selection of stimuli for project
 As seen in the above graph, each topic is divided into two image pairs. Each one presenting opposing views (lw/rw in the case of political topics & pro/against in the case of non-political).
 
-Given that the goal for the experiment is to have topics that have opposing messages. I'm looking for topics in which both pair of images pass the tests.
-
-Therefore if just one of the image pairs fails some criteria, but it paired pair doesn't this topic is discarded for the final experiment. 
+Given that the goal for the experiment is to have topics that have opposing messages. I'm looking for topics in which both pair of images pass the tests. Therefore if just one of the image pairs fails some criteria, but its paired pair doesn't, the topic as a whole topic is discarded for the final experiment. 
 
 For example CK34 (rw) and CK35(lw) are the pair of images that form the topic "Work". CK35 fails two criteria and CK34 none. However CK35 "drags" CK34 as I can't use an image that is seen as funny while the other is not.
 
@@ -286,7 +284,7 @@ For example CK34 (rw) and CK35(lw) are the pair of images that form the topic "W
 ### Random Assignments to stimuli set
 
 **Groups were assigned to 4 different groups**
-Each groups viewed a different set of 10 pais of images(each topic includes two pais of images) as follow:
+Each groups viewed a different set of 5 topics, 4 political and 1 non political. The topics each group viewed were:
 
 - **Grupo 1**
 Tema 8 (internacional_2)  CK16-CK17
@@ -333,5 +331,29 @@ print(sets)
 The non political topic was assigned sequentially
 
 
+# Sample 
+- Initially a total of 209 people respondened the survey, but 11 were deleted as they were over the age of 36. Three aditional cases were deleteed as they correspond totest trials by [Norstat](https://norstat.co/solutions/sample-only/) the external company that collaborated in the data collection. Six more people where discarded as they Relative Speed Index of Completion was above 2, which has been careless responding according to [Leiner, 2019](http://dx.doi.org/10.18148/srm/2019.v13i3.7403)
+**Valid responses: 189 participants**
+
+## Sample characteristics
+- Gender: Female 114 (60.32%), Male 73 (38.62%), Non Binary 2 (1.06)
+- Educational Background:
+  - Non completed highschool education 2 (1.06%)
+  - Completed highschol education 29 (15.34%)
+  - Non completed/ongoing technical education 9 (4.76%)
+  - Non completed/ ongoing college education 21 (11.11%)
+  - Completed technical education 51 (26.98%)
+  - Completed college education 77 (40.74%)
+-Political Orientation
+The original scale ranges from 1 (Very left wing) to 9 (Right Wing), with 5 labelled as (Center). There is also the option Neither (-1) and Don't know (-2). **The mean of the sample -without considering "neither and "dont'know" is 4,45 (sd=2.26)**
+
+** Raw Frecuency of People aligned with political orientation
+
+![Grafico de frencuenca absoluta de personas alineadas de izquierda a derecha](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/distribution_political_lw-rw.jpeg)
+
+I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non aligned (5, -1, 2). The later is less than convenient given the great diversity of political beliefs and values that can be spoused even when people self identify as non political; however even in cases where "center" people align with a particual rw/lw values it implies a non identitarian alighment with them.
+- Left wing aligned: 76 (40.21%)
+- Right wing aligned: 47 (24.87%)
+- Non aligned: 66 (34.92%)
 
 </details>
