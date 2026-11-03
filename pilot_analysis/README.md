@@ -344,10 +344,11 @@ The non political topic was assigned sequentially
   - Non completed/ ongoing college education 21 (11.11%)
   - Completed technical education 51 (26.98%)
   - Completed college education 77 (40.74%)
--Political Orientation
+    
+- Political Orientation
 The original scale ranges from 1 (Very left wing) to 9 (Right Wing), with 5 labelled as (Center). There is also the option Neither (-1) and Don't know (-2). **The mean of the sample -without considering "neither and "dont'know" is 4,45 (sd=2.26)**
 
-** Raw Frecuency of People aligned with political orientation
+**Raw Frecuency of People aligned with political orientation**
 
 ![Grafico de frencuenca absoluta de personas alineadas de izquierda a derecha](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/distribution_political_lw-rw.jpeg)
 
@@ -355,5 +356,16 @@ I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non 
 - Left wing aligned: 76 (40.21%)
 - Right wing aligned: 47 (24.87%)
 - Non aligned: 66 (34.92%)
+
+## Comparision of stimuli perception across assignment groups
+| Group |average polemicality humor version  (sd) |  average polemicality serious version  | average funniness humor version |average funniness serious version | average similarity among version of image |
+|---|---|---|---|---|---|
+|1|2.65(0.89)|2.54(0.95)|3.14(1.05)|2.05(0.87)|4.34(0.69)|
+|2|2.49(0,94)|2.41(0.93)|3.23(0.83)|2.24(0.96)|4.17(0.86)|
+|3|2.5(0.94)|2.24(0.90)|3.49(0.86)|2.57(0.78)|4.33(0.65)|
+|4|2.25(0.86)|2.2(0.9)|3.59(0.92)|2.37(1.09)|4.29(0.71)|
+
+
+
 
 </details>
