@@ -219,8 +219,8 @@ end
 ## Codes of the stimuli
 In the df there are several variables called CK##_01/02/03/04/05
 CK## is the code for the pair of images
-- _01: perceived polemicality (I checked, this word exists in english) of the humorous version
-- _02: perceived polemicality  of the serious version 
+- _01: perceived polemicality (I checked, this word exists in english) of the humorous version (memes)
+- _02: perceived polemicality  of the serious version (message with the same content than the meme but without humorous cues)
 - _03: perceived funniness  of the humorous version 
 - _04: perceived funniness of the serious version 
 - _05: perceived similarity  between version of the same pair 
@@ -462,6 +462,7 @@ Degrees of Freedom for evalauting significance were estimated using Kenward-Roge
 In order to control the numerous comparisions among the H and S version of each pair of imagenes I used Benjamini-Hochberg correction. I also ran the same analysis using a more conservative correction method -Holm- and th eresults where the same.
 
 **All pairs of imagens show significant differences between the H and S versions** 
+
 This is a good sign that the design of stimuli was succesful in the most important task: creating stimuli that are perceived with higher levels of funniness based on the intentional usage of humorous cues.
 
 However I also want to report some results of the LMM as they will be importat for later consideration during the experiment
@@ -478,13 +479,67 @@ However I also want to report some results of the LMM as they will be importat f
 - Finally, there is also evidence, F(39, 1622.95) = 2.23, p<.001, that among some topics the effect of humorous cues is different than the average humor effect. 
 
 
-
+dl;dr: **ALL STIMULI PASS THIS CRITERIA**
 
 
 ## Step 2
 
+The previous step has one issue: **An image can be significantly more humorous that the serious version of the same message and still be perceived as unfunny compared with the mean**
+We are looking for pairs of images in which the humorous one is at least as funny as the average one.
+
+One important consideration is that this comparison has to be made within political or non political topics. The funniness of non-political memes is not affected by political positions, and on average they have higher ratings. If we pool all together there is added noise due to those images.
+
+To do this
+- I compared the perceived funniness mean of each meme with the corresponding overall mean (political or non-political).
+- I calculated the same for each serious image. As I'm also interested in how much serious images diverge from the mean of funniness.
+- I calculated  95% confidence interval for each image funniness mean.
 
 
+If a meme has a upper CI below 0 (the average mean) **it is discarded** as it means its true mean lies below the average funniness of political memes. Memes in which confidence interval crosses 0 are labelled "inconclusive", in this case we will consider they Pass this step- .
+
+There are certain cases in which the memes are bordeline failing (bound within 0.5 SE), so discarding them might not be appropiate. So it is worth considering other criteria before deciding whether to use them or not.
+
+Also it is worht recalling that all of this analysis seek to select topics in which both images (lw and rw) pass the test. If one of those is well above the mean of funniness but the other is not, we also should be weary whether they are appropiate to use. As using a rw that is clearyl above the funniness mean while the lw is inconclusive might create biases in the effect we are resarching.
+
+**Based the analysis**
+
+|code| topic | image | status |
+|---|---|---|---|
+|ck08| student loans| rw| |
+|ck09| student loans| lw| |
+|ck10| identity checks| rw| |
+|ck11| identity checks| lw| |
+|ck12| economic policies| rw| |
+|ck13| economic policies| lw| |
+|ck14| international relations| rw| |
+|ck15| international relations| lw| |
+|ck16| international relations| rw| |
+|ck17| international relations| lw| |
+|ck18| working hours| rw| |
+|ck19| working hours| lw| |
+|ck20| ministers controversies| rw| |
+|| ministers controversies| lw| |
+|| political priorities| rw| |
+|| political priorities| lw| |
+|| protests| rw| |
+|| protests| lw| |
+|| budget cuts| rw| |
+|| budgets cuts| lw| |
+|| register of crimes| rw| |
+|| register of crimes| lw| |
+|| security| rw| |
+|| security| lw| |
+|| enviroment policies| rw| |
+|| enviroment policies| lw| |
+|| working policies| rw| |
+|| working policies| lw| |
+|| ai| rw| |
+|| ai| lw| |
+|| political values| rw| |
+|| political values| lw| |
+
+
+dl;dr: 
 
 ## Step 3
 
