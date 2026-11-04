@@ -495,9 +495,9 @@ To do this
 - I calculated  95% confidence interval for each image funniness mean.
 
 
-If a meme has a upper CI below 0 (the average mean) **it is discarded** as it means its true mean lies below the average funniness of political memes. Memes in which confidence interval crosses 0 are labelled "inconclusive", in this case we will consider they Pass this step- .
+If a meme has a upper CI below 0 (the average mean) **it is discarded** as it means its true mean lies below the average funniness of political memes. Memes in which confidence interval crosses 0 are labelled "inconclusive", in this case we will consider they Pass this step. The rationale behind this decision is that cross ideological perception of the memes will lead to lower ratings of funniness, thus leading to larger CI.
 
-There are certain cases in which the memes are bordeline failing (bound within 0.5 SE), so discarding them might not be appropiate. So it is worth considering other criteria before deciding whether to use them or not.
+There are certain cases in which the memes are bordeline failing (bound within 0.5 SE), so discarding them might not be appropiate. So it is worth considering other criteria before deciding whether to use them or not. They will me marked as "Marginal Fail"
 
 Also it is worht recalling that all of this analysis seek to select topics in which both images (lw and rw) pass the test. If one of those is well above the mean of funniness but the other is not, we also should be weary whether they are appropiate to use. As using a rw that is clearyl above the funniness mean while the lw is inconclusive might create biases in the effect we are resarching.
 
@@ -505,38 +505,46 @@ Also it is worht recalling that all of this analysis seek to select topics in wh
 
 |code| topic | image | status |
 |---|---|---|---|
-|ck08| student loans| rw| |
-|ck09| student loans| lw| |
-|ck10| identity checks| rw| |
-|ck11| identity checks| lw| |
-|ck12| economic policies| rw| |
-|ck13| economic policies| lw| |
-|ck14| international relations| rw| |
-|ck15| international relations| lw| |
-|ck16| international relations| rw| |
-|ck17| international relations| lw| |
-|ck18| working hours| rw| |
-|ck19| working hours| lw| |
-|ck20| ministers controversies| rw| |
-|| ministers controversies| lw| |
-|| political priorities| rw| |
-|| political priorities| lw| |
-|| protests| rw| |
-|| protests| lw| |
-|| budget cuts| rw| |
-|| budgets cuts| lw| |
-|| register of crimes| rw| |
-|| register of crimes| lw| |
-|| security| rw| |
-|| security| lw| |
-|| enviroment policies| rw| |
-|| enviroment policies| lw| |
-|| working policies| rw| |
-|| working policies| lw| |
-|| ai| rw| |
-|| ai| lw| |
-|| political values| rw| |
-|| political values| lw| |
+|ck08| student loans| rw| PASS  |
+|ck09| student loans| lw|PASS   |
+|ck10| identity checks| rw|PASS   |
+|ck11| identity checks| lw|PASS (meme: above average of funniness)  |
+|ck12| economic policies| rw| FAIL |
+|ck13| economic policies| lw| FAIL (due to being "dragged" by CK12 |
+|ck14| international relations| rw|PASS |
+|ck15| international relations| lw|PASS |
+|ck16| international relations| rw|FAIL |
+|ck17| international relations| lw| FAIL (due to being "dragged" by CK16) |
+|ck18| working hours| rw| FAIL|
+|ck19| working hours| lw| FAIL (due to being "dragged" by CK18)  |
+|ck20| ministers controversies| rw|PASS |
+|ck21| ministers controversies| lw|PASS (both H and S are above mean of funniness) |
+|ck22| political priorities| rw|Marginal Fail |
+|ck23| political priorities| lw|PASS |
+|ck24| protests| rw|PASS |
+|ck25| protests| lw|PASS |
+|ck26| budget cuts| rw|PASS |
+|ck27| budgets cuts| lw|PASS |
+|ck28| register of crimes| rw|PASS |
+|ck29| register of crimes| lw|PASS |
+|ck30| security| rw|PASS |
+|ck31| security| lw|PASS |
+|ck32| enviroment policies| rw|FAIL |
+|ck33| enviroment policies| lw|FAIL (due to being "dragged" by CK32) |
+|ck34| working policies| rw|FAIL (due to being "dragged" by CK35) |
+|ck35| working policies| lw|FAIL |
+|ck36| ai| rw| PASS (meme: above average of funniness) |
+|ck37| ai| lw| PASS |
+|ck38| political values| rw|PASS |
+|ck39| political values| lw|PASS |
+|ck40| NP: whatsapp audios| against|PASS |
+|ck41| NP: whatsapp audios| pro|PASS (serioues: above mean of funniness |
+|ck42| NP: concerts| against|PASS (meme: above average of funniness) |
+|ck43| NP: concerts| pro|PASS |
+|ck44| NP: winter| against| PASS (both H and S are above mean of funniness) |
+|ck45| NP: winter| pro| PASS (both H and S are above mean of funniness) |
+|ck46| NP: cats| against|PASS (both H and S are above mean of funniness) |
+|ck46| NP: cats | pro|PASS (meme: above average of funniness |
 
 
 dl;dr: 
