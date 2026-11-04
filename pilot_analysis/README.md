@@ -235,12 +235,12 @@ CK## is the code for the pair of images
 | CK11 | control_identidad [identity check] | izquierda [left] |
 | CK12 | economia [economy] | derecha [right] |
 | CK13 | economia [economy] | izquierda [left] |
-| CK14 | internacional_1 [international_1] | derecha [right] |
-| CK15 | internacional_1 [international_1] | izquierda [left] |
-| CK16 | internacional_2 [international_2] | derecha [right] |
-| CK17 | interncional_2 [international_2] | izquierda [left] |
-| CK18 | jornada | derecha [right] |
-| CK19 | jornada | izquierda [left] |
+| CK14 | internacional tematicas [international affairs] | derecha [right] |
+| CK15 | internacional tematicas [international affairs] | izquierda [left] |
+| CK16 | relaciones internacionales [international relations] | derecha [right] |
+| CK17 | relaciones internacionales [international relations] | izquierda [left] |
+| CK18 | jornada (working hours) | derecha [right] |
+| CK19 | jornada (working hours) | izquierda [left] |
 | CK20 | ministros [ministers] | derecha [right] |
 | CK21 | ministros [ministers] | izquierda [left] |
 | CK22 | prioridades [priorities] | derecha [right] |
@@ -511,9 +511,9 @@ Also it is worht recalling that all of this analysis seek to select topics in wh
 |ck11| identity checks| lw|PASS (meme: above average of funniness)  |
 |ck12| economic policies| rw| FAIL |
 |ck13| economic policies| lw| FAIL (due to being "dragged" by CK12 |
-|ck14| international relations| rw|PASS |
-|ck15| international relations| lw|PASS |
-|ck16| international relations| rw|FAIL |
+|ck14| international affairs| rw|PASS |
+|ck15| international affairs| lw|PASS |
+|ck16| international relations | rw|FAIL |
 |ck17| international relations| lw| FAIL (due to being "dragged" by CK16) |
 |ck18| working hours| rw| FAIL|
 |ck19| working hours| lw| FAIL (due to being "dragged" by CK18)  |
@@ -531,8 +531,8 @@ Also it is worht recalling that all of this analysis seek to select topics in wh
 |ck31| security| lw|PASS |
 |ck32| enviroment policies| rw|FAIL |
 |ck33| enviroment policies| lw|FAIL (due to being "dragged" by CK32) |
-|ck34| working policies| rw|FAIL (due to being "dragged" by CK35) |
-|ck35| working policies| lw|FAIL |
+|ck34| work policies| rw|FAIL (due to being "dragged" by CK35) |
+|ck35| work policies| lw|FAIL |
 |ck36| ai| rw| PASS (meme: above average of funniness) |
 |ck37| ai| lw| PASS |
 |ck38| political values| rw|PASS |
@@ -546,8 +546,19 @@ Also it is worht recalling that all of this analysis seek to select topics in wh
 |ck46| NP: cats| against|PASS (both H and S are above mean of funniness) |
 |ck46| NP: cats | pro|PASS (meme: above average of funniness |
 
+Some observations on the results
+- With one exception all the political memes that fail are right wing. I suspect this is a consequence of lw participants using "Completely disagree" when evaluating the funniness of rw memes, as seen in the density plots above. If lw participants have a tendency to use more extreme lower ratings of rw memes, than rw participants of lw memes this will lead to these kinds of results.
+- The image about rw priorities is marginally below the average mean, so further test are needed before discarding it
+- Some memes (such lw meme of identity checks) are clearly above the overall of funniness. This can be Winner's curse or that those memes are truly ranked as more funny. So rather than deciding whether to dsicard them or not jsut based on this it is important to see how they dweel in the following steps.
+- All non political images pass.
 
 dl;dr: 
+- The following topics are discarded as one of the images was rated as clearly below the average mean of funniness of political images
+ -  economic policies
+ -  internatiol relations
+ -  working hours
+ -  enviroment policies
+ -  work policies
 
 ## Step 3
 
