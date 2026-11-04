@@ -279,8 +279,6 @@ For example CK34 (rw) and CK35(lw) are the pair of images that form the topic "W
 
 
 
-
-
 ### Random Assignments to stimuli set
 
 **Groups were assigned to 4 different groups**
@@ -332,8 +330,9 @@ The non political topic was assigned sequentially
 
 
 # Sample 
-- Initially a total of 209 people respondened the survey, but 11 were deleted as they were over the age of 36. Three aditional cases were deleteed as they correspond totest trials by [Norstat](https://norstat.co/solutions/sample-only/) the external company that collaborated in the data collection. Six more people where discarded as they Relative Speed Index of Completion was above 2, which has been careless responding according to [Leiner, 2019](http://dx.doi.org/10.18148/srm/2019.v13i3.7403)
-**Valid responses: 189 participants**
+- **Valid responses: 189 participants**
+  - Initially a total of 209 people responded the survey, but 11 were deleted as they were over the age of 36. Three aditional cases were deleteed as they correspond totest trials by [Norstat](https://norstat.co/solutions/sample-only/) the external company that collaborated in the data collection. Six more people where discarded as they Relative Speed Index of Completion was above 2, which has been associated to careless responding according to [Leiner, 2019](http://dx.doi.org/10.18148/srm/2019.v13i3.7403)
+
 
 ## Sample characteristics
 - Gender: Female 114 (60.32%), Male 73 (38.62%), Non Binary 2 (1.06)
@@ -346,20 +345,20 @@ The non political topic was assigned sequentially
   - Completed college education 77 (40.74%)
     
 - Political Orientation
-The original scale ranges from 1 (Very left wing) to 9 (Right Wing), with 5 labelled as (Center). There is also the option Neither (-1) and Don't know (-2). **The mean of the sample -without considering "neither and "dont'know" is 4,45 (sd=2.26)**
+The original scale ranges from 1 (Very left wing) to 9 (Very Right Wing), with 5 labelled as (Center). There is also the option Neither (-1) and Don't know (-2). **The mean of the sample -without considering "neither and "dont'know"- is 4.45 (sd=2.26)**
 
 **Raw Frecuency of participants aligned with political orientation**
 
 ![Grafico de frencuenca absoluta de personas alineadas de izquierda a derecha](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/distribution_political_lw-rw.jpeg)
 
-I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non aligned (5, -1, 2). The later is less than convenient given the great diversity of political beliefs and values that can be spoused even when people self identify as non political; however even in cases where "center" people align with a particual rw/lw values it implies a non identitarian alighment with them.
+I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non aligned (5, -1, 2). The later is less than convenient given the great diversity of political beliefs and values that can be spoused even when people self identify as non political; however even in cases where "center" people have some rw/lw values it implies a non identitarian aligment with them.
 - Left wing aligned: 76 (40.21%)
 - Right wing aligned: 47 (24.87%)
 - Non aligned: 66 (34.92%)
 
 # Descriptive Analysis
 
-## Comparision of stimuli perception across assignment groups
+## Comparison of stimuli perception across assignment groups
 | Group |average polemicality humor version  (sd) |  average polemicality serious version  | average funniness humor version |average funniness serious version | average similarity among version of image |
 |---|---|---|---|---|---|
 |1|2.65(0.89)|2.54(0.95)|3.14(1.05)|2.05(0.87)|4.34(0.69)|
@@ -367,7 +366,7 @@ I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non 
 |3|2.5(0.94)|2.24(0.90)|3.49(0.86)|2.57(0.78)|4.33(0.65)|
 |4|2.25(0.86)|2.2(0.9)|3.59(0.92)|2.37(1.09)|4.29(0.71)|
 
-A MANOVA was conducted in order to asses wheter assignment groups significantly differ on theu percepcion of the imagenes perceptions of the images' polemicality, funniness, or similarity. Results support the hypothesis they did not $(F(15, 540) = 1.58, p = 0.073)$.
+A MANOVA was conducted in order to asses whether assignment groups significantly differ on the percepcion of the images' polemicality, funniness, or similarity. Results support the hypothesis they did not $(F(15, 540) = 1.58, p = 0.073)$.
 
 ## Correlation between measurements of polemicality, funniness and similarity
 
@@ -381,26 +380,26 @@ A MANOVA was conducted in order to asses wheter assignment groups significantly 
 
 *Note. n = 186, Pairwise deletion. Bonferroni adjustment applied. *p < .05, **p < .01, ***p < .001.*
 
-**The significant correlations seems to be spurius and the effect of lower variance in the range of responses, particularly in the case of avg_04**
+**The significant correlations seems to be spurious and the effect of lower variance in the range of responses, particularly in the case of avg_04 (funniness of serious images**
 
 
-## Distribution of responses on the perception of funniness among serious and humorous versions: % by point in scale
+## Distribution of responses on the perception of funniness among serious and humorous versions: % by category in scale
 
-![Grafico que muestra distribucion porcentual de las respuestas en la percepcoion de comicididad de las distintas version](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/porcentaje_percepcion_comicidad.jpeg)
+![Grafico que muestra distribucion porcentual de las respuestas en la percepcion de comicididad de las distintas version](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/porcentaje_percepcion_comicidad.jpeg)
 
 - Regarding **humorous versions**
   - More than half of respondents show some level of agreement with the statement that the image is funny
-  - Around 30% have some degree of disagreement with the statement that the image is funny. As will be seen in later analysis this is mainly because of the evaluation of lw participants of the funniness of rw images.
+  - Around 30% have some degree of disagreement with the statement that the image is funny. As will be seen in later analysis this is apparently mainly because of the evaluation of lw participants of the funniness of rw images.
 - Regarding **serious versions**
   - Almost 2/3 of participants have some degree of disagreement with the statement that the image is funny.
 
-## Distribution of responses on the perception of polemicality among serious and humorous versions: % by point in scale
+## Distribution of responses on the perception of polemicality among serious and humorous versions: % by category in scale
 ![Grafico que muestra distribucion procentual de las respuestas en la percepcion de polemicidad de las distitnas versiones](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/porcentaje_percepcion_polemica.jpeg)
 
 - Overall both versions have a similar distribution. Around 40% of participants completely disagree with the statement that the images is polemic.
 - Around a quarter of participants have some degree of disagreement with the statement that the image is polemic.
 
-## Comparision of stimuli perception across political groups
+## Comparison of stimuli perception across political groups
 
 ### How does the perception of funniness varies across political orientation × political orientation of humorous version?
 
@@ -408,7 +407,7 @@ A MANOVA was conducted in order to asses wheter assignment groups significantly 
 
 - As expected participants tend to view humorous images supporting their own views as significantly more funny that those supporting views contrary to their own.
 - Politically aligned participants view non political humorous images as equally funny as political humorous images aligned with their on political positions.
-- Non politically aligned participants view all types of images equally funny. Although there appears to be a marginally differences between their perception of funninnes between rw nd non political images.
+- Non politically aligned participants view all types of images equally funny. Although there appears to be a marginally differences between their perception of funninnes between rw and non political images.
 
 ### How does the perception of polemicality varies across political orientation × political orientation of humorous version?
 
@@ -416,9 +415,9 @@ A MANOVA was conducted in order to asses wheter assignment groups significantly 
 
 - Only lw participants show a significant difference in the perception of polemicality between imagens expressing views expressing views contrarian to their own political sector and those supporting them.
 - Non political aligned participants and rw participants show no difference in their perception of polemicality among imanges supporting lw and rw views.
-- Non political images consistentyl show lower levels of perceived polemicality across the 3 groups.
+- Non political images consistently show lower levels of perceived polemicality across the 3 groups.
 
-### Density of responses on perceived funniness across political orientation × political orientation of humoros version
+### Density of responses on perceived funniness across political orientation × political orientation of humorous version
 
 **Left wing humorous images**
 
@@ -433,5 +432,82 @@ A MANOVA was conducted in order to asses wheter assignment groups significantly 
 **Non political humorous images**
 
 ![Grafico de densidad que muestra densidad en apreciacion de humor en memes de izquierda de acuerdo a grupo ideologico](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/comicidad_nopoliticos_dplot.jpeg)
+
+
+# Validation of Stimuli
+
+Lets see the results of the 5-step test to determine which topics are going to be selected for the final experiment. The criteria can be viewed in point 6 of the above section "Code Summary".
+
+## Step 1
+Let's examine whether there is a significant difference between the humorous (H) and serious (S) version of each pair of images—specifically, whether participants exposed to the same image content perceive the humorous version as significantly funnier.
+
+The comparison was based on a Lineal Mixed Model (LMM), with the following random structure and fixed effect structure:
+ - A random intercept and slope of funniness of H version for each individual. This is given participants are expected to have different baselines sensibilities towards humorous cues.
+ - Random intercept of topic funninness nested by individual. Given I expect some individuals to perceived some topics as more funny than others
+ - The interaction of image pair × version was defined as a **fixed effect**. As it is reasonable to expect some topics are perceived overall as more funny than others
+
+```r
+
+ f_pares3<- lmer(funniness ~  ck_ * version+ (version | id)+(1|id:ck_),
+                  data = fun_df, REML = TRUE)
+```
+
+Version was dummy-coded (with S as baseline), whereas ck_ was configured with sum contrasts (comparing each topic against the grand mean across all topics)
+
+Eventhough REML is used as a estimation method for continous data and I'm working with ordinal data I decided it was an appropiate decision as 
+funniness is composed of several measure that creates a more normal distribution of the data. It also work to compare different models with the same fixed effect structuer (wich I did to determine which model was the best one to use for the comparisons, as can be seen in the code)
+Degrees of Freedom for evalauting significance were estimated using Kenward-Roger approximations based on recomendatios by [Luke, 2017](https://pubmed.ncbi.nlm.nih.gov/27620283/)
+
+**1.Comparison between H and S versions**
+In order to control the numerous comparisions among the H and S version of each pair of imagenes I used Benjamini-Hochberg correction. I also ran the same analysis using a more conservative correction method -Holm- and th eresults where the same.
+
+**All pairs of imagens show significant differences between the H and S versions** 
+This is a good sign that the design of stimuli was succesful in the most important task: creating stimuli that are perceived with higher levels of funniness based on the intentional usage of humorous cues.
+
+However I also want to report some results of the LMM as they will be importat for later consideration during the experiment
+
+**2.Random effects results**
+- Individual difference in the baseline perceptions of funniness explains 25.74% of the total random variance.
+- Additionally individual differences on the effect of humor explains another 35.20% of the total random variance.
+- Individual differences in the perception of funninness between different pairs of imagens explains an additional 18.38% of the random variance.
+- Intercept-Slope Correlation: There a negative correlation (r= -0.58)  between the random intercept ($\text{id}$) and the random slope ($\text{versionH}$). This means people with higher baseline funniness ratings experience a smaller boost from humorous cues, likely due to a ceiling effect 
+
+**3. Fixed effects results**
+- The results, F(1, 180.43) = 188.70, p<.001,  offer evidence in favor of the hypothesis that the humorous version increases the perception of funnineess of the images. 
+- Evidence, F(39, 1624.10) = 5.28, p<.001, also favors the hypothesis that some pairs of imagens are perceived as being more funny than others.
+- Finally, there is also evidence, F(39, 1622.95) = 2.23, p<.001, that among some topics the effect of humorous cues is different than the average humor effect. 
+
+
+
+
+
+## Step 2
+
+
+
+
+## Step 3
+
+
+
+
+## Step 4
+
+
+
+
+## Step 5
+
+
+
+
+## Summary
+
+
+
+  ### And the winners are
+
+
+
 
 </details>
