@@ -391,7 +391,7 @@ A MANOVA was conducted in order to asses wheter assignment groups significantly 
 - Regarding **humorous versions**
   - More than half of respondents show some level of agreement with the statement that the image is funny
   - Around 30% have some degree of disagreement with the statement that the image is funny. As will be seen in later analysis this is mainly because of the evaluation of lw participants of the funniness of rw images.
--  Regarding **seriouss versions**
+- Regarding **serious versions**
   - Almost 2/3 of participants have some degree of disagreement with the statement that the image is funny.
 
 ## Distribution of responses on the perception of polemicality among serious and humorous versions: % by point in scale
