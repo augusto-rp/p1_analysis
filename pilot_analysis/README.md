@@ -810,6 +810,51 @@ I then looked into each image mean on polemicality compared to the overall mean 
 ### tl;dr
 
 
+## Summary 
+
+| code | topic | image | step 1 | step 2 | step 3 | step 4 (1/2) | step 5 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ck08 | student loans | rw  | PASS | PASS | PASS | PASS/FAIL |  -0-   |
+| ck09 | student loans | lw  | PASS | PASS | PASS | PASS/ FAIL (dragged by ck08) |   -0-  |
+| **ck10** | identity checks | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck11** | identity checks | lw  | PASS | PASS (meme: above average of funniness) | PASS | PASS/PASS |  -0-   |
+| ck12 | economic policies | rw  | PASS | MARGINAL FAIL | PASS | PASS/FAILS (dragged by ck13) | Marginally ABOVE MEAN POLEMICALITY (AMP)   |
+| ck13 | economic policies | lw  | PASS | PASS | PASS | PASS/FAIL |   -0-  |
+| ck14 | international affairs | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by ck15) |  -0-   |
+| ck15 | international affairs | lw  | PASS | PASS | PASS | PASS/FAIL |  -0-   |
+| ck16 | international relations | rw  | PASS | MARGINAL FAIL | PASS | PASS/PASS |  -0-   |
+| ck17 | international relations | lw  | PASS | FAIL (due to being "dragged" by CK16) | PASS | PASS/PASS |  -0-   |
+| ck18 | working hours | rw  | PASS | FAIL | PASS | PASS/FAIL (dragged by ck19) | AMP (both versions)    |
+| ck19 | working hours | lw  | PASS | FAIL (due to being "dragged" by CK18) | PASS | PASS/ FAIL |  -0-   |
+| ck20 | ministers controversies | rw  | PASS | PASS | PASS | !/FAIL (dragged by ck21) |  AMP   |
+| ck21 | ministers controversies | lw  | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/FAIL |  -0-   |
+| ck22 | **political priorities** | rw  | PASS | PASS | PASS | PASS/PASS | -0-    |
+| ck23 | **political priorities** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| ck24 | **protests** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| ck25 | **protests** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| ck26 | **budget cuts** | rw  | PASS | PASS | PASS | PASS/PASS |  AMP   |
+| ck27 | **budgets cuts** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| ck28 | **register of crimes** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| ck29 | **register of crimes** | lw  | PASS | PASS (meme: above average of funniness) | PASS | PASS/PASS |  -0-   |
+| ck30 | security | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by c31) |  -0-   |
+| ck31 | security | lw  | PASS | PASS | PASS | PASS/FAIL |  Serious version marginally below mean polemicality   |
+| ck32 | enviroment policies | rw  | PASS | FAIL | PASS | PASS/FAIL |  -0-   |
+| ck33 | enviroment policies | lw  | PASS | FAIL (due to being "dragged" by CK32) | PASS | PASS/FAIL |  BELOW MEAN POLEMICALITY (BMP)    |
+| ck34 | work policies | rw  | PASS | FAIL (due to being "dragged" by CK35) | PASS | PASS/FAIL (dragged by ck35) |  -0-  |
+| ck35 | work policies | lw  | PASS | FAIL | PASS | PASS/FAIL |  AMP (both versions)   |
+| ck36 | ai  | rw  | PASS | PASS (both H and S are above mean of funniness) | PASS | ! /FAIL |  -0-   |
+| ck37 | ai  | lw  | PASS | PASS | PASS | !/FAIL |   BMP  |
+| ck38 | political values | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by ck39) |  -0-   |
+| ck39 | political values | lw  | PASS | PASS | PASS | PASS/FAIL |   -0-   |
+| ck40 | **NP: whatsapp audios** | against | PASS | PASS | PASS | PASS/PASS |   -0-   |
+| ck41 | **NP: whatsapp audios** | pro | PASS | PASS | PASS | PASS/PASS |  -0-    |
+| ck42 | NP: concerts | against | PASS | FAIL (due to being dragged by CK43) | FAIL (due to being "dragged" by CK43) | FAIL/PASS | -0-     |
+| ck43 | NP: concerts | pro | PASS | FAIL | FAIL | FAIL/PASS | AMP (both versionss)   |
+| ck44 | **NP: winter** | against | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/PASS |  -0-   |
+| ck45 | **NP: winter** | pro | PASS | PASS (S above mean of funniness) | PASS | PASS/PASS | BMP    |
+| ck46 | **NP: cats** | against | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/PASS |  -O   |
+| ck47 | **NP: cats** | pro | PASS | PASS (meme: above average of funniness | PASS | PASS/PASS |  -O   |
+
 
   ### And the winners are
 
