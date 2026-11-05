@@ -587,10 +587,65 @@ The result shows great variance across individual regarding how similar are pair
 This supports the conclusion than the H and S version of the same topic successfully convey the same underlying message content with variance in similarity ratings driven predominantly by individual rater characteristics rather than specific image pairs.
 
 ### tl;dr
-**This is alredy quite short**
+**Only the NP meme of spending money in concerts fails this criteria**
 
 
 ## Step 4
+This step comprises two different tests
+
+- 1. Does political topics are perceived as political, and non political as non poltical?
+
+A mean =2 shows universal agreement that the image is political and = that it's not political
+
+| code | n | mean (sd) | median | % of 2|
+|---|---:|---:|---:|---:|
+| studentes loans | 44 | 1.86 (0.35) | 2 | 86.36|
+| students loans | 44 | 1.89 (0.32) | 2 | 88.64 |
+| identity checks | 44 | 1.89 (0.32) | 2 |88.64 |
+| identity checks | 45 | 1.91 (0.29) | 2 |91.11 |
+| economic policies | 48 | 2.00 (0.00) | 2 |100 |
+| economic policies | 48 | 1.96 (0.20) | 2 |95.83 |
+| international affaiss | 42 | 1.98 (0.15) | 2 |97.62 |
+| international affairs | 43 | 1.93 (0.26) | 2 |93.02 |
+| international relations | 39 | 1.95 (0.22) | 2 |94.87 |
+| international relations | 43 | 1.98 (0.15) | 2 |97.67 |
+| working hours | 39 | 1.90 (0.31) | 2 | -2.52 |89.74 |
+| working hours | 42 | 1.98 (0.15) | 2 | -6.03 |97.62 |
+| minister controversies | 42 | 1.79 (0.42) | 2 |78.57 |
+| minister controversies | 43 | 1.93 (0.26) | 2 |93.02 |
+| political priorities | 43 | 1.93 (0.26) | 2 |93.02 |
+| political priorities | 43 | 1.95 (0.21) | 2 |95.35 |
+| protests | 42 | 1.95 (0.22) | 2 | -4.10 | 95.24|
+| protests | 43 | 1.86 (0.35) | 2 | -2.01 |86.05 |
+| budget cuts | 41 | 1.98 (0.16) | 2 | -5.94 |97.56 |
+| budget cuts | 42 | 1.95 (0.22) | 2 | -4.10 |95.42 |
+| register of crimes | 44 | 1.93 (0.25) | 2 |93.18 |
+| register of crimes | 44 | 1.91 (0.29) | 2 |90.91 |
+| security | 46 | 1.98 (0.15) | 2 |97.83 |
+| security | 47 | 1.96 (0.20) | 2 |95.74 |
+| enviromental policies | 49 | 1.90 (0.31) | 2 |89.9 |
+| enviromentak policies | 47 | 1.96 (0.20) | 2 |95.74 |
+| work policies | 41 | 1.93 (0.26) | 2 |92.68 |
+| work policies | 41 | 1.90 (0.30) | 2 | 90.24|
+| ai | 44 | 1.75 (0.44) | 2 |75 |
+| ai | 43 | 1.72 (0.45) | 2 |72.09 |
+| political values | 48 | 1.98 (0.14) | 2 |97.92 |
+| political values | 47 | 1.94 (0.25) | 2 |93.62 |
+| NP: whatsapp audios | 40 | 1.15 (0.36) | 1 |15 |
+| NP: whatsapp audios | 41 | 1.15 (0.36) | 1 |14.63 |
+| NP: concerts | 48 | 1.56 (0.50) | 2 | 56.25 |
+| NP: concerts | 48 | 1.56 (0.50) | 2 | 56.25 |
+| NP: winter | 43 | 1.05 (0.21) | 1 |4.65 |
+| NP: winter | 43 | 1.09 (0.29) | 1 |9.3 |
+| NP: cats | 44 | 1.05 (0.21) | 1 |4.55 |
+| NP: cats | 45 | 1.04 (0.21) | 1 |4.44 |
+
+  - Based on the descriptives both **non political images that talk about spending money to go to concerts** have a majority(56.62%) of participants evaluating them as expressing political topics.  Therefore, this **topic is discarded**
+  - Based exclusively on the descriptives most -if not all- of the political images seem to be perceived as political. Means are close to 2, and the % of participants that viewed them as political was at least 3/4 (except in 1). I did not set in advance a minimum cutoff percentage of required % to pass.However some political cases deserve some attention, specifically both images relating to AI and the rw image about meme controversies, given they have the lower % of perception as political and higher sd. The decision will be made based and the results of the other criteria.
+
+
+- 2. Are political memes perceived as expressing an opinion consistent to the political orientation they were intended to?
+
 
 
 
