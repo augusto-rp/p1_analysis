@@ -1146,7 +1146,6 @@ dev_df_polemic <- dev_df_polemic |>
 # For this particular test it makes sense to use half-coding. As I want to compare the polemicality to the grand mean, not just to S as a baseline
   # Is the same model, just with different paramets. But results will mainly be the same
   # Im just interested in seeing how the contrast changes. As now Im not looking using the mean of S verions as baseline bur rather the average of the images across both versions
-  #
 
 
 polemic_df$version_c <- ifelse(polemic_df$version == "H", 0.5, -0.5)
