@@ -479,7 +479,8 @@ However I also want to report some results of the LMM as they will be importat f
 - Finally, there is also evidence, F(39, 1622.95) = 2.23, p<.001, that among some topics the effect of humorous cues is different than the average humor effect. 
 
 
-dl;dr: **ALL STIMULI PASS THIS CRITERIA**
+### tl;dr:
+**ALL STIMULI PASS THIS CRITERIA**
 
 
 ## Step 2
@@ -538,7 +539,7 @@ Also it is worht recalling that all of this analysis seek to select topics in wh
 |ck38| political values| rw|PASS |
 |ck39| political values| lw|PASS |
 |ck40| NP: whatsapp audios| against|PASS |
-|ck41| NP: whatsapp audios| pro|PASS (serioues: above mean of funniness |
+|ck41| NP: whatsapp audios| pro|PASS (serious: above mean of funniness |
 |ck42| NP: concerts| against|PASS (meme: above average of funniness) |
 |ck43| NP: concerts| pro|PASS |
 |ck44| NP: winter| against| PASS (both H and S are above mean of funniness) |
@@ -552,7 +553,7 @@ Some observations on the results
 - Some memes (such lw meme of identity checks) are clearly above the overall of funniness. This can be Winner's curse or that those memes are truly ranked as more funny. So rather than deciding whether to dsicard them or not jsut based on this it is important to see how they dweel in the following steps.
 - All non political images pass.
 
-dl;dr: 
+### tl;dr: 
 - The following topics are discarded as one of the images was rated as clearly below the average mean of funniness of political images
  -  economic policies
  -  internatiol relations
@@ -562,7 +563,31 @@ dl;dr:
 
 ## Step 3
 
+Even though differences in the perception of funniness are expected between the H and S version of each images, they still need to be perceived as expressing the same idea.
+Participants rated their agreement with the statement that both imagenes express the same message, using a 5 point complety labelled likert scale (from Completely Disagree to Completely Agree)
 
+**Summary**
+- 39/40 pairs of images have a mean value of agreement >4 (Somewhat agree)
+  - The only exception is ck43 which is the image supporting expending moeny to go to concerts.
+ 
+The grand mean rating was 4.28 (SD among topics means = 0.14)  well within the agreement range, supporting the conclusion that all pairs were perceived as expressing the same content. 
+
+However, I was also intested in looking individual differences in the rating of similarity compared to the overall mean.
+
+To test whether rating variations were driven by specific topics or by individual participant baselines, a intercept-only Linear Mixed Model was fitted:
+
+```r
+simil1<-lmer(ck_value ~ 1 + (1 | id), data = d_sim, REML = TRUE)
+
+# simil2<-lmer(ck_value ~ 1 + (1 | id)+(1|ck_), data = d_sim, REML = TRUE) was also tested but didnt yield a better fit than simil1
+```
+
+The result shows great variance across individual regarding how similar are pairs of images rated: Individual differences account for 47.95% of the total variance in similarity ratings. Including ck_ (image pair) as a random effect did not significantly explain additional variance beyond participant-level baseline differences. 
+
+This supports the conclusion than the H and S version of the same topic successfully convey the same underlying message content with variance in similarity ratings driven predominantly by individual rater characteristics rather than specific image pairs.
+
+### tl;dr
+**This is alredy quite short**
 
 
 ## Step 4
