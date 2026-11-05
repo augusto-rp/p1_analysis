@@ -75,7 +75,8 @@ Exploratory visualizations built from the long dataset:
 
 ## 6. Criteria for Selection of Stimuli
 
-Pairs are filtered through a sequence of criteria ordered from the most to the least strict in terms of flexibility. If one image of a pair fails, the whole pair (and its topic cluster) is discarded:
+Pairs are filtered through a sequence of criteria ordered from the most to the least strict in terms of flexibility and relevance. That means that failing step 2 is more indicative of a non-useful stimulus that failing step 4.
+If one image of a pair fails, the whole pair (and its topic cluster) is discarded:
 
 1. Significant funniness difference between H and S version.
 2. H funniness ≥ average of all H versions, and S funniness ≤ average of all S versions.
@@ -219,8 +220,8 @@ end
 ## Codes of the stimuli
 In the df there are several variables called CK##_01/02/03/04/05
 CK## is the code for the pair of images
-- _01: perceived polemicality (I checked, this word exists in english) of the humorous version
-- _02: perceived polemicality  of the serious version 
+- _01: perceived polemicality (I checked, this word exists in english) of the humorous version (memes)
+- _02: perceived polemicality  of the serious version (message with the same content than the meme but without humorous cues)
 - _03: perceived funniness  of the humorous version 
 - _04: perceived funniness of the serious version 
 - _05: perceived similarity  between version of the same pair 
@@ -235,12 +236,12 @@ CK## is the code for the pair of images
 | CK11 | control_identidad [identity check] | izquierda [left] |
 | CK12 | economia [economy] | derecha [right] |
 | CK13 | economia [economy] | izquierda [left] |
-| CK14 | internacional_1 [international_1] | derecha [right] |
-| CK15 | internacional_1 [international_1] | izquierda [left] |
-| CK16 | internacional_2 [international_2] | derecha [right] |
-| CK17 | interncional_2 [international_2] | izquierda [left] |
-| CK18 | jornada | derecha [right] |
-| CK19 | jornada | izquierda [left] |
+| CK14 | internacional tematicas [international affairs] | derecha [right] |
+| CK15 | internacional tematicas [international affairs] | izquierda [left] |
+| CK16 | relaciones internacionales [international relations] | derecha [right] |
+| CK17 | relaciones internacionales [international relations] | izquierda [left] |
+| CK18 | jornada (working hours) | derecha [right] |
+| CK19 | jornada (working hours) | izquierda [left] |
 | CK20 | ministros [ministers] | derecha [right] |
 | CK21 | ministros [ministers] | izquierda [left] |
 | CK22 | prioridades [priorities] | derecha [right] |
@@ -276,8 +277,6 @@ As seen in the above graph, each topic is divided into two image pairs. Each one
 Given that the goal for the experiment is to have topics that have opposing messages. I'm looking for topics in which both pair of images pass the tests. Therefore if just one of the image pairs fails some criteria, but its paired pair doesn't, the topic as a whole topic is discarded for the final experiment. 
 
 For example CK34 (rw) and CK35(lw) are the pair of images that form the topic "Work". CK35 fails two criteria and CK34 none. However CK35 "drags" CK34 as I can't use an image that is seen as funny while the other is not.
-
-
 
 
 
@@ -332,8 +331,9 @@ The non political topic was assigned sequentially
 
 
 # Sample 
-- Initially a total of 209 people respondened the survey, but 11 were deleted as they were over the age of 36. Three aditional cases were deleteed as they correspond totest trials by [Norstat](https://norstat.co/solutions/sample-only/) the external company that collaborated in the data collection. Six more people where discarded as they Relative Speed Index of Completion was above 2, which has been careless responding according to [Leiner, 2019](http://dx.doi.org/10.18148/srm/2019.v13i3.7403)
-**Valid responses: 189 participants**
+- **Valid responses: 189 participants**
+  - Initially a total of 209 people responded the survey, but 11 were deleted as they were over the age of 36. Three aditional cases were deleteed as they correspond totest trials by [Norstat](https://norstat.co/solutions/sample-only/) the external company that collaborated in the data collection. Six more people where discarded as they Relative Speed Index of Completion was above 2, which has been associated to careless responding according to [Leiner, 2019](http://dx.doi.org/10.18148/srm/2019.v13i3.7403)
+
 
 ## Sample characteristics
 - Gender: Female 114 (60.32%), Male 73 (38.62%), Non Binary 2 (1.06)
@@ -346,20 +346,20 @@ The non political topic was assigned sequentially
   - Completed college education 77 (40.74%)
     
 - Political Orientation
-The original scale ranges from 1 (Very left wing) to 9 (Right Wing), with 5 labelled as (Center). There is also the option Neither (-1) and Don't know (-2). **The mean of the sample -without considering "neither and "dont'know" is 4,45 (sd=2.26)**
+The original scale ranges from 1 (Very left wing) to 9 (Very Right Wing), with 5 labelled as (Center). There is also the option Neither (-1) and Don't know (-2). **The mean of the sample -without considering "neither and "dont'know"- is 4.45 (sd=2.26)**
 
 **Raw Frecuency of participants aligned with political orientation**
 
 ![Grafico de frencuenca absoluta de personas alineadas de izquierda a derecha](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/distribution_political_lw-rw.jpeg)
 
-I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non aligned (5, -1, 2). The later is less than convenient given the great diversity of political beliefs and values that can be spoused even when people self identify as non political; however even in cases where "center" people align with a particual rw/lw values it implies a non identitarian alighment with them.
+I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non aligned (5, -1, 2). The later is less than convenient given the great diversity of political beliefs and values that can be spoused even when people self identify as non political; however even in cases where "center" people have some rw/lw values it implies a non identitarian aligment with them.
 - Left wing aligned: 76 (40.21%)
 - Right wing aligned: 47 (24.87%)
 - Non aligned: 66 (34.92%)
 
 # Descriptive Analysis
 
-## Comparision of stimuli perception across assignment groups
+## Comparison of stimuli perception across assignment groups
 | Group |average polemicality humor version  (sd) |  average polemicality serious version  | average funniness humor version |average funniness serious version | average similarity among version of image |
 |---|---|---|---|---|---|
 |1|2.65(0.89)|2.54(0.95)|3.14(1.05)|2.05(0.87)|4.34(0.69)|
@@ -367,7 +367,7 @@ I also grouped the responses as  leftwing (1 to 4), right wing (6 to 9) and Non 
 |3|2.5(0.94)|2.24(0.90)|3.49(0.86)|2.57(0.78)|4.33(0.65)|
 |4|2.25(0.86)|2.2(0.9)|3.59(0.92)|2.37(1.09)|4.29(0.71)|
 
-A MANOVA was conducted in order to asses wheter assignment groups significantly differ on theu percepcion of the imagenes perceptions of the images' polemicality, funniness, or similarity. Results support the hypothesis they did not $(F(15, 540) = 1.58, p = 0.073)$.
+A MANOVA was conducted in order to asses whether assignment groups significantly differ on the percepcion of the images' polemicality, funniness, or similarity. Results support the hypothesis they did not $(F(15, 540) = 1.58, p = 0.073)$.
 
 ## Correlation between measurements of polemicality, funniness and similarity
 
@@ -381,26 +381,26 @@ A MANOVA was conducted in order to asses wheter assignment groups significantly 
 
 *Note. n = 186, Pairwise deletion. Bonferroni adjustment applied. *p < .05, **p < .01, ***p < .001.*
 
-**The significant correlations seems to be spurius and the effect of lower variance in the range of responses, particularly in the case of avg_04**
+**The significant correlations seems to be spurious and the effect of lower variance in the range of responses, particularly in the case of avg_04 (funniness of serious images**
 
 
-## Distribution of responses on the perception of funniness among serious and humorous versions: % by point in scale
+## Distribution of responses on the perception of funniness among serious and humorous versions: % by category in scale
 
-![Grafico que muestra distribucion porcentual de las respuestas en la percepcoion de comicididad de las distintas version](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/porcentaje_percepcion_comicidad.jpeg)
+![Grafico que muestra distribucion porcentual de las respuestas en la percepcion de comicididad de las distintas version](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/porcentaje_percepcion_comicidad.jpeg)
 
 - Regarding **humorous versions**
   - More than half of respondents show some level of agreement with the statement that the image is funny
-  - Around 30% have some degree of disagreement with the statement that the image is funny. As will be seen in later analysis this is mainly because of the evaluation of lw participants of the funniness of rw images.
+  - Around 30% have some degree of disagreement with the statement that the image is funny. As will be seen in later analysis this is apparently mainly because of the evaluation of lw participants of the funniness of rw images.
 - Regarding **serious versions**
   - Almost 2/3 of participants have some degree of disagreement with the statement that the image is funny.
 
-## Distribution of responses on the perception of polemicality among serious and humorous versions: % by point in scale
+## Distribution of responses on the perception of polemicality among serious and humorous versions: % by category in scale
 ![Grafico que muestra distribucion procentual de las respuestas en la percepcion de polemicidad de las distitnas versiones](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/porcentaje_percepcion_polemica.jpeg)
 
 - Overall both versions have a similar distribution. Around 40% of participants completely disagree with the statement that the images is polemic.
 - Around a quarter of participants have some degree of disagreement with the statement that the image is polemic.
 
-## Comparision of stimuli perception across political groups
+## Comparison of stimuli perception across political groups
 
 ### How does the perception of funniness varies across political orientation × political orientation of humorous version?
 
@@ -408,7 +408,7 @@ A MANOVA was conducted in order to asses wheter assignment groups significantly 
 
 - As expected participants tend to view humorous images supporting their own views as significantly more funny that those supporting views contrary to their own.
 - Politically aligned participants view non political humorous images as equally funny as political humorous images aligned with their on political positions.
-- Non politically aligned participants view all types of images equally funny. Although there appears to be a marginally differences between their perception of funninnes between rw nd non political images.
+- Non politically aligned participants view all types of images equally funny. Although there appears to be a marginally differences between their perception of funninnes between rw and non political images.
 
 ### How does the perception of polemicality varies across political orientation × political orientation of humorous version?
 
@@ -416,9 +416,9 @@ A MANOVA was conducted in order to asses wheter assignment groups significantly 
 
 - Only lw participants show a significant difference in the perception of polemicality between imagens expressing views expressing views contrarian to their own political sector and those supporting them.
 - Non political aligned participants and rw participants show no difference in their perception of polemicality among imanges supporting lw and rw views.
-- Non political images consistentyl show lower levels of perceived polemicality across the 3 groups.
+- Non political images consistently show lower levels of perceived polemicality across the 3 groups.
 
-### Density of responses on perceived funniness across political orientation × political orientation of humoros version
+### Density of responses on perceived funniness across political orientation × political orientation of humorous version
 
 **Left wing humorous images**
 
@@ -433,5 +433,448 @@ A MANOVA was conducted in order to asses wheter assignment groups significantly 
 **Non political humorous images**
 
 ![Grafico de densidad que muestra densidad en apreciacion de humor en memes de izquierda de acuerdo a grupo ideologico](https://github.com/augusto-rp/p1_analysis/blob/master/pilot_analysis/comicidad_nopoliticos_dplot.jpeg)
+
+
+# Validation of Stimuli
+
+Lets see the results of the 5-step test to determine which topics are going to be selected for the final experiment. The criteria can be viewed in point 6 of the above section "Code Summary".
+
+## Step 1
+Let's examine whether there is a significant difference between the humorous (H) and serious (S) version of each pair of images—specifically, whether participants exposed to the same image content perceive the humorous version as significantly funnier.
+
+The comparison was based on a Lineal Mixed Model (LMM), with the following random structure and fixed effect structure:
+ - A random intercept and slope of funniness of H version for each individual. This is given participants are expected to have different baselines sensibilities towards humorous cues.
+ - Random intercept of topic funninness nested by individual. Given I expect some individuals to perceived some topics as more funny than others
+ - The interaction of image pair × version was defined as a **fixed effect**. As it is reasonable to expect some topics are perceived overall as more funny than others
+
+```r
+
+ f_pares3<- lmer(funniness ~  ck_ * version+ (version | id)+(1|id:ck_),
+                  data = fun_df, REML = TRUE)
+```
+
+Version was dummy-coded (with S as baseline), whereas ck_ was configured with sum contrasts (comparing each topic against the grand mean across all topics)
+
+Even though REML is used as a estimation method for continous data and I'm working with ordinal data I decided it was an appropiate decision as 
+funniness is composed of several measure that creates a more continuos behavior of the data. It also works to compare different models with the same fixed effect structure (which I did to determine which model was the best one to use for the comparisons, as can be seen in the code)
+Degrees of Freedom for evalauting significance were estimated using Kenward-Roger approximations based on recomendatios by [Luke, 2017](https://pubmed.ncbi.nlm.nih.gov/27620283/)
+
+**1.Comparison between H and S versions**
+In order to control the numerous comparisions among the H and S version of each pair of imagenes I used Benjamini-Hochberg correction. I also ran the same analysis using a more conservative correction method -Holm- and th eresults where the same.
+
+**All pairs of imagens show significant differences between the H and S versions** 
+
+This is a good sign that the design of stimuli was succesful in the most important task: creating stimuli that are perceived with higher levels of funniness based on the intentional usage of humorous cues.
+
+However I also want to report some results of the LMM as they will be importat for later consideration during the experiment
+
+**2.Random effects results**
+- Individual difference in the baseline perceptions of funniness explains 25.74% of the total random variance.
+- Additionally individual differences on the effect of humor explains another 35.20% of the total random variance.
+- Individual differences in the perception of funninness between different pairs of imagens explains an additional 18.38% of the random variance.
+- Intercept-Slope Correlation: There a negative correlation (r= -0.58)  between the random intercept ($\text{id}$) and the random slope ($\text{versionH}$). This means people with higher baseline funniness ratings experience a smaller boost from humorous cues, likely due to a ceiling effect
+
+Likelihood ratio tests (LRT) performed via single-term deletion of random effects confirmed that both random structures significantly contributed to model fit:
+- Individual slope of humor (version | id): $\chi^2(2) = 658.05, p < .001$.
+- Topic-by-individual intercepts (1 | id:ck_): $\chi^2(1) = 384.02, p < .001$.
+
+Removing either structure significantly degraded model fit, justifying their inclusion in the random-effects structure.
+
+**3. Fixed effects results**
+- The results, F(1, 180.43) = 188.70, p<.001,  offer evidence in favor of the hypothesis that the humorous version increases the perception of funnineess of the images. 
+- Evidence, F(39, 1624.10) = 5.28, p<.001, also favors the hypothesis that some pairs of imagens are perceived as being more funny than others.
+- Finally, there is also evidence, F(39, 1622.95) = 2.23, p<.001, that among some topics the effect of humorous cues is different than the average humor effect. 
+
+
+### tl;dr:
+**ALL STIMULI PASS THIS CRITERIA**
+
+
+## Step 2
+
+The previous step has one issue: **An image can be significantly more humorous that the serious version of the same message and still be perceived as unfunny compared with the mean**
+We are looking for pairs of images in which the humorous one is at least as funny as the average one.
+
+One important consideration is that this comparison has to be made within political or non political topics. The funniness of non-political memes is not affected by political positions, and on average they have higher ratings. If we pool all together there is added noise due to those images.
+
+To do this
+- I compared the perceived funniness mean of each meme with the corresponding overall mean (political or non-political).
+- I calculated the same for each serious image. As I'm also interested in how much serious images diverge from the mean of funniness.
+- I calculated  95% confidence interval for each image funniness mean.
+
+
+If a meme has a upper CI below 0 (the average mean) **it is discarded** as it means its true mean lies below the average funniness of political memes. Memes in which confidence interval crosses 0 are labelled "inconclusive", in this case we will consider they Pass this step. The rationale behind this decision is that cross ideological perception of the memes will lead to lower ratings of funniness, thus leading to larger CI.
+
+There are certain cases in which the memes are bordeline failing (bound within 0.5 SE), so discarding them might not be appropiate. So it is worth considering other criteria before deciding whether to use them or not. They will me marked as "Marginal Fail"
+
+Also it is worht recalling that all of this analysis seek to select topics in which both images (lw and rw) pass the test. If one of those is well above the mean of funniness but the other is not, we also should be weary whether they are appropiate to use. As using a rw that is clearyl above the funniness mean while the lw is inconclusive might create biases in the effect we are resarching.
+
+**Based the analysis**
+
+| code | topic                   | image   | step 2                                          |
+| ---- | ----------------------- | ------- | ----------------------------------------------- |
+| ck08 | student loans           | rw      | PASS                                            |
+| ck09 | student loans           | lw      | PASS                                            |
+| ck10 | identity checks         | rw      | PASS                                            |
+| ck11 | identity checks         | lw      | PASS (meme: above average of funniness)         |
+| ck12 | economic policies       | rw      | MARGINAL FAIL                                   |
+| ck13 | economic policies       | lw      | PASS                                            |
+| ck14 | international affairs   | rw      | PASS                                            |
+| ck15 | international affairs   | lw      | PASS                                            |
+| ck16 | international relations | rw      | MARGINAL FAIL                                   |
+| ck17 | international relations | lw      | PASS                                            |
+| ck18 | working hours           | rw      | FAIL                                            |
+| ck19 | working hours           | lw      | FAIL (due to being "dragged" by CK18)           |
+| ck20 | ministers controversies | rw      | PASS                                            |
+| ck21 | ministers controversies | lw      | PASS (both H and S are above mean of funniness) |
+| ck22 | political priorities    | rw      | PASS                                            |
+| ck23 | political priorities    | lw      | PASS                                            |
+| ck24 | protests                | rw      | PASS                                            |
+| ck25 | protests                | lw      | PASS                                            |
+| ck26 | budget cuts             | rw      | PASS                                            |
+| ck27 | budgets cuts            | lw      | PASS                                            |
+| ck28 | register of crimes      | rw      | PASS                                            |
+| ck29 | register of crimes      | lw      | PASS (meme: above average of funniness)         |
+| ck30 | security                | rw      | PASS                                            |
+| ck31 | security                | lw      | PASS                                            |
+| ck32 | enviroment policies     | rw      | FAIL                                            |
+| ck33 | enviroment policies     | lw      | FAIL (due to being "dragged" by CK32)           |
+| ck34 | work policies           | rw      | FAIL (due to being "dragged" by CK35)           |
+| ck35 | work policies           | lw      | FAIL                                            |
+| ck36 | ai                      | rw      | PASS (both H and S are above mean of funniness) |
+| ck37 | ai                      | lw      | PASS                                            |
+| ck38 | political values        | rw      | PASS                                            |
+| ck39 | political values        | lw      | PASS                                            |
+| ck40 | NP: whatsapp audios     | against | PASS                                            |
+| ck41 | NP: whatsapp audios     | pro     | PASS                                            |
+| ck42 | NP: concerts            | against | FAIL (due to being dragged by CK43)             |
+| ck43 | NP: concerts            | pro     | FAIL                                            |
+| ck44 | NP: winter              | against | PASS (both H and S are above mean of funniness) |
+| ck45 | NP: winter              | pro     | PASS (S above mean of funniness)                |
+| ck46 | NP: cats                | against | PASS (both H and S are above mean of funniness) |
+| ck46 | NP: cats                | pro     | PASS (meme: above average of funniness          |
+
+
+
+Some observations on the results
+- Most political memes that fail (or marginally fail) are right wing. I suspect this is a consequence of lw participants using "Completely disagree" when evaluating the funniness of rw memes, as seen in the density plots above. If lw participants have a tendency to use more extreme lower ratings of rw memes, than rw participants of lw memes this will lead to these kinds of results.
+- The image about rw international relationships and rw economic policies are marginally below the average mean, so further test are needed before discarding them
+- Some memes (such lw meme of identity checks) are clearly above the overall of funniness. This can be Winner's curse or that those memes are truly ranked as more funny. So rather than deciding whether to dsicard them or not jsut based on this it is important to see how they dwlel in the following steps.
+- Non Political mesm about spending money on concerts fail, the rest pass.
+
+### tl;dr: 
+- The following topics are discarded as one of the images was rated as clearly below the average mean of funniness of political images
+ -  working hours
+ -  enviroment policies
+ -  work policies
+
+## Step 3
+
+Even though differences in the perception of funniness are expected between the H and S version of each images, they still need to be perceived as expressing the same idea.
+Participants rated their agreement with the statement that both imagenes express the same message, using a 5 point complety labelled likert scale (from Completely Disagree to Completely Agree)
+
+**Summary**
+- 39/40 pairs of images have a mean value of agreement >4 (Somewhat agree)
+  - The only exception is ck43 which is the image supporting expending moeny to go to concerts.
+ 
+The grand mean rating was 4.28 (SD among topics means = 0.14)  well within the agreement range, supporting the conclusion that all pairs were perceived as expressing the same content. 
+
+However, I was also intested in looking individual differences in the rating of similarity compared to the overall mean.
+
+To test whether rating variations were driven by specific topics or by individual participant baselines, a intercept-only Linear Mixed Model was fitted:
+
+```r
+simil1<-lmer(ck_value ~ 1 + (1 | id), data = d_sim, REML = TRUE)
+
+# simil2<-lmer(ck_value ~ 1 + (1 | id)+(1|ck_), data = d_sim, REML = TRUE) was also tested but didnt yield a better fit than simil1
+```
+
+The result shows great variance across individual regarding how similar are pairs of images rated: Individual differences account for 47.95% of the total variance in similarity ratings. Including ck_ (image pair) as a random effect did not significantly explain additional variance beyond participant-level baseline differences. 
+
+This supports the conclusion than the H and S version of the same topic successfully convey the same underlying message content with variance in similarity ratings driven predominantly by individual rater characteristics rather than specific image pairs.
+
+### tl;dr
+**Only the NP meme of spending money in concerts fails this criteria**
+
+
+## Step 4
+This step evaluates the validity of the stimuli through two main checks:
+1. **Topic Check:** Are political topics perceived as political, and non-political topics perceived as non-political?
+2. **Ideological Alignment Check:** Are political images correctly classified as expressing the intended political stance (Left-Wing vs. Right-Wing)?
+
+### Part 1. Perception of Political Nature
+
+Participants evaluated whether each image expressed a political topic on a binary scale: 
+- `1` = Non-Political
+- `2` = Political
+
+Universal agreement for political content yields $M = 2.00$, while universal agreement for non-political content yields $M = 1.00$.
+
+| code | n | mean (sd) | median | % of 2|
+|---|---:|---:|---:|---:|
+| students loans | 44 | 1.86 (0.35) | 2 | 86.36|
+| students loans | 44 | 1.89 (0.32) | 2 | 88.64 |
+| identity checks | 44 | 1.89 (0.32) | 2 |88.64 |
+| identity checks | 45 | 1.91 (0.29) | 2 |91.11 |
+| economic policies | 48 | 2.00 (0.00) | 2 |100 |
+| economic policies | 48 | 1.96 (0.20) | 2 |95.83 |
+| international affaiss | 42 | 1.98 (0.15) | 2 |97.62 |
+| international affairs | 43 | 1.93 (0.26) | 2 |93.02 |
+| international relations | 39 | 1.95 (0.22) | 2 |94.87 |
+| international relations | 43 | 1.98 (0.15) | 2 |97.67 |
+| working hours | 39 | 1.90 (0.31) | 2 | -2.52 |89.74 |
+| working hours | 42 | 1.98 (0.15) | 2 | -6.03 |97.62 |
+| minister controversies | 42 | 1.79 (0.42) | 2 |78.57 |
+| minister controversies | 43 | 1.93 (0.26) | 2 |93.02 |
+| political priorities | 43 | 1.93 (0.26) | 2 |93.02 |
+| political priorities | 43 | 1.95 (0.21) | 2 |95.35 |
+| protests | 42 | 1.95 (0.22) | 2 | -4.10 | 95.24|
+| protests | 43 | 1.86 (0.35) | 2 | -2.01 |86.05 |
+| budget cuts | 41 | 1.98 (0.16) | 2 | -5.94 |97.56 |
+| budget cuts | 42 | 1.95 (0.22) | 2 | -4.10 |95.24 |
+| register of crimes | 44 | 1.93 (0.25) | 2 |93.18 |
+| register of crimes | 44 | 1.91 (0.29) | 2 |90.91 |
+| security | 46 | 1.98 (0.15) | 2 |97.83 |
+| security | 47 | 1.96 (0.20) | 2 |95.74 |
+| enviromental policies | 49 | 1.90 (0.31) | 2 |89.9 |
+| enviromental policies | 47 | 1.96 (0.20) | 2 |95.74 |
+| work policies | 41 | 1.93 (0.26) | 2 |92.68 |
+| work policies | 41 | 1.90 (0.30) | 2 | 90.24|
+| ai | 44 | 1.75 (0.44) | 2 |75 |
+| ai | 43 | 1.72 (0.45) | 2 |72.09 |
+| political values | 48 | 1.98 (0.14) | 2 |97.92 |
+| political values | 47 | 1.94 (0.25) | 2 |93.62 |
+| NP: whatsapp audios | 40 | 1.15 (0.36) | 1 |15 |
+| NP: whatsapp audios | 41 | 1.15 (0.36) | 1 |14.63 |
+| NP: concerts | 48 | 1.56 (0.50) | 2 | 56.25 |
+| NP: concerts | 48 | 1.56 (0.50) | 2 | 56.25 |
+| NP: winter | 43 | 1.05 (0.21) | 1 |4.65 |
+| NP: winter | 43 | 1.09 (0.29) | 1 |9.3 |
+| NP: cats | 44 | 1.05 (0.21) | 1 |4.55 |
+| NP: cats | 45 | 1.04 (0.21) | 1 |4.44 |
+
+  - Based on the descriptives both **non political images that talk about spending money to go to concerts** have a majority(56.25%) of participants evaluating them as expressing political topics.  Therefore, this **topic is discarded**
+  - Based exclusively on the descriptives most -if not all- of the political images seem to be perceived as political. Means are close to 2, and the % of participants that viewed them as political was at least 3/4 (except in 1). I did not set in advance a minimum cutoff percentage of required % to pass.However some political cases deserve some attention, specifically both images relating to AI and the rw image about meme controversies, given they have the lower % of perception as political and higher sd. The decision will be made based and the results of the other criteria.
+
+
+### Part 2. Ideological Stance Alignment
+
+Beyond being perceived as political, stimuli were created trying to express a view typically associated with the rw or lw. Therefore intented lw images are expceted to be viewwd as lw, the same for rw images. Non political images were expected to be viewed as neither rw or lw.
+Initially a strict criteria was defined to test this
+- With a 95% confidence half the participants should clasiffy the image as intended
+- No more thatn 15% cross classification (rw images viewed as lw, and viceversa)
+  - In the case of non political images no more than 30% of cross classification
+ 
+**Based on the scrict criteria no single political topic passes this tests, as atleast one image pairs fails it. All non political pass.**
+
+I believe this is has two explanations
+- Poor wording of the item evaluating classification of the images. The participants had to respond to the following statement "Images express a typical opinion from the following political sector [original: Las imágenes expresan una opinión típica del sector político:]" with options being: from the left wing, from the right wing, neither.
+Most images mocked the opinion of the opposing political sector, this possibly lead to a confusion regarding whether the question was about the emitter of the message (as intended) or the target of the message (Who is the meme talking about).
+Further evidence to support this interpretations is the fact that the funniness and polemicality of the images by participant's political orientations is aligned with the intended political orientation of the images, i.e left wing memes were in general funnier for lw participants, and rw memes less funny. The same logic applies to rw participants.
+- I also beleive that some politicals memes had largerst proportions of classification as "neither" due to they being viewed as political but expressing an opinion that is not viewed as exclusively from one particular political side.
+
+Based on this reasoning I decided to run a more relaxed criteria
+- Intended categorization is above 60%
+- Ignore cross categorization
+
+Results are presented in the table below
+
+| code | topic                   | image   | step 4 (1/2)                 |
+| ---- | ----------------------- | ------- | ---------------------------- |
+| ck08 | student loans           | rw      | PASS/FAIL                    |
+| ck09 | student loans           | lw      | PASS/ FAIL (dragged by ck08) |
+| ck10 | identity checks         | rw      | PASS/PASS                    |
+| ck11 | identity checks         | lw      | PASS/PASS                    |
+| ck12 | economic policies       | rw      | PASS/FAIL (dragged by ck13) |
+| ck13 | economic policies       | lw      | PASS/FAIL                    |
+| ck14 | international affairs   | rw      | PASS/FAIL (dragged by ck15)  |
+| ck15 | international affairs   | lw      | PASS/FAIL                    |
+| ck16 | international relations | rw      | PASS/PASS                    |
+| ck17 | international relations | lw      | PASS/PASS                    |
+| ck18 | working hours           | rw      | PASS/FAIL (dragged by ck19)  |
+| ck19 | working hours           | lw      | PASS/ FAIL                   |
+| ck20 | ministers controversies | rw      | !/FAIL (dragged by ck21)     |
+| ck21 | ministers controversies | lw      | PASS/FAIL                    |
+| ck22 | political priorities    | rw      | PASS/PASS                    |
+| ck23 | political priorities    | lw      | PASS/PASS                    |
+| ck24 | protests                | rw      | PASS/PASS                    |
+| ck25 | protests                | lw      | PASS/PASS                    |
+| ck26 | budget cuts             | rw      | PASS/PASS                    |
+| ck27 | budgets cuts            | lw      | PASS/PASS                    |
+| ck28 | register of crimes      | rw      | PASS/PASS                    |
+| ck29 | register of crimes      | lw      | PASS/PASS                    |
+| ck30 | security                | rw      | PASS/FAIL (dragged by c31)   |
+| ck31 | security                | lw      | PASS/FAIL                    |
+| ck32 | enviroment policies     | rw      | PASS/FAIL                    |
+| ck33 | enviroment policies     | lw      | PASS/FAIL                    |
+| ck34 | work policies           | rw      | PASS/FAIL (dragged by ck35)  |
+| ck35 | work policies           | lw      | PASS/FAIL                    |
+| ck36 | ai                      | rw      | ! /FAIL                      |
+| ck37 | ai                      | lw      | !/FAIL                       |
+| ck38 | political values        | rw      | PASS/FAIL (dragged by ck39)  |
+| ck39 | political values        | lw      | PASS/FAIL                    |
+| ck40 | NP: whatsapp audios     | against | PASS/PASS                    |
+| ck41 | NP: whatsapp audios     | pro     | PASS/PASS                    |
+| ck42 | NP: concerts            | against | FAIL/PASS                    |
+| ck43 | NP: concerts            | pro     | FAIL/PASS                    |
+| ck44 | NP: winter              | against | PASS/PASS                    |
+| ck45 | NP: winter              | pro     | PASS/PASS                    |
+| ck46 | NP: cats                | against | PASS/PASS                    |
+| ck47 | NP: cats                | pro     | PASS/PASS                    |
+
+*\* Note: ! are the cases that deserve special attention given lower classification as political and larger sd
+
+
+### tl, dr
+Based on a relaxed criteria the following topics passed this step
+1. **Identity Checks** (`ck10`, `ck11`)
+2. **International Relations** (`ck16`, `ck17`)
+3. **Political Priorities** (`ck22`, `ck23`)
+4. **Protests** (`ck24`, `ck25`)
+5. **Budget Cuts** (`ck26`, `ck27`)
+6. **Political Values** (`ck38`, `ck39`)
+7. **NP: WhatsApp Audios** (`ck40`, `ck41`)
+8. **NP: Winter** (`ck44`, `ck45`)
+9. **NP: Cats** (`ck46`, `ck47`)
+
+
+## Step 5
+
+This final steps does something similar as step 2, but now instead of comparing each image pair mean of funniness to the overall mean we will look compare the mean of polemicality. This criteria is not necessarily going to discard images, as high values can be cases of winner's curse, but considering levels of polemicality is relevant as research have found U-shaped relationships between funniness and concept nearly related with polemicality: agresiveness. [See p.51 of Martin & Ford, 2018](https://www.sciencedirect.com/book/monograph/9780128121436/the-psychology-of-humor)
+
+Similarly to step 2, we have to pool the means of comparision based on the topic's nature
+
+I also fitted a LLM with the same random structure used in step 2
+
+```r
+c_pares3 <- lmer(controversial ~ ck_ * version + (version | id) + (1|id:ck_),
+                 data = polemic_df, REML=T)
+```
+
+
+**1.Comparison between H and S versions**
+ A series of Benjamini-Hochberg adjusted-comparisons between the H and S verions of each images shows no significance differences in the levels of polemicality between the two versions. Kenward-Roger method for degrees of freedom approximation was used.
+
+**2.Random effects results**
+- Individual differences on the perception of polemicality accounts for a 38.15% of the total random variance of the perception of polemicality.
+- Individual differences on the perception of humor accounts just for 6.06% of the total random variance of the perception of polemicality
+- Individual differences in the perception of polemicality between different pairs of images explains an additional 39.2% of the random variance of the perception of polemicality
+- Intercept-Slope Correlation: A mild negative correlation ($r = -0.20$) was found between individual intercepts and slopes, indicating that participants with higher baseline perceptions of polemicality experienced a smaller increase in polemicality ratings when presented with humorous cues.
+
+Likelihood ratio tests (LRT) performed via single-term deletion of random effects confirmed that both random structures significantly contributed to model fit:
+- Individual slope of humor (version | id): $\chi^2(2) = 103.05, p < .001$.
+- Topic-by-individual intercepts (1 | id:ck_): $\chi^2(1) = 1045.92, p < .001$.
+
+Removing either structure significantly degraded model fit, justifying their inclusion in the random-effects structure.
+  
+**3. Fixed effects results**
+- Humor has a significant effect on the levels of polemicality. $\beta$=0.10, F(1, 177.75)=10.44, p=.001
+Given no pairwise comparison shows an effect of humor, this suggest that humor exerts a small, widespread, and uniform increase on perceived polemicality across the battery, rather than being concentrated in specific image pairs.
+- Some topics appear to be significantly different from the overall level of polemicality, F(39,1624.82)=9.204, p<.001. For example most non political images are clearly below, and some political images (particularly rw ones) are above. Just as in the case of step 2 this is probably due to the effect of the ratings of lw participants being more extrem than their rw counterparts.
+- Due to low power to detect interaction no report of this effects will be made. Additionally, there is no sufficient evidence to asser that the effect of humor varies the level of polemicality between different topics F(39, 1622.11)=1.398, p=.053
+
+
+I then looked into each image mean on polemicality compared to the overall mean of the corresponding topic
+
+| code | topic                   | image   | step 5                                             |
+| ---- | ----------------------- | ------- | -------------------------------------------------- |
+| ck08 | student loans           | rw      | -0-                                                |
+| ck09 | student loans           | lw      | -0-                                                |
+| ck10 | identity checks         | rw      | -0-                                                |
+| ck11 | identity checks         | lw      | -0-                                                |
+| ck12 | economic policies       | rw      | Marginally ABOVE MEAN POLEMICALITY (AMP) (h)       |
+| ck13 | economic policies       | lw      | -0-                                                |
+| ck14 | international affairs   | rw      | -0-                                                |
+| ck15 | international affairs   | lw      | -0-                                                |
+| ck16 | international relations | rw      | -0-                                                |
+| ck17 | international relations | lw      | -0-                                                |
+| ck18 | working hours           | rw      | AMP (both versions)                                |
+| ck19 | working hours           | lw      | -0-                                                |
+| ck20 | ministers controversies | rw      | AMP (h version)                                    |
+| ck21 | ministers controversies | lw      | -0-                                                |
+| ck22 | political priorities    | rw      | -0-                                                |
+| ck23 | political priorities    | lw      | -0-                                                |
+| ck24 | protests                | rw      | -0-                                                |
+| ck25 | protests                | lw      | -0-                                                |
+| ck26 | budget cuts             | rw      | AMP (h version)                                    |
+| ck27 | budgets cuts            | lw      | -0-                                                |
+| ck28 | register of crimes      | rw      | -0-                                                |
+| ck29 | register of crimes      | lw      | -0-                                                |
+| ck30 | security                | rw      | -0-                                                |
+| ck31 | security                | lw      | Serious version marginally below mean polemicality |
+| ck32 | enviroment policies     | rw      | -0-                                                |
+| ck33 | enviroment policies     | lw      | BELOW MEAN POLEMICALITY (BMP)                      |
+| ck34 | work policies           | rw      | -0-                                                |
+| ck35 | work policies           | lw      | AMP (both versions)                                |
+| ck36 | ai                      | rw      | -0-                                                |
+| ck37 | ai                      | lw      | BMP (h version)                                    |
+| ck38 | political values        | rw      | -0-                                                |
+| ck39 | political values        | lw      | -0-                                                |
+| ck40 | NP: whatsapp audios     | against | -0-                                                |
+| ck41 | NP: whatsapp audios     | pro     | -0-                                                |
+| ck42 | NP: concerts            | against | -0-                                                |
+| ck43 | NP: concerts            | pro     | AMP (both versionss)                               |
+| ck44 | NP: winter              | against | -0-                                                |
+| ck45 | NP: winter              | pro     | BMP (h version)                                    |
+| ck46 | NP: cats                | against | -O                                                 |
+| ck47 | NP: cats                | pro     | -O                                                 |
+
+*\* Note: -0- are cases where the mean is neither clearly above or below the overall mean
+
+### tl;dr
+RW images tend to be viewed as more polemical, compared to the overall average of political images.
+Although evidence showed humor has a significant effect on the levels of polemicality, this effect was small and widespread rather than being concentrated in specific image pairs. No pair of images had significant differences in their level of polemicality between humorous and serious version.
+
+
+## Summary 
+
+| code | topic | image | step 1 | step 2 | step 3 | step 4 (1/2) | step 5 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| ck08 | student loans | rw  | PASS | PASS | PASS | PASS/FAIL |  -0-   |
+| ck09 | student loans | lw  | PASS | PASS | PASS | PASS/ FAIL (dragged by ck08) |   -0-  |
+| **ck10** | **identity checks** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck11** | **identity checks** | lw  | PASS | PASS (meme: above average of funniness) | PASS | PASS/PASS |  -0-   |
+| ck12 | economic policies | rw  | PASS | MARGINAL FAIL | PASS | PASS/FAILS (dragged by ck13) | Marginally ABOVE MEAN POLEMICALITY (AMP)   |
+| ck13 | economic policies | lw  | PASS | PASS | PASS | PASS/FAIL |   -0-  |
+| ck14 | international affairs | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by ck15) |  -0-   |
+| ck15 | international affairs | lw  | PASS | PASS | PASS | PASS/FAIL |  -0-   |
+| ck16 | international relations | rw  | PASS | MARGINAL FAIL | PASS | PASS/PASS |  -0-   |
+| ck17 | international relations | lw  | PASS | FAIL (due to being "dragged" by CK16) | PASS | PASS/PASS |  -0-   |
+| ck18 | working hours | rw  | PASS | FAIL | PASS | PASS/FAIL (dragged by ck19) | AMP (both versions)    |
+| ck19 | working hours | lw  | PASS | FAIL (due to being "dragged" by CK18) | PASS | PASS/ FAIL |  -0-   |
+| ck20 | ministers controversies | rw  | PASS | PASS | PASS | !/FAIL (dragged by ck21) |  AMP   |
+| ck21 | ministers controversies | lw  | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/FAIL |  -0-   |
+| **ck22** | **political priorities** | rw  | PASS | PASS | PASS | PASS/PASS | -0-    |
+| **ck23** | **political priorities** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck24** | **protests** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck25** | **protests** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck26** | **budget cuts** | rw  | PASS | PASS | PASS | PASS/PASS |  AMP   |
+| **ck27** | **budgets cuts** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck28** | **register of crimes** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck29** | **register of crimes** | lw  | PASS | PASS (meme: above average of funniness) | PASS | PASS/PASS |  -0-   |
+| ck30 | security | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by c31) |  -0-   |
+| ck31 | security | lw  | PASS | PASS | PASS | PASS/FAIL |  Serious version marginally below mean polemicality   |
+| ck32 | enviroment policies | rw  | PASS | FAIL | PASS | PASS/FAIL |  -0-   |
+| ck33 | enviroment policies | lw  | PASS | FAIL (due to being "dragged" by CK32) | PASS | PASS/FAIL |  BELOW MEAN POLEMICALITY (BMP)    |
+| ck34 | work policies | rw  | PASS | FAIL (due to being "dragged" by CK35) | PASS | PASS/FAIL (dragged by ck35) |  -0-  |
+| ck35 | work policies | lw  | PASS | FAIL | PASS | PASS/FAIL |  AMP (both versions)   |
+| ck36 | ai  | rw  | PASS | PASS (both H and S are above mean of funniness) | PASS | ! /FAIL |  -0-   |
+| ck37 | ai  | lw  | PASS | PASS | PASS | !/FAIL |   BMP  |
+| ck38 | political values | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by ck39) |  -0-   |
+| ck39 | political values | lw  | PASS | PASS | PASS | PASS/FAIL |   -0-   |
+| **ck40** | **NP: whatsapp audios** | against | PASS | PASS | PASS | PASS/PASS |   -0-   |
+| **ck41** | **NP: whatsapp audios** | pro | PASS | PASS | PASS | PASS/PASS |  -0-    |
+| ck42 | NP: concerts | against | PASS | FAIL (due to being dragged by CK43) | FAIL (due to being "dragged" by CK43) | FAIL/PASS | -0-     |
+| ck43 | NP: concerts | pro | PASS | FAIL | FAIL | FAIL/PASS | AMP (both versionss)   |
+| **ck44** | **NP: winter** | against | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/PASS |  -0-   |
+| **ck45** | **NP: winter** | pro | PASS | PASS (S above mean of funniness) | PASS | PASS/PASS | BMP    |
+| **ck46** | **NP: cats** | against | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/PASS |  -O   |
+| **ck47** | **NP: cats** | pro | PASS | PASS (meme: above average of funniness | PASS | PASS/PASS |  -O   |
+
+
+  ### And the winners are
+
+
+
 
 </details>
