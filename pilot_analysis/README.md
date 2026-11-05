@@ -457,7 +457,7 @@ Version was dummy-coded (with S as baseline), whereas ck_ was configured with su
 
 Even though REML is used as a estimation method for continous data and I'm working with ordinal data I decided it was an appropiate decision as 
 funniness is composed of several measure that creates a more continuos behavior of the data. It also works to compare different models with the same fixed effect structure (which I did to determine which model was the best one to use for the comparisons, as can be seen in the code)
-Degrees of Freedom for evalauting significance were estimated using Kenward-Roger approximations based on recomendatios by [Luke, 2017](https://pubmed.ncbi.nlm.nih.gov/27620283/)
+Degrees of Freedom for evaluating significance were estimated using Kenward-Roger approximations based on recomendatios by [Luke, 2017](https://pubmed.ncbi.nlm.nih.gov/27620283/)
 
 **1.Comparison between H and S versions**
 In order to control the numerous comparisions among the H and S version of each pair of imagenes I used Benjamini-Hochberg correction. I also ran the same analysis using a more conservative correction method -Holm- and th eresults where the same.
@@ -803,7 +803,7 @@ I then looked into each image mean on polemicality compared to the overall mean 
 | ck30 | security                | rw      | -0-                                                |
 | ck31 | security                | lw      | Serious version marginally below mean polemicality |
 | ck32 | enviroment policies     | rw      | -0-                                                |
-| ck33 | enviroment policies     | lw      | BELOW MEAN POLEMICALITY (BMP)                      |
+| ck33 | enviroment policies     | lw      | Marginally BELOW MEAN POLEMICALITY (BMP)  (h)      |
 | ck34 | work policies           | rw      | -0-                                                |
 | ck35 | work policies           | lw      | AMP (both versions)                                |
 | ck36 | ai                      | rw      | -0-                                                |
@@ -822,11 +822,12 @@ I then looked into each image mean on polemicality compared to the overall mean 
 *\* Note: -0- are cases where the mean is neither clearly above or below the overall mean
 
 ### tl;dr
-RW images tend to be viewed as more polemical, compared to the overall average of political images.
-Although evidence showed humor has a significant effect on the levels of polemicality, this effect was small and widespread rather than being concentrated in specific image pairs. No pair of images had significant differences in their level of polemicality between humorous and serious version.
+- RW images tend to be viewed as more polemical, compared to the overall average of political images. This is consistent to similar effects regarding perception of funniness, and is possibly explained by lw participants tendency to use more extreme ratings as can be seen in the density plots above.
+- Although evidence showed humor has a significant effect on the levels of polemicality, this effect was small and widespread rather than being concentrated in specific image pairs. 
+- No single image pair demonstrated a significant difference in polemicality between its humorous and serious versions.
 
 
-## Summary 
+## Summary Table of 5-Steps Results
 
 | code | topic | image | step 1 | step 2 | step 3 | step 4 (1/2) | step 5 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -873,8 +874,31 @@ Although evidence showed humor has a significant effect on the levels of polemic
 
 
   ### And the winners are
+- **Political Topics**
+  - Identity Checks: This topic compares two views on the policy of identity checks in the subway
+  - Political Priorities: This topic compares the political priorities of the right and the left
+  - Protests: This topic compares two views of behaviours during protests
+  - Budget Cuts: This topic compares two views regarding budget cuts by the goverment
+  - Register of Crimes: This topic compares to views on the policy of having a register on"incivilities" and "crimes"
+- **Non Political Topics**
+  - Whatsapp Audios: This topic compares two views on receiving long whatsapp audios
+  - Winter: This topic compares a favorable and negative view on winter
+  - Cats: This topic compares a favorable and negative view on cats
+ 
+>[!NOTE] There are 4 political topics that only failed in the fourth step. So they are also considered as possible additions to the selection of experimental stimuli
+>Student loans: This topic compares two views regarding the current chilean goverment's decision to start colllection money from student debts
+>Minister controversies: Compares two different reactions to controviersies surrounding goverments officials' controversies
+>Security: Compares left wing and right wing reaction to a proposed law to review high school student's backpacks
+>Political values: Compares stereotypical values associated to the right wing and left wing
+>
+>"Minister Controversies" rw versions had a level of polemicality above the mean, possible due to it referencing a sexual absue scandal by one former goverment official. Also the lw have levels of funniness above the mean across both versions.
+>Student loans is also discarded given that a significant proportion of the panel for the final experiment consists of university students, this could introduce a bias in how they respond. Furthermore, the reference to the current Chilean government—which is experiencing very low levels of popularity—could introduce noise into the results.
+>The selection will depend on which topic yields stimuli that can be most effectively adapted to the Objective Ambivalence measurement scale.
+>Wording must be made in a manner that both positive and negative beliefs can be assesed with the same syntactic structure "How positive/negative is your view about ...."
+>The main challenge is selecting a topic on which two opposing perspectives can be expressed using the exact same syntax.
 
-
+# the end?
+[now take a break](https://www.youtube.com/watch?v=ZS5DeEqTgjM)
 
 
 </details>
