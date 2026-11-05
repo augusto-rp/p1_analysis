@@ -1,3 +1,8 @@
+
+# testing the difference
+
+#Github ready
+
 # Librerias
 library(readxl)
 library(psych)
@@ -27,8 +32,8 @@ set.seed(2010) # in case there is any randomization to be doned
 
 # 1. Data Preparation -----------------------------------------------------
 
-bd <- read_excel(file.choose())
-#bd <- read_excel("pilot_analysis/pilot_data.xlsx")  
+#bd <- read_excel(file.choose())
+bd <- read_excel("pilot_analysis/pilot_data.xlsx")  
 bd[bd == -9]<-NA # transform -9 into NA
 bd <- bd %>% filter(SD04_01 <= 36) # erase people above accepted age
 
@@ -81,6 +86,8 @@ left_wing  <- c("PI42_01","PI44_01","PI46_01","PI48_01","PI50_01",
 neither    <- c("PI73_01","PI74_01","PI75_01","PI76_01","PI77_01",
                 "PI78_01","PI79_01","PI80_01")
 
+
+
   # List of variables that measure funniness of leftwing, rightwing, and non political memes
 
 f_rw_meme <- c("CK08_03", "CK10_03", "CK12_03", "CK14_03", "CK16_03", "CK18_03", "CK20_03", "CK22_03", "CK24_03", "CK26_03", "CK28_03", "CK30_03", "CK32_03", "CK34_03", "CK36_03", "CK38_03")
@@ -90,6 +97,13 @@ f_lw_meme  <- c("CK09_03", "CK11_03", "CK13_03", "CK15_03", "CK17_03", "CK19_03"
 f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","CK46_03","CK47_03")
 
 
+  # List of variables that measure polemicality of lw, rw, and np
+
+p_rw_meme <- c("CK08_01", "CK10_01", "CK12_01", "CK14_01", "CK16_01", "CK18_01", "CK20_01", "CK22_01", "CK24_01", "CK26_01", "CK28_01", "CK30_01", "CK32_01", "CK34_01", "CK36_01", "CK38_01")
+
+p_lw_meme  <- c("CK09_01", "CK11_01", "CK13_01", "CK15_01", "CK17_01", "CK19_01", "CK21_01", "CK23_01", "CK25_01", "CK27_01", "CK29_01", "CK31_01", "CK33_01", "CK35_01", "CK37_01", "CK39_01")
+
+p_np_meme    <- c("CK40_01","CK41_01","CK42_01","CK43_01","CK44_01","CK45_01","CK46_01","CK47_01")
 
 # 1.2 Creation of New Variables
   # A person that sees the complete questionnaire is expected to see a total of 14 pages. The following code create a variable "total_p" that indicates how  pagesmuch each person sees
@@ -98,11 +112,7 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
     total_p = rowSums(!is.na(pick(num_range("TIME", 01:045, width = 3))))
   )
 
-  # Someone that saw less than 6 pages didnt saw a single image, so there is no rating of any single stimuli.
-  # RUN ANALYSIS FOR CYNICISM BEFORE THIS !!!!
-    # This way there is a little bit more data for the CFA. Some people abandoned the survey before seeing images but responded the cynicism scale
- # bd <- bd %>% filter(total_p >= 6) 
-  
+
   #Lets also create a dichotomic variable that differentiates between people who respondend <50% of images (9 pages in total)
   bd$total_p_d <- ifelse(bd$total_p <= 9, 0, 1)
   
@@ -221,6 +231,8 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
   # The assignment of images to each set was random, as was the assignment to condition. So any difference between groups is pure chance
   # In README there is description  of which topics (pair of iamges) were presented in each group
   
+  bd$AS02<-as.factor(bd$AS02)
+  
   # Polemicality of memes
   bd %>%
     group_by(AS02) %>%
@@ -236,7 +248,7 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
       .groups = 'drop'
     ) # Difference between count and N is because some people in a group has answers for the cynicism scale but didnt saw any image SO nor rating for them.I mantaing this data for analysis of the cynicism scales
   
-  
+
   # Polemicality of serious stimuli
   bd %>%
     group_by(AS02) %>%
@@ -298,6 +310,13 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
       .groups = 'drop'
     ) 
   
+  
+  
+  # Lets check if there is any significane differene across any mean
+  manova_means<-manova(cbind(avg_01, avg_02, avg_03, avg_04, avg_05)~AS02, data=bd)
+  summary(manova_means) ###yay
+
+  
   # Lets see overall rating of funniness across ideological groups
   
   f_means_id <- bd %>%
@@ -319,13 +338,23 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
   
   # Lets see correlations among overall ratings
   avg_cor<-bd[,c("avg_01","avg_02","avg_03","avg_04","avg_05")]  
+  cor.matrix(avg_cor, method="spearman", alpha=0.05, p.adj = "bonferroni", print="all")
   cor.plot(avg_cor)
+  
+
  
 # Dont look to much into the correlatio of funniness of serious images with others. It is probably a funcion of hghet density towards the lower end of scale
   ggplot(bd, aes(x=avg_04, y=avg_02)) + 
     geom_point()
   
-  rm(avg_cor, f_means_id)
+
+  
+  
+  
+  
+  rm(avg_cor, f_means_id, avg_cor)
+  
+  
   
 
   
@@ -504,13 +533,6 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
   # 5.5 Perceived polemicality of lw, rw and non political memes by political orientation
   
   
-  p_rw_meme <- c("CK08_01", "CK10_01", "CK12_01", "CK14_01", "CK16_01", "CK18_01", "CK20_01", "CK22_01", "CK24_01", "CK26_01", "CK28_01", "CK30_01", "CK32_01", "CK34_01", "CK36_01", "CK38_01")
-  
-  p_lw_meme  <- c("CK09_01", "CK11_01", "CK13_01", "CK15_01", "CK17_01", "CK19_01", "CK21_01", "CK23_01", "CK25_01", "CK27_01", "CK29_01", "CK31_01", "CK33_01", "CK35_01", "CK37_01", "CK39_01")
-  
-  p_np_meme    <- c("CK40_01","CK41_01","CK42_01","CK43_01","CK44_01","CK45_01","CK46_01","CK47_01")
-  
-  
   bd <- bd %>%
     rowwise() %>%
     mutate(
@@ -574,6 +596,9 @@ f_np_meme    <- c("CK40_03","CK41_03","CK42_03","CK43_03","CK44_03","CK45_03","C
       caption = "Nota: 1-Izquierda, 2-Derecha 3-Centro/Independientes"
     ) +
     theme_minimal()
+  
+  
+  
   
 # 6. Criteria for Selection of Stimuli ------------------------------------
 # These Criteria are ordered from more important to less important. More important means less flexibility on what might pass a valid stimuli
@@ -723,34 +748,31 @@ emm_ver <- update(emm_pares, by = "version")
 # see last section of code
 # I should have the same consideration in step 5
 
-lv    <- levels(fun_df$ck_)
-stopifnot(identical(lv, as.character(emm_ver@levels$ck_)))  # weights must follow the grid order
-dim_vec <- ifelse(parse_number(lv) <= 39, "political", "non-political") #over 39 are not political
+lv       <- levels(fun_df$ck_)
+stopifnot(identical(lv, as.character(emm_ver@levels$ck_)))
+dim_vec  <- ifelse(parse_number(lv) <= 39, "political", "non-political")
+stopifnot(!anyNA(dim_vec))
 
 eff_within <- lapply(seq_along(lv), function(i) {
-  same <- dim_vec == dim_vec[i]
+  same   <- dim_vec == dim_vec[i]
+  others <- same & (seq_along(lv) != i)   # exclude the cell being judged
   w <- rep(0, length(lv))
-  w[same] <- -1 / sum(same)
-  w[i] <- w[i] + 1
+  w[others] <- -1 / sum(others)           # negative weights on the OTHER cells only
+  w[i]      <- 1                          # +1 on the cell itself
   w
 })
-names(eff_within) <- lv
 
-dev_df <- contrast(emm_ver, method = eff_within) |>   # computed separately for H and S
-  summary(infer = TRUE, adjust = "none") |>           # no adjustment: descriptive, not a formal test
+names(eff_within) <- lv   # one contrast per ck_ level
+
+
+dev_df <- contrast(emm_ver, method = eff_within) |>
+  summary(infer = TRUE, adjust = "none") |>
   as.data.frame() |>
-  mutate(ck_id     = as.character(contrast),
-         dimension = ifelse(parse_number(ck_id) <= 39, "political", "non-political")) |>
+  mutate(
+    ck_id     = as.character(contrast),
+    dimension = ifelse(parse_number(ck_id) <= 39, "political", "non-political")
+  ) |>
   dplyr::select(ck_id, dimension, version, dev = estimate, SE, lower.CL, upper.CL)
-
-
-dev_df <- contrast(emm_ver, method = "eff") |>
-  summary(infer = TRUE, adjust = "none") |>   # no adjustment: descriptive, not a formal test
-  as.data.frame() |>
-  mutate(ck_id = sub(" effect$", "", contrast)) |>
-  dplyr::select(ck_id, version, dev = estimate, SE, lower.CL, upper.CL)
-# in order to run this code make sure to run pbkrtest.limit = 15000
-# if not, it not going to calculate t distribution intervarls and get no lower and upper.cl
 
 dev_df <- dev_df |>
   mutate(
@@ -767,7 +789,7 @@ dev_df <- dev_df |>
       version == "H" & lower.CL > 0 ~ "above_H_fun",
       version == "S" & upper.CL < 0 ~ "below_S_fun",
       version == "S" & lower.CL > 0 ~ "above_S_fun",
-      TRUE ~ "inconclusive"
+      TRUE ~ "inconclusive" # Ci contains 0
     ),
     
     # flag borderline cases where the CI barely excludes 0
@@ -839,6 +861,7 @@ pairs(simil_id_all, adjust = "tukey")
 
 rm(simil2, simil_id, simil_id_all, similitud, d_sim)
 
+
 # 6.4 Step 4 - Image classification ---------------------------------------
 
   # 6.4.1 Are political memes perceived as political? Are non-political memes perceived as non-political?
@@ -846,10 +869,26 @@ rm(simil2, simil_id, simil_id_all, similitud, d_sim)
    # 1= Non Political 2= Political
 psych::describe(bd[pi_check])
 
+# At first glance it seems all political images pass this test, and two non political are failing.
 
-# Two non political memes are perceived as political, lets see the % of rating: Memes about spending money in concerts
-round(100 * prop.table(table(bd$PI35_01)), 2) # Majority selected 2!
-round(100 * prop.table(table(bd$PI36_01)), 2) # # Majority selected 2!
+# Let's see the proportion fo participants that selected 2 in each images
+
+pi_props <- lapply(bd[pi_check], function(x) {
+  round(100 * prop.table(table(x)), 2)
+})
+
+names(pi_props) <- pi_check # name the list elements for clarity
+
+pi_summary <- map_df(pi_props, ~ {
+  tibble(
+    political_pct = ifelse("2" %in% names(.), .[["2"]], 0),
+    non_political_pct = ifelse("1" %in% names(.), .[["1"]], 0)
+  )
+}) %>%
+  mutate(stimulus = pi_check)
+
+rm(pi_props)
+
 
   # 6.4.2 Are memes classified as being the political orientation they were intended to?
   # # PI41 to PI80 question whether the image is perceived as right wing (1) left wing (2) or neither (3) --> That is what pi_ideology is for
@@ -941,6 +980,7 @@ perception_intended <- orientacion_stimuli_long %>%
       intended == "neither" ~ 0.30
     )
   ) %>%
+  mutate(passes_all = (ci_lower > 0.50) & crit2)%>%
   ungroup()
 
 
@@ -1029,8 +1069,8 @@ anova(c_pares1, c_pares2, c_pares3, refit=F) # 3 wins once again
 
 
 summary(c_pares3, ddf="Kenward-Roger")
-anova(c_pares)
-ranova(c_pares3)
+anova(c_pares3, ddf="Kenward-Roger")
+ranova(c_pares3, ddf="Kenward-Roger")
 # Humor increases perception of polemicality but really slightly 0.10
 # Some topics are quite more polemic (more than half a point) LOOK AT CK38: right critizing values of the left
 
@@ -1041,21 +1081,57 @@ c_pares_comp <- emmeans(c_pares3, ~ version | ck_) %>%
 summary(c_pares_comp) # No significant differences between H-S version in polemicality
 
 
-# This is weird c_pares3 suggest a signficiant effect of humor on perception a topic is controversial, but not a single pairwise comparision shows it
+# This is weird c_pares3 suggest a signficant effect of humor on perception a topic is controversial, but not a single pairwise comparision shows it
 # This means the effect is diffuse and small across stimuli
 # This indicates that humor exerts a small, widespread, and uniform increase on perceived polemicality across the battery, rather than being concentrated in specific image pairs.
 
 
-# Lets see how each images compares on its mean to the average
-emm_c <- emmeans(c_pares3, ~ ck_)   # one model base mean by pair averagedover version 
-dev_c <- contrast(emm_c, method = "eff") |>  #mean - unweighted mean of all pairs
-  summary(infer = TRUE, adjust = "none") |> # id changes a lot if use "none" or  "fdr" as adjustment if i use "none" (more strict) the rejected pairs are kind of the same that failed previous tests
+# Lets compare the mean of each image to the overall mean per topic
+
+c_pares_comp <- emmeans(c_pares3, ~ version | ck_)
+emm_ver_polemic <- update(c_pares_comp, by = "version")
+
+
+lv_polemic    <- levels(polemic_df$ck_)
+stopifnot(identical(lv_polemic, as.character(emm_ver_polemic@levels$ck_)))  # weights must follow the grid order
+dim_vec_polemic <- ifelse(parse_number(lv_polemic) <= 39, "political", "non-political") #over 39 are not political
+
+
+eff_within_polemic <- lapply(seq_along(lv_polemic), function(i) {
+  same   <- dim_vec_polemic == dim_vec_polemic[i]
+  others <- same & (seq_along(lv_polemic) != i)
+  w <- rep(0, length(lv_polemic))
+  w[others] <- -1 / sum(others)
+  w[i]      <- 1
+  w
+})
+
+
+names(eff_within_polemic) <- lv_polemic   # one contrast per ck_ level
+
+
+dev_df_polemic <- contrast(emm_ver_polemic, method = eff_within_polemic) |>
+  summary(infer = TRUE, adjust = "none") |>
   as.data.frame() |>
-  mutate(ck_id = sub(" effect$", "", contrast),
-         status = case_when(lower.CL > 0 ~ "above",  # Fair confidence that the lower bound of the true mean lies above the unweighted average mean
-                            upper.CL < 0 ~ "below",
-                            TRUE         ~ "not different")) |>
-  arrange(abs(estimate))
+  mutate(
+    ck_id     = as.character(contrast),
+    dimension = ifelse(parse_number(ck_id) <= 39, "political", "non-political")
+  ) |>
+  dplyr::select(ck_id, dimension, version, dev = estimate, SE, lower.CL, upper.CL)
+
+dev_df_polemic <- dev_df_polemic |>
+  mutate(
+    ci_level = 0.95,
+    status = case_when(
+      lower.CL > 0 ~ "above_topic",
+      upper.CL < 0 ~ "below_topic",
+      TRUE         ~ "inconclusive"
+    ),
+    borderline = (upper.CL < 0 & abs(upper.CL) / SE < 0.5) |
+      (lower.CL > 0 & abs(lower.CL) / SE < 0.5)
+  )
+
+
 
 # This table (dev_c) helps identifying pairs of images where polemicality is above the average  
   # This allows me to control whether I show more or less controversial memes
