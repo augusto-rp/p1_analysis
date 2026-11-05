@@ -455,8 +455,8 @@ The comparison was based on a Lineal Mixed Model (LMM), with the following rando
 
 Version was dummy-coded (with S as baseline), whereas ck_ was configured with sum contrasts (comparing each topic against the grand mean across all topics)
 
-Eventhough REML is used as a estimation method for continous data and I'm working with ordinal data I decided it was an appropiate decision as 
-funniness is composed of several measure that creates a more normal distribution of the data. It also work to compare different models with the same fixed effect structuer (wich I did to determine which model was the best one to use for the comparisons, as can be seen in the code)
+Even though REML is used as a estimation method for continous data and I'm working with ordinal data I decided it was an appropiate decision as 
+funniness is composed of several measure that creates a more continuos behavior of the data. It also works to compare different models with the same fixed effect structure (which I did to determine which model was the best one to use for the comparisons, as can be seen in the code)
 Degrees of Freedom for evalauting significance were estimated using Kenward-Roger approximations based on recomendatios by [Luke, 2017](https://pubmed.ncbi.nlm.nih.gov/27620283/)
 
 **1.Comparison between H and S versions**
@@ -505,59 +505,59 @@ Also it is worht recalling that all of this analysis seek to select topics in wh
 
 **Based the analysis**
 
-|code| topic | image | status |
-|---|---|---|---|
-|ck08| student loans| rw| PASS  |
-|ck09| student loans| lw|PASS   |
-|ck10| identity checks| rw|PASS   |
-|ck11| identity checks| lw|PASS (meme: above average of funniness)  |
-|ck12| economic policies| rw| FAIL |
-|ck13| economic policies| lw| FAIL (due to being "dragged" by CK12 |
-|ck14| international affairs| rw|PASS |
-|ck15| international affairs| lw|PASS |
-|ck16| international relations | rw|FAIL |
-|ck17| international relations| lw| FAIL (due to being "dragged" by CK16) |
-|ck18| working hours| rw| FAIL|
-|ck19| working hours| lw| FAIL (due to being "dragged" by CK18)  |
-|ck20| ministers controversies| rw|PASS |
-|ck21| ministers controversies| lw|PASS (both H and S are above mean of funniness) |
-|ck22| political priorities| rw|Marginal Fail |
-|ck23| political priorities| lw|PASS |
-|ck24| protests| rw|PASS |
-|ck25| protests| lw|PASS |
-|ck26| budget cuts| rw|PASS |
-|ck27| budgets cuts| lw|PASS |
-|ck28| register of crimes| rw|PASS |
-|ck29| register of crimes| lw|PASS |
-|ck30| security| rw|PASS |
-|ck31| security| lw|PASS |
-|ck32| enviroment policies| rw|FAIL |
-|ck33| enviroment policies| lw|FAIL (due to being "dragged" by CK32) |
-|ck34| work policies| rw|FAIL (due to being "dragged" by CK35) |
-|ck35| work policies| lw|FAIL |
-|ck36| ai| rw| PASS (meme: above average of funniness) |
-|ck37| ai| lw| PASS |
-|ck38| political values| rw|PASS |
-|ck39| political values| lw|PASS |
-|ck40| NP: whatsapp audios| against|PASS |
-|ck41| NP: whatsapp audios| pro|PASS (serious: above mean of funniness |
-|ck42| NP: concerts| against|PASS (meme: above average of funniness) |
-|ck43| NP: concerts| pro|PASS |
-|ck44| NP: winter| against| PASS (both H and S are above mean of funniness) |
-|ck45| NP: winter| pro| PASS (both H and S are above mean of funniness) |
-|ck46| NP: cats| against|PASS (both H and S are above mean of funniness) |
-|ck46| NP: cats | pro|PASS (meme: above average of funniness |
+| code | topic                   | image   | step 2                                          |
+| ---- | ----------------------- | ------- | ----------------------------------------------- |
+| ck08 | student loans           | rw      | PASS                                            |
+| ck09 | student loans           | lw      | PASS                                            |
+| ck10 | identity checks         | rw      | PASS                                            |
+| ck11 | identity checks         | lw      | PASS (meme: above average of funniness)         |
+| ck12 | economic policies       | rw      | MARGINAL FAIL                                   |
+| ck13 | economic policies       | lw      | PASS                                            |
+| ck14 | international affairs   | rw      | PASS                                            |
+| ck15 | international affairs   | lw      | PASS                                            |
+| ck16 | international relations | rw      | MARGINAL FAIL                                   |
+| ck17 | international relations | lw      | PASS                                            |
+| ck18 | working hours           | rw      | FAIL                                            |
+| ck19 | working hours           | lw      | FAIL (due to being "dragged" by CK18)           |
+| ck20 | ministers controversies | rw      | PASS                                            |
+| ck21 | ministers controversies | lw      | PASS (both H and S are above mean of funniness) |
+| ck22 | political priorities    | rw      | PASS                                            |
+| ck23 | political priorities    | lw      | PASS                                            |
+| ck24 | protests                | rw      | PASS                                            |
+| ck25 | protests                | lw      | PASS                                            |
+| ck26 | budget cuts             | rw      | PASS                                            |
+| ck27 | budgets cuts            | lw      | PASS                                            |
+| ck28 | register of crimes      | rw      | PASS                                            |
+| ck29 | register of crimes      | lw      | PASS (meme: above average of funniness)         |
+| ck30 | security                | rw      | PASS                                            |
+| ck31 | security                | lw      | PASS                                            |
+| ck32 | enviroment policies     | rw      | FAIL                                            |
+| ck33 | enviroment policies     | lw      | FAIL (due to being "dragged" by CK32)           |
+| ck34 | work policies           | rw      | FAIL (due to being "dragged" by CK35)           |
+| ck35 | work policies           | lw      | FAIL                                            |
+| ck36 | ai                      | rw      | PASS (both H and S are above mean of funniness) |
+| ck37 | ai                      | lw      | PASS                                            |
+| ck38 | political values        | rw      | PASS                                            |
+| ck39 | political values        | lw      | PASS                                            |
+| ck40 | NP: whatsapp audios     | against | PASS                                            |
+| ck41 | NP: whatsapp audios     | pro     | PASS                                            |
+| ck42 | NP: concerts            | against | FAIL (due to being dragged by CK43)             |
+| ck43 | NP: concerts            | pro     | FAIL                                            |
+| ck44 | NP: winter              | against | PASS (both H and S are above mean of funniness) |
+| ck45 | NP: winter              | pro     | PASS (S above mean of funniness)                |
+| ck46 | NP: cats                | against | PASS (both H and S are above mean of funniness) |
+| ck46 | NP: cats                | pro     | PASS (meme: above average of funniness          |
+
+
 
 Some observations on the results
-- With one exception all the political memes that fail are right wing. I suspect this is a consequence of lw participants using "Completely disagree" when evaluating the funniness of rw memes, as seen in the density plots above. If lw participants have a tendency to use more extreme lower ratings of rw memes, than rw participants of lw memes this will lead to these kinds of results.
-- The image about rw priorities is marginally below the average mean, so further test are needed before discarding it
-- Some memes (such lw meme of identity checks) are clearly above the overall of funniness. This can be Winner's curse or that those memes are truly ranked as more funny. So rather than deciding whether to dsicard them or not jsut based on this it is important to see how they dweel in the following steps.
-- All non political images pass.
+- Most political memes that fail (or marginally fail) are right wing. I suspect this is a consequence of lw participants using "Completely disagree" when evaluating the funniness of rw memes, as seen in the density plots above. If lw participants have a tendency to use more extreme lower ratings of rw memes, than rw participants of lw memes this will lead to these kinds of results.
+- The image about rw international relationships and rw economic policies are marginally below the average mean, so further test are needed before discarding them
+- Some memes (such lw meme of identity checks) are clearly above the overall of funniness. This can be Winner's curse or that those memes are truly ranked as more funny. So rather than deciding whether to dsicard them or not jsut based on this it is important to see how they dwlel in the following steps.
+- Non Political mesm about spending money on concerts fail, the rest pass.
 
 ### tl;dr: 
 - The following topics are discarded as one of the images was rated as clearly below the average mean of funniness of political images
- -  economic policies
- -  internatiol relations
  -  working hours
  -  enviroment policies
  -  work policies
@@ -592,15 +592,21 @@ This supports the conclusion than the H and S version of the same topic successf
 
 
 ## Step 4
-This step comprises two different tests
+This step evaluates the validity of the stimuli through two main checks:
+1. **Topic Check:** Are political topics perceived as political, and non-political topics perceived as non-political?
+2. **Ideological Alignment Check:** Are political images correctly classified as expressing the intended political stance (Left-Wing vs. Right-Wing)?
 
-**1. Does political topics are perceived as political, and non political as non poltical?**
+### Part 1. Perception of Political Nature
 
-A mean =2 shows universal agreement that the image is political and = that it's not political
+Participants evaluated whether each image expressed a political topic on a binary scale: 
+- `1` = Non-Political
+- `2` = Political
+
+Universal agreement for political content yields $M = 2.00$, while universal agreement for non-political content yields $M = 1.00$.
 
 | code | n | mean (sd) | median | % of 2|
 |---|---:|---:|---:|---:|
-| studentes loans | 44 | 1.86 (0.35) | 2 | 86.36|
+| students loans | 44 | 1.86 (0.35) | 2 | 86.36|
 | students loans | 44 | 1.89 (0.32) | 2 | 88.64 |
 | identity checks | 44 | 1.89 (0.32) | 2 |88.64 |
 | identity checks | 45 | 1.91 (0.29) | 2 |91.11 |
@@ -619,13 +625,13 @@ A mean =2 shows universal agreement that the image is political and = that it's 
 | protests | 42 | 1.95 (0.22) | 2 | -4.10 | 95.24|
 | protests | 43 | 1.86 (0.35) | 2 | -2.01 |86.05 |
 | budget cuts | 41 | 1.98 (0.16) | 2 | -5.94 |97.56 |
-| budget cuts | 42 | 1.95 (0.22) | 2 | -4.10 |95.42 |
+| budget cuts | 42 | 1.95 (0.22) | 2 | -4.10 |95.24 |
 | register of crimes | 44 | 1.93 (0.25) | 2 |93.18 |
 | register of crimes | 44 | 1.91 (0.29) | 2 |90.91 |
 | security | 46 | 1.98 (0.15) | 2 |97.83 |
 | security | 47 | 1.96 (0.20) | 2 |95.74 |
 | enviromental policies | 49 | 1.90 (0.31) | 2 |89.9 |
-| enviromentak policies | 47 | 1.96 (0.20) | 2 |95.74 |
+| enviromental policies | 47 | 1.96 (0.20) | 2 |95.74 |
 | work policies | 41 | 1.93 (0.26) | 2 |92.68 |
 | work policies | 41 | 1.90 (0.30) | 2 | 90.24|
 | ai | 44 | 1.75 (0.44) | 2 |75 |
@@ -641,11 +647,11 @@ A mean =2 shows universal agreement that the image is political and = that it's 
 | NP: cats | 44 | 1.05 (0.21) | 1 |4.55 |
 | NP: cats | 45 | 1.04 (0.21) | 1 |4.44 |
 
-  - Based on the descriptives both **non political images that talk about spending money to go to concerts** have a majority(56.62%) of participants evaluating them as expressing political topics.  Therefore, this **topic is discarded**
+  - Based on the descriptives both **non political images that talk about spending money to go to concerts** have a majority(56.25%) of participants evaluating them as expressing political topics.  Therefore, this **topic is discarded**
   - Based exclusively on the descriptives most -if not all- of the political images seem to be perceived as political. Means are close to 2, and the % of participants that viewed them as political was at least 3/4 (except in 1). I did not set in advance a minimum cutoff percentage of required % to pass.However some political cases deserve some attention, specifically both images relating to AI and the rw image about meme controversies, given they have the lower % of perception as political and higher sd. The decision will be made based and the results of the other criteria.
 
 
-**2. Are political memes perceived as expressing an opinion consistent to the political orientation they were intended to?**
+### Part 2. Ideological Stance Alignment
 
 Beyond being perceived as political, stimuli were created trying to express a view typically associated with the rw or lw. Therefore intented lw images are expceted to be viewwd as lw, the same for rw images. Non political images were expected to be viewed as neither rw or lw.
 Initially a strict criteria was defined to test this
@@ -661,7 +667,7 @@ Most images mocked the opinion of the opposing political sector, this possibly l
 Further evidence to support this interpretations is the fact that the funniness and polemicality of the images by participant's political orientations is aligned with the intended political orientation of the images, i.e left wing memes were in general funnier for lw participants, and rw memes less funny. The same logic applies to rw participants.
 - I also beleive that some politicals memes had largerst proportions of classification as "neither" due to they being viewed as political but expressing an opinion that is not viewed as exclusively from one particular political side.
 
-Based on this reasoning I decided to runa  more relaxed criteria
+Based on this reasoning I decided to run a more relaxed criteria
 - Intended categorization is above 60%
 - Ignore cross categorization
 
@@ -673,7 +679,7 @@ Results are presented in the table below
 | ck09 | student loans           | lw      | PASS/ FAIL (dragged by ck08) |
 | ck10 | identity checks         | rw      | PASS/PASS                    |
 | ck11 | identity checks         | lw      | PASS/PASS                    |
-| ck12 | economic policies       | rw      | PASS/FAILS (dragged by ck13) |
+| ck12 | economic policies       | rw      | PASS/FAIL (dragged by ck13) |
 | ck13 | economic policies       | lw      | PASS/FAIL                    |
 | ck14 | international affairs   | rw      | PASS/FAIL (dragged by ck15)  |
 | ck15 | international affairs   | lw      | PASS/FAIL                    |
@@ -681,7 +687,7 @@ Results are presented in the table below
 | ck17 | international relations | lw      | PASS/PASS                    |
 | ck18 | working hours           | rw      | PASS/FAIL (dragged by ck19)  |
 | ck19 | working hours           | lw      | PASS/ FAIL                   |
-| ck20 | ministers controversies | PASS    | !/FAIL (dragged by ck21)     |
+| ck20 | ministers controversies | rw      | !/FAIL (dragged by ck21)     |
 | ck21 | ministers controversies | lw      | PASS/FAIL                    |
 | ck22 | political priorities    | rw      | PASS/PASS                    |
 | ck23 | political priorities    | lw      | PASS/PASS                    |
@@ -708,20 +714,100 @@ Results are presented in the table below
 | ck44 | NP: winter              | against | PASS/PASS                    |
 | ck45 | NP: winter              | pro     | PASS/PASS                    |
 | ck46 | NP: cats                | against | PASS/PASS                    |
-| ck46 | NP: cats                | pro     | PASS/PASS                    |
+| ck47 | NP: cats                | pro     | PASS/PASS                    |
+
+*\* Note: ! are the cases that deserve special attention given lower classification as political and larger sd
 
 
-
-
-
+### tl, dr
+Based on a relaxed criteria the following topics passed this step
+1. **Identity Checks** (`ck10`, `ck11`)
+2. **International Relations** (`ck16`, `ck17`)
+3. **Political Priorities** (`ck22`, `ck23`)
+4. **Protests** (`ck24`, `ck25`)
+5. **Budget Cuts** (`ck26`, `ck27`)
+6. **Political Values** (`ck38`, `ck39`)
+7. **NP: WhatsApp Audios** (`ck40`, `ck41`)
+8. **NP: Winter** (`ck44`, `ck45`)
+9. **NP: Cats** (`ck46`, `ck47`)
 
 
 ## Step 5
 
+This final steps does something similar as step 2, but now instead of comparing each image pair mean of funniness to the overall mean we will look compare the mean of polemicality. This criteria is not necessarily going to discard images, as high values can be cases of winner's curse, but considering levels of polemicality is relevant as research have found U-shaped relationships between funniness and concept nearly related with polemicality: agresiveness. [See p.51 of Martin & Ford, 2018](https://www.sciencedirect.com/book/monograph/9780128121436/the-psychology-of-humor)
+
+Similarly to step 2, we have to pool the means of comparision based on the topic's nature
+
+I also fitted a LLM with the same random structure used in step 2
+
+```r
+c_pares3 <- lmer(controversial ~ ck_ * version + (version | id) + (1|id:ck_),
+                 data = polemic_df, REML=T)
+```
+
+
+**1.Comparison between H and S versions**
+ A series of Benjamini-Hochberg adjusted-comparisons between the H and S verions of each images shows no significance differences in the levels of polemicality between the two versions. Kenward-Roger method for degrees of freedom approximation was 
+
+**2.Random effects results**
+- Individual variance on the perception of polemicality accounts for a 38.14% of the total random variance.
+-  
+- s
+
+**3. Fixed effects results**
+- Humor has a significant effect on the levels of polemicality. $\beta$=0.10, t=3.232, p=.001
+Given no pairwise comparison shows an effect of humor, this suggest that humor exerts a small, widespread, and uniform increase on perceived polemicality across the battery, rather than being concentrated in specific image pairs.
 
 
 
-## Summary
+I then looked into each image mean on polemicality compared to the overall mean of the corresponding topic
+
+| code | topic                   | image   | step 5                                             |
+| ---- | ----------------------- | ------- | -------------------------------------------------- |
+| ck08 | student loans           | rw      | -0-                                                |
+| ck09 | student loans           | lw      | -0-                                                |
+| ck10 | identity checks         | rw      | -0-                                                |
+| ck11 | identity checks         | lw      | -0-                                                |
+| ck12 | economic policies       | rw      | Marginally ABOVE MEAN POLEMICALITY (AMP) (h)       |
+| ck13 | economic policies       | lw      | -0-                                                |
+| ck14 | international affairs   | rw      | -0-                                                |
+| ck15 | international affairs   | lw      | -0-                                                |
+| ck16 | international relations | rw      | -0-                                                |
+| ck17 | international relations | lw      | -0-                                                |
+| ck18 | working hours           | rw      | AMP (both versions)                                |
+| ck19 | working hours           | lw      | -0-                                                |
+| ck20 | ministers controversies | rw      | AMP (h version)                                    |
+| ck21 | ministers controversies | lw      | -0-                                                |
+| ck22 | political priorities    | rw      | -0-                                                |
+| ck23 | political priorities    | lw      | -0-                                                |
+| ck24 | protests                | rw      | -0-                                                |
+| ck25 | protests                | lw      | -0-                                                |
+| ck26 | budget cuts             | rw      | AMP (h version)                                    |
+| ck27 | budgets cuts            | lw      | -0-                                                |
+| ck28 | register of crimes      | rw      | -0-                                                |
+| ck29 | register of crimes      | lw      | -0-                                                |
+| ck30 | security                | rw      | -0-                                                |
+| ck31 | security                | lw      | Serious version marginally below mean polemicality |
+| ck32 | enviroment policies     | rw      | -0-                                                |
+| ck33 | enviroment policies     | lw      | BELOW MEAN POLEMICALITY (BMP)                      |
+| ck34 | work policies           | rw      | -0-                                                |
+| ck35 | work policies           | lw      | AMP (both versions)                                |
+| ck36 | ai                      | rw      | -0-                                                |
+| ck37 | ai                      | lw      | BMP (h version)                                    |
+| ck38 | political values        | rw      | -0-                                                |
+| ck39 | political values        | lw      | -0-                                                |
+| ck40 | NP: whatsapp audios     | against | -0-                                                |
+| ck41 | NP: whatsapp audios     | pro     | -0-                                                |
+| ck42 | NP: concerts            | against | -0-                                                |
+| ck43 | NP: concerts            | pro     | AMP (both versionss)                               |
+| ck44 | NP: winter              | against | -0-                                                |
+| ck45 | NP: winter              | pro     | BMP (h version)                                    |
+| ck46 | NP: cats                | against | -O                                                 |
+| ck47 | NP: cats                | pro     | -O                                                 |
+
+*\* Note: -0- are cases where the mean is neither clearly above or below the overall mean
+
+### tl;dr
 
 
 
