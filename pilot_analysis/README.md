@@ -472,7 +472,13 @@ However I also want to report some results of the LMM as they will be importat f
 - Individual difference in the baseline perceptions of funniness explains 25.74% of the total random variance.
 - Additionally individual differences on the effect of humor explains another 35.20% of the total random variance.
 - Individual differences in the perception of funninness between different pairs of imagens explains an additional 18.38% of the random variance.
-- Intercept-Slope Correlation: There a negative correlation (r= -0.58)  between the random intercept ($\text{id}$) and the random slope ($\text{versionH}$). This means people with higher baseline funniness ratings experience a smaller boost from humorous cues, likely due to a ceiling effect 
+- Intercept-Slope Correlation: There a negative correlation (r= -0.58)  between the random intercept ($\text{id}$) and the random slope ($\text{versionH}$). This means people with higher baseline funniness ratings experience a smaller boost from humorous cues, likely due to a ceiling effect
+
+Likelihood ratio tests (LRT) performed via single-term deletion of random effects confirmed that both random structures significantly contributed to model fit:
+- Individual slope of humor (version | id): $\chi^2(2) = 658.05, p < .001$.
+- Topic-by-individual intercepts (1 | id:ck_): $\chi^2(1) = 384.02, p < .001$.
+
+Removing either structure significantly degraded model fit, justifying their inclusion in the random-effects structure.
 
 **3. Fixed effects results**
 - The results, F(1, 180.43) = 188.70, p<.001,  offer evidence in favor of the hypothesis that the humorous version increases the perception of funnineess of the images. 
@@ -747,17 +753,25 @@ c_pares3 <- lmer(controversial ~ ck_ * version + (version | id) + (1|id:ck_),
 
 
 **1.Comparison between H and S versions**
- A series of Benjamini-Hochberg adjusted-comparisons between the H and S verions of each images shows no significance differences in the levels of polemicality between the two versions. Kenward-Roger method for degrees of freedom approximation was 
+ A series of Benjamini-Hochberg adjusted-comparisons between the H and S verions of each images shows no significance differences in the levels of polemicality between the two versions. Kenward-Roger method for degrees of freedom approximation was used.
 
 **2.Random effects results**
-- Individual variance on the perception of polemicality accounts for a 38.14% of the total random variance.
--  
-- s
+- Individual differences on the perception of polemicality accounts for a 38.15% of the total random variance of the perception of polemicality.
+- Individual differences on the perception of humor accounts just for 6.06% of the total random variance of the perception of polemicality
+- Individual differences in the perception of polemicality between different pairs of images explains an additional 39.2% of the random variance of the perception of polemicality
+- Intercept-Slope Correlation: A mild negative correlation ($r = -0.20$) was found between individual intercepts and slopes, indicating that participants with higher baseline perceptions of polemicality experienced a smaller increase in polemicality ratings when presented with humorous cues.
 
+Likelihood ratio tests (LRT) performed via single-term deletion of random effects confirmed that both random structures significantly contributed to model fit:
+- Individual slope of humor (version | id): $\chi^2(2) = 103.05, p < .001$.
+- Topic-by-individual intercepts (1 | id:ck_): $\chi^2(1) = 1045.92, p < .001$.
+
+Removing either structure significantly degraded model fit, justifying their inclusion in the random-effects structure.
+  
 **3. Fixed effects results**
-- Humor has a significant effect on the levels of polemicality. $\beta$=0.10, t=3.232, p=.001
+- Humor has a significant effect on the levels of polemicality. $\beta$=0.10, F(1, 177.75)=10.44, p=.001
 Given no pairwise comparison shows an effect of humor, this suggest that humor exerts a small, widespread, and uniform increase on perceived polemicality across the battery, rather than being concentrated in specific image pairs.
-
+- Some topics appear to be significantly different from the overall level of polemicality, F(39,1624.82)=9.204, p<.001. For example most non political images are clearly below, and some political images (particularly rw ones) are above. Just as in the case of step 2 this is probably due to the effect of the ratings of lw participants being more extrem than their rw counterparts.
+- Due to low power to detect interaction no report of this effects will be made. Additionally, there is no sufficient evidence to asser that the effect of humor varies the level of polemicality between different topics F(39, 1622.11)=1.398, p=.053
 
 
 I then looked into each image mean on polemicality compared to the overall mean of the corresponding topic
@@ -808,6 +822,8 @@ I then looked into each image mean on polemicality compared to the overall mean 
 *\* Note: -0- are cases where the mean is neither clearly above or below the overall mean
 
 ### tl;dr
+RW images tend to be viewed as more polemical, compared to the overall average of political images.
+Although evidence showed humor has a significant effect on the levels of polemicality, this effect was small and widespread rather than being concentrated in specific image pairs. No pair of images had significant differences in their level of polemicality between humorous and serious version.
 
 
 ## Summary 
@@ -816,8 +832,8 @@ I then looked into each image mean on polemicality compared to the overall mean 
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ck08 | student loans | rw  | PASS | PASS | PASS | PASS/FAIL |  -0-   |
 | ck09 | student loans | lw  | PASS | PASS | PASS | PASS/ FAIL (dragged by ck08) |   -0-  |
-| **ck10** | identity checks | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
-| **ck11** | identity checks | lw  | PASS | PASS (meme: above average of funniness) | PASS | PASS/PASS |  -0-   |
+| **ck10** | **identity checks** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck11** | **identity checks** | lw  | PASS | PASS (meme: above average of funniness) | PASS | PASS/PASS |  -0-   |
 | ck12 | economic policies | rw  | PASS | MARGINAL FAIL | PASS | PASS/FAILS (dragged by ck13) | Marginally ABOVE MEAN POLEMICALITY (AMP)   |
 | ck13 | economic policies | lw  | PASS | PASS | PASS | PASS/FAIL |   -0-  |
 | ck14 | international affairs | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by ck15) |  -0-   |
@@ -828,14 +844,14 @@ I then looked into each image mean on polemicality compared to the overall mean 
 | ck19 | working hours | lw  | PASS | FAIL (due to being "dragged" by CK18) | PASS | PASS/ FAIL |  -0-   |
 | ck20 | ministers controversies | rw  | PASS | PASS | PASS | !/FAIL (dragged by ck21) |  AMP   |
 | ck21 | ministers controversies | lw  | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/FAIL |  -0-   |
-| ck22 | **political priorities** | rw  | PASS | PASS | PASS | PASS/PASS | -0-    |
-| ck23 | **political priorities** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
-| ck24 | **protests** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
-| ck25 | **protests** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
-| ck26 | **budget cuts** | rw  | PASS | PASS | PASS | PASS/PASS |  AMP   |
-| ck27 | **budgets cuts** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
-| ck28 | **register of crimes** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
-| ck29 | **register of crimes** | lw  | PASS | PASS (meme: above average of funniness) | PASS | PASS/PASS |  -0-   |
+| **ck22** | **political priorities** | rw  | PASS | PASS | PASS | PASS/PASS | -0-    |
+| **ck23** | **political priorities** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck24** | **protests** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck25** | **protests** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck26** | **budget cuts** | rw  | PASS | PASS | PASS | PASS/PASS |  AMP   |
+| **ck27** | **budgets cuts** | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck28** | **register of crimes** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
+| **ck29** | **register of crimes** | lw  | PASS | PASS (meme: above average of funniness) | PASS | PASS/PASS |  -0-   |
 | ck30 | security | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by c31) |  -0-   |
 | ck31 | security | lw  | PASS | PASS | PASS | PASS/FAIL |  Serious version marginally below mean polemicality   |
 | ck32 | enviroment policies | rw  | PASS | FAIL | PASS | PASS/FAIL |  -0-   |
@@ -846,14 +862,14 @@ I then looked into each image mean on polemicality compared to the overall mean 
 | ck37 | ai  | lw  | PASS | PASS | PASS | !/FAIL |   BMP  |
 | ck38 | political values | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by ck39) |  -0-   |
 | ck39 | political values | lw  | PASS | PASS | PASS | PASS/FAIL |   -0-   |
-| ck40 | **NP: whatsapp audios** | against | PASS | PASS | PASS | PASS/PASS |   -0-   |
-| ck41 | **NP: whatsapp audios** | pro | PASS | PASS | PASS | PASS/PASS |  -0-    |
+| **ck40** | **NP: whatsapp audios** | against | PASS | PASS | PASS | PASS/PASS |   -0-   |
+| **ck41** | **NP: whatsapp audios** | pro | PASS | PASS | PASS | PASS/PASS |  -0-    |
 | ck42 | NP: concerts | against | PASS | FAIL (due to being dragged by CK43) | FAIL (due to being "dragged" by CK43) | FAIL/PASS | -0-     |
 | ck43 | NP: concerts | pro | PASS | FAIL | FAIL | FAIL/PASS | AMP (both versionss)   |
-| ck44 | **NP: winter** | against | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/PASS |  -0-   |
-| ck45 | **NP: winter** | pro | PASS | PASS (S above mean of funniness) | PASS | PASS/PASS | BMP    |
-| ck46 | **NP: cats** | against | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/PASS |  -O   |
-| ck47 | **NP: cats** | pro | PASS | PASS (meme: above average of funniness | PASS | PASS/PASS |  -O   |
+| **ck44** | **NP: winter** | against | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/PASS |  -0-   |
+| **ck45** | **NP: winter** | pro | PASS | PASS (S above mean of funniness) | PASS | PASS/PASS | BMP    |
+| **ck46** | **NP: cats** | against | PASS | PASS (both H and S are above mean of funniness) | PASS | PASS/PASS |  -O   |
+| **ck47** | **NP: cats** | pro | PASS | PASS (meme: above average of funniness | PASS | PASS/PASS |  -O   |
 
 
   ### And the winners are
