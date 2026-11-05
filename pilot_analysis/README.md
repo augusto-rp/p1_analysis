@@ -75,7 +75,8 @@ Exploratory visualizations built from the long dataset:
 
 ## 6. Criteria for Selection of Stimuli
 
-Pairs are filtered through a sequence of criteria ordered from the most to the least strict in terms of flexibility. If one image of a pair fails, the whole pair (and its topic cluster) is discarded:
+Pairs are filtered through a sequence of criteria ordered from the most to the least strict in terms of flexibility and relevance. That means that failing step 2 is more indicative of a non-useful stimulus that failing step 4.
+If one image of a pair fails, the whole pair (and its topic cluster) is discarded:
 
 1. Significant funniness difference between H and S version.
 2. H funniness ≥ average of all H versions, and S funniness ≤ average of all S versions.
@@ -593,7 +594,7 @@ This supports the conclusion than the H and S version of the same topic successf
 ## Step 4
 This step comprises two different tests
 
-- 1. Does political topics are perceived as political, and non political as non poltical?
+**1. Does political topics are perceived as political, and non political as non poltical?**
 
 A mean =2 shows universal agreement that the image is political and = that it's not political
 
@@ -644,7 +645,72 @@ A mean =2 shows universal agreement that the image is political and = that it's 
   - Based exclusively on the descriptives most -if not all- of the political images seem to be perceived as political. Means are close to 2, and the % of participants that viewed them as political was at least 3/4 (except in 1). I did not set in advance a minimum cutoff percentage of required % to pass.However some political cases deserve some attention, specifically both images relating to AI and the rw image about meme controversies, given they have the lower % of perception as political and higher sd. The decision will be made based and the results of the other criteria.
 
 
-- 2. Are political memes perceived as expressing an opinion consistent to the political orientation they were intended to?
+**2. Are political memes perceived as expressing an opinion consistent to the political orientation they were intended to?**
+
+Beyond being perceived as political, stimuli were created trying to express a view typically associated with the rw or lw. Therefore intented lw images are expceted to be viewwd as lw, the same for rw images. Non political images were expected to be viewed as neither rw or lw.
+Initially a strict criteria was defined to test this
+- With a 95% confidence half the participants should clasiffy the image as intended
+- No more thatn 15% cross classification (rw images viewed as lw, and viceversa)
+  - In the case of non political images no more than 30% of cross classification
+ 
+**Based on the scrict criteria no single political topic passes this tests, as atleast one image pairs fails it. All non political pass.**
+
+I believe this is has two explanations
+- Poor wording of the item evaluating classification of the images. The participants had to respond to the following statement "Images express a typical opinion from the following political sector [original: Las imágenes expresan una opinión típica del sector político:]" with options being: from the left wing, from the right wing, neither.
+Most images mocked the opinion of the opposing political sector, this possibly lead to a confusion regarding whether the question was about the emitter of the message (as intended) or the target of the message (Who is the meme talking about).
+Further evidence to support this interpretations is the fact that the funniness and polemicality of the images by participant's political orientations is aligned with the intended political orientation of the images, i.e left wing memes were in general funnier for lw participants, and rw memes less funny. The same logic applies to rw participants.
+- I also beleive that some politicals memes had largerst proportions of classification as "neither" due to they being viewed as political but expressing an opinion that is not viewed as exclusively from one particular political side.
+
+Based on this reasoning I decided to runa  more relaxed criteria
+- Intended categorization is above 60%
+- Ignore cross categorization
+
+Results are presented in the table below
+
+| code | topic                   | image   | step 4 (1/2)                 |
+| ---- | ----------------------- | ------- | ---------------------------- |
+| ck08 | student loans           | rw      | PASS/FAIL                    |
+| ck09 | student loans           | lw      | PASS/ FAIL (dragged by ck08) |
+| ck10 | identity checks         | rw      | PASS/PASS                    |
+| ck11 | identity checks         | lw      | PASS/PASS                    |
+| ck12 | economic policies       | rw      | PASS/FAILS (dragged by ck13) |
+| ck13 | economic policies       | lw      | PASS/FAIL                    |
+| ck14 | international affairs   | rw      | PASS/FAIL (dragged by ck15)  |
+| ck15 | international affairs   | lw      | PASS/FAIL                    |
+| ck16 | international relations | rw      | PASS/PASS                    |
+| ck17 | international relations | lw      | PASS/PASS                    |
+| ck18 | working hours           | rw      | PASS/FAIL (dragged by ck19)  |
+| ck19 | working hours           | lw      | PASS/ FAIL                   |
+| ck20 | ministers controversies | PASS    | !/FAIL (dragged by ck21)     |
+| ck21 | ministers controversies | lw      | PASS/FAIL                    |
+| ck22 | political priorities    | rw      | PASS/PASS                    |
+| ck23 | political priorities    | lw      | PASS/PASS                    |
+| ck24 | protests                | rw      | PASS/PASS                    |
+| ck25 | protests                | lw      | PASS/PASS                    |
+| ck26 | budget cuts             | rw      | PASS/PASS                    |
+| ck27 | budgets cuts            | lw      | PASS/PASS                    |
+| ck28 | register of crimes      | rw      | PASS/PASS                    |
+| ck29 | register of crimes      | lw      | PASS/PASS                    |
+| ck30 | security                | rw      | PASS/FAIL (dragged by c31)   |
+| ck31 | security                | lw      | PASS/FAIL                    |
+| ck32 | enviroment policies     | rw      | PASS/FAIL                    |
+| ck33 | enviroment policies     | lw      | PASS/FAIL                    |
+| ck34 | work policies           | rw      | PASS/FAIL (dragged by ck35)  |
+| ck35 | work policies           | lw      | PASS/FAIL                    |
+| ck36 | ai                      | rw      | ! /FAIL                      |
+| ck37 | ai                      | lw      | !/FAIL                       |
+| ck38 | political values        | rw      | PASS/FAIL (dragged by ck39)  |
+| ck39 | political values        | lw      | PASS/FAIL                    |
+| ck40 | NP: whatsapp audios     | against | PASS/PASS                    |
+| ck41 | NP: whatsapp audios     | pro     | PASS/PASS                    |
+| ck42 | NP: concerts            | against | FAIL/PASS                    |
+| ck43 | NP: concerts            | pro     | FAIL/PASS                    |
+| ck44 | NP: winter              | against | PASS/PASS                    |
+| ck45 | NP: winter              | pro     | PASS/PASS                    |
+| ck46 | NP: cats                | against | PASS/PASS                    |
+| ck46 | NP: cats                | pro     | PASS/PASS                    |
+
+
 
 
 
