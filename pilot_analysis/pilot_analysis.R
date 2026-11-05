@@ -1144,30 +1144,70 @@ dev_df_polemic <- dev_df_polemic |>
 
 
 # For this particular test it makes sense to use half-coding. As I want to compare the polemicality to the grand mean, not just to S as a baseline
-  # Use this df to select images pairs! It makes more sense to use half-coding for this step
+  # Is the same model, just with different paramets. But results will mainly be the same
+  # Im just interested in seeing how the contrast changes. As now Im not looking using the mean of S verions as baseline bur rather the average of the images across both versions
+  #
 
 
-polemic_df$version_c <- ifelse(fun_df$version == "H", 0.5, -0.5)
+polemic_df$version_c <- ifelse(polemic_df$version == "H", 0.5, -0.5)
 
 c_pares3_half <- lmer(controversial ~ ck_ * version_c + (version_c | id) + (1|id:ck_),
                       data = polemic_df, REML=T)
 summary(c_pares3_half, ddf="Kenward-Roger")
 
-
 emm_c_half <- emmeans(c_pares3_half, ~ ck_) 
 
-dev_c_half <- contrast(emm_c_half, method = "eff") |>  #mean - unweighted mean of all pairs
-  summary(infer = TRUE, adjust = "none") |> # id changes a lot if use "none" or  "fdr" as adjustment if i use "none" (more strict) the rejected pairs are kind of the same that failed previous tests
+# Establish comparisons with political and non political topic
+lv_polemic <- levels(polemic_df$ck_)
+stopifnot(identical(lv_polemic, as.character(emm_c_half@levels$ck_)))
+
+dim_vec_polemic <- ifelse(parse_number(lv_polemic) <= 39,
+                          "political", "non-political")
+stopifnot(!anyNA(dim_vec_polemic))
+
+
+eff_within_half <- lapply(seq_along(lv_polemic), function(i) {
+  same   <- dim_vec_polemic == dim_vec_polemic[i]
+  others <- same & (seq_along(lv_polemic) != i)   # exclude i from the reference
+  w <- rep(0, length(lv_polemic))
+  names(w) <- lv_polemic
+  w[others] <- -1 / sum(others)                   # only the OTHER cells get -1/(m-1)
+  w[i]      <- 1                                  # i itself gets +1
+  w
+})
+names(eff_within_half) <- lv_polemic
+
+
+
+dev_df_half <- contrast(emm_c_half, method = eff_within_half) |>
+  summary(infer = TRUE, adjust = "none") |>   # descriptive, not a formal test
   as.data.frame() |>
-  mutate(ck_id = sub(" effect$", "", contrast),
-         status = case_when(lower.CL > 0 ~ "above",  # Fair confidence that the lower bound of the true mean lies above the unweighted average mean
-                            upper.CL < 0 ~ "below",
-                            TRUE         ~ "not different")) |>
-  arrange(abs(estimate))
+  mutate(
+    ck_id     = as.character(contrast),
+    dimension = ifelse(parse_number(ck_id) <= 39, "political", "non-political")
+  ) |>
+  dplyr::select(ck_id, dimension, dev = estimate, SE, lower.CL, upper.CL)
 
+dev_df_half <- dev_df_half |>
+  mutate(
+    ci_level = 0.95,
+    status = case_when(
+      lower.CL > 0 ~ "above_topic",
+      upper.CL < 0 ~ "below_topic",
+      TRUE         ~ "inconclusive"
+    ),
+    borderline = (upper.CL < 0 & abs(upper.CL) / SE < 0.5) |
+      (lower.CL > 0 & abs(lower.CL) / SE < 0.5)
+  ) |>
+  arrange(dimension, ck_id)
 
+# This responds: is this image, on average across its two versions, more or less polemical than the average image? 
+# The previous analysis (dev_df_polemic) answers: is this version of this image above/below the other versions of the same topic, at the same version level?
+# It Is different to say H versions of X images is more polemical than saying X image is more polemical
+# I like the first option as I can see differences beetween versions which is important. If a S versions is well below the average and the H verions is well above maybe it is not an ideal candidate to be sue
+  # There are really no much changes excepts that CK33is not below the average in this new comparisons, while in the first one the H verions is marginally below
 
-rm(c_pares1, c_pares2, polemic_df,c_pares_comp, emm_c, emm_c_half, c_pares)
+rm(c_pares1,c_pares2, eff_within_half,dim_vec_polemic, lv_polemic,eff_within_polemic,emm_ver_polemic,emm_c_half)
 
 
 
