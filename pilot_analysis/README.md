@@ -557,8 +557,8 @@ Also it is worht recalling that all of this analysis seek to select topics in wh
 
 
 Some observations on the results
-- Most political memes that fail (or marginally fail) are right wing. I suspect this is a consequence of lw participants using "Completely disagree" when evaluating the funniness of rw memes, as seen in the density plots above. If lw participants have a tendency to use more extreme lower ratings of rw memes, than rw participants of lw memes this will lead to these kinds of results.
-- The image about rw international relationships and rw economic policies are marginally below the average mean, so further test are needed before discarding them
+- Most political memes that fail (or marginally fail) are right wing. I suspect this is a consequence of lw participants using "Completely disagree" more frequently when evaluating the funniness of rw memes, as seen in the density plots above.
+- The image about rw international relationships and rw economic policies are marginally below the average mean, so further test are needed before discarding them.
 - Some memes (such lw meme of identity checks) are clearly above the overall of funniness. This can be Winner's curse or that those memes are truly ranked as more funny. So rather than deciding whether to dsicard them or not jsut based on this it is important to see how they dwlel in the following steps.
 - Non Political mesm about spending money on concerts fail, the rest pass.
 
@@ -840,7 +840,7 @@ I then looked into each image mean on polemicality compared to the overall mean 
 | ck14 | international affairs | rw  | PASS | PASS | PASS | PASS/FAIL (dragged by ck15) |  -0-   |
 | ck15 | international affairs | lw  | PASS | PASS | PASS | PASS/FAIL |  -0-   |
 | ck16 | international relations | rw  | PASS | MARGINAL FAIL | PASS | PASS/PASS |  -0-   |
-| ck17 | international relations | lw  | PASS | FAIL (due to being "dragged" by CK16) | PASS | PASS/PASS |  -0-   |
+| ck17 | international relations | lw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
 | ck18 | working hours | rw  | PASS | FAIL | PASS | PASS/FAIL (dragged by ck19) | AMP (both versions)    |
 | ck19 | working hours | lw  | PASS | FAIL (due to being "dragged" by CK18) | PASS | PASS/ FAIL |  -0-   |
 | ck20 | ministers controversies | rw  | PASS | PASS | PASS | !/FAIL (dragged by ck21) |  AMP   |
@@ -874,6 +874,8 @@ I then looked into each image mean on polemicality compared to the overall mean 
 
 
   ### And the winners are
+Topic that passed all the steps
+
 - **Political Topics**
   - Identity Checks: This topic compares two views on the policy of identity checks in the subway
   - Political Priorities: This topic compares the political priorities of the right and the left
@@ -885,15 +887,30 @@ I then looked into each image mean on polemicality compared to the overall mean 
   - Winter: This topic compares a favorable and negative view on winter
   - Cats: This topic compares a favorable and negative view on cats
  
->[!NOTE] There are 4 political topics that only failed in the fourth step. So they are also considered as possible additions to the selection of experimental stimuli
->Student loans: This topic compares two views regarding the current chilean goverment's decision to start colllection money from student debts
->Minister controversies: Compares two different reactions to controviersies surrounding goverments officials' controversies
->Security: Compares left wing and right wing reaction to a proposed law to review high school student's backpacks
->Political values: Compares stereotypical values associated to the right wing and left wing
+>[!NOTE] There are some political topics that only failed in the fourth step.. So they are also considered as possible additions to the selection of experimental stimuli
 >
->"Minister Controversies" rw versions had a level of polemicality above the mean, possible due to it referencing a sexual absue scandal by one former goverment official. Also the lw have levels of funniness above the mean across both versions.
->Student loans is also discarded given that a significant proportion of the panel for the final experiment consists of university students, this could introduce a bias in how they respond. Furthermore, the reference to the current Chilean government—which is experiencing very low levels of popularity—could introduce noise into the results.
->The selection will depend on which topic yields stimuli that can be most effectively adapted to the Objective Ambivalence measurement scale.
+>- Student loans: This topic compares two views regarding the current chilean goverment's decision to start colllection money from student debts
+>
+>- Minister controversies: Compares two different reactions to controviersies surrounding goverments officials' controversies
+>
+>- Security: Compares left wing and right wing reaction to a proposed law to review high school student's backpacks
+>  
+>- Political values: Compares stereotypical values associated to the right wing and left wing
+>
+>- International Affairs: Compares lw and right wing towards authoritarian political leaderes in latinamerica.
+>
+>Additionally, the rw image of "International Relationship"  was marginally below the average funniness mean, but passed all the other criteria
+>
+>Topic **"Student loans" is discarded** is discarded as the lw had a really low % of participants perceived it as lw (below 50%). This is possible a consequences that the decision to start collecting debts and charging former students with possible embargos was met with widespread condemnation by large portions of the chilea population. Furthermore, the reference to the current Chilean government—which is experiencing very low levels of popularity—could introduce noise into the results
+>
+>Topic **"Minister Controversies"** rw versions had a level of polemicality above the mean, possible due to it referencing a sexual abuse scandal by one former goverment official. This version also had a lower than average agreement on being a iamgen regarding political topic. Finally the lw have levels of funniness above the mean across both versions. **This topic is discarded**
+>
+>Topic **International Affairs** lw image had a had a really low % of participants perceived it as lw (below 53%) . This might be a resultat that the image appears to be defending Nicolas Maduro which is controversial figure within latinamerican leftists movements. Therefore this **topic is discarded**
+>
+>
+>Therefore "Security Policies" ,"Political Values" and "International Relations" will also be considered to be used in the final experiment.
+>
+>The selection will depend on which topic's stimuli can be most effectively adapted to the Objective Ambivalence measurement scale.
 >Wording must be made in a manner that both positive and negative beliefs can be assesed with the same syntactic structure "How positive/negative is your view about ...."
 >The main challenge is selecting a topic on which two opposing perspectives can be expressed using the exact same syntax.
 
