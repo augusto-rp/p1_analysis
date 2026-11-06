@@ -683,7 +683,7 @@ Results are presented in the table below
 | code | topic                   | image   | step 4 (1/2)                 |
 | ---- | ----------------------- | ------- | ---------------------------- |
 | ck08 | student loans           | rw      | PASS/FAIL                    |
-| ck09 | student loans           | lw      | PASS/ FAIL (dragged by ck08) |
+| ck09 | student loans           | lw      | PASS/ FAIL |
 | ck10 | identity checks         | rw      | PASS/PASS                    |
 | ck11 | identity checks         | lw      | PASS/PASS                    |
 | ck12 | economic policies       | rw      | PASS/FAIL (dragged by ck13) |
@@ -833,7 +833,7 @@ I then looked into each image mean on polemicality compared to the overall mean 
 | code | topic | image | step 1 | step 2 | step 3 | step 4 (1/2) | step 5 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | ck08 | student loans | rw  | PASS | PASS | PASS | PASS/FAIL |  -0-   |
-| ck09 | student loans | lw  | PASS | PASS | PASS | PASS/ FAIL (dragged by ck08) |   -0-  |
+| ck09 | student loans | lw  | PASS | PASS | PASS | PASS/ FAIL  |   -0-  |
 | **ck10** | **identity checks** | rw  | PASS | PASS | PASS | PASS/PASS |  -0-   |
 | **ck11** | **identity checks** | lw  | PASS | PASS (meme: above average of funniness) | PASS | PASS/PASS |  -0-   |
 | ck12 | economic policies | rw  | PASS | MARGINAL FAIL | PASS | PASS/FAILS (dragged by ck13) | Marginally ABOVE MEAN POLEMICALITY (AMP)   |
@@ -902,13 +902,15 @@ Topic that passed all the steps
 >
 >Additionally, the rw image of "International Relationship"  was marginally below the average funniness mean, but passed all the other criteria. This topic compares international relations that are favored by the leftwing and the right wing
 >
->Topic **"Student loans" is discarded** is discarded as the lw had a really low % of participants perceived it as lw (below 50%). This is possible a consequences that the decision to start collecting debts and charging former students with possible embargos was met with widespread condemnation by large portions of the chilea population. Furthermore, the reference to the current Chilean government—which is experiencing very low levels of popularity—could introduce noise into the results
+>Topic **"Student loans" is discarded** as the lw had a really low % of participants perceiving it as lw (below 50%). This is possibly a consequences that the decision to start collecting debts and charging former students with possible embargos was met with widespread condemnation by large portions of the chilean population. Furthermore, the reference to the current Chilean government —which is experiencing very low levels of popularity— could introduce noise into the results
 >
->Topic **"Minister Controversies"** rw versions had a level of polemicality above the mean, possible due to it referencing a sexual abuse scandal by one former goverment official. This version also had a lower than average agreement on being a iamgen regarding political topic. Finally the lw have levels of funniness above the mean across both versions. **This topic is discarded**
+>Topic **"Minister Controversies"** rw versions had a level of polemicality above the mean, possible due to it referencing a sexual abuse scandal by one former goverment official. This version also had a lower than average agreement on being a image regarding political topic. Finally the lw have levels of funniness above the mean across both versions. **This topic is discarded**
 >
->Topic **International Affairs** lw image had a had a really low % of participants perceived it as lw (below 53%) . This might be a resultat that the image appears to be defending Nicolas Maduro which is controversial figure within latinamerican leftists movements. Therefore this **topic is discarded**
+>Topic **"Political Values is discarded"** as the lw had a really low % of participants perceiving it as lw (below 50%). This might be a result of the image making a broad critisim of the rw, rather than a more stereotypically counter argument by the left.
 >
->Therefore "Security Policies" ,"Political Values" and "International Relations" will also be considered to be used in the final experiment.
+>Topic **International Affairs** lw image had a had a really low % of participants perceiving it as lw (below 53%) . This might be a resultat that the image appears to be defending Nicolas Maduro which is controversial figure within latinamerican leftists movements. Therefore this **topic is discarded**
+>
+>Therefore "Security Policies" and "International Relations" will also be considered to be used in the final experiment.
 >
 >The selection will depend on which topic's stimuli can be most effectively adapted to the Objective Ambivalence measurement scale.
 >Wording must be made in a manner that both positive and negative beliefs can be assesed with the same syntactic structure "How positive/negative is your view about ...."
