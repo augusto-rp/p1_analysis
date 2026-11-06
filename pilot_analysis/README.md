@@ -669,7 +669,8 @@ Initially a strict criteria was defined to test this
 
 I believe this is has two explanations
 - Poor wording of the item evaluating classification of the images. The participants had to respond to the following statement "Images express a typical opinion from the following political sector [original: Las imágenes expresan una opinión típica del sector político:]" with options being: from the left wing, from the right wing, neither.
-Most images mocked the opinion of the opposing political sector, this possibly lead to a confusion regarding whether the question was about the emitter of the message (as intended) or the target of the message (Who is the meme talking about).
+  - Most images mocked the opinion of the opposing political sector, this possibly lead to a confusion regarding whether the question was about the emitter of the message (as intended) or the target of the message (Who is the meme talking about).
+
 Further evidence to support this interpretations is the fact that the funniness and polemicality of the images by participant's political orientations is aligned with the intended political orientation of the images, i.e left wing memes were in general funnier for lw participants, and rw memes less funny. The same logic applies to rw participants.
 - I also beleive that some politicals memes had largerst proportions of classification as "neither" due to they being viewed as political but expressing an opinion that is not viewed as exclusively from one particular political side.
 
@@ -899,14 +900,13 @@ Topic that passed all the steps
 >
 >- International Affairs: Compares lw and right wing towards authoritarian political leaderes in latinamerica.
 >
->Additionally, the rw image of "International Relationship"  was marginally below the average funniness mean, but passed all the other criteria
+>Additionally, the rw image of "International Relationship"  was marginally below the average funniness mean, but passed all the other criteria. This topic compares international relations that are favored by the leftwing and the right wing
 >
 >Topic **"Student loans" is discarded** is discarded as the lw had a really low % of participants perceived it as lw (below 50%). This is possible a consequences that the decision to start collecting debts and charging former students with possible embargos was met with widespread condemnation by large portions of the chilea population. Furthermore, the reference to the current Chilean government—which is experiencing very low levels of popularity—could introduce noise into the results
 >
 >Topic **"Minister Controversies"** rw versions had a level of polemicality above the mean, possible due to it referencing a sexual abuse scandal by one former goverment official. This version also had a lower than average agreement on being a iamgen regarding political topic. Finally the lw have levels of funniness above the mean across both versions. **This topic is discarded**
 >
 >Topic **International Affairs** lw image had a had a really low % of participants perceived it as lw (below 53%) . This might be a resultat that the image appears to be defending Nicolas Maduro which is controversial figure within latinamerican leftists movements. Therefore this **topic is discarded**
->
 >
 >Therefore "Security Policies" ,"Political Values" and "International Relations" will also be considered to be used in the final experiment.
 >
